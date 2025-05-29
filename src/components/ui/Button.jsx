@@ -20,7 +20,7 @@ const Button = forwardRef(({
     ghost: "text-primary-600 hover:bg-primary-50 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
     success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
     danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
-    link: "text-primary-600 hover:text-primary-700 underline-offset-4 hover:underline shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105"
+    link: "text-primary-600 hover:text-primary-500 underline-offset-4 hover:underline focus:ring-primary-500"
   }
 
   const sizes = {

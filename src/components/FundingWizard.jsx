@@ -1,4 +1,4 @@
-import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, MeasureSelector } from './ui'
+import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, MeasureSelector, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
 import {
   buildingTypeOptions,
@@ -32,10 +32,10 @@ const FundingWizard = ({ onBack }) => {
   }
 
   const validationRules = {
-    1: ['buildingType', 'buildingYear', 'livingSpace'],
-    2: [(data) => data.measures.length > 0, 'renovationScope'],
+    1: [],
+    2: [(data) => data.measures.length > 0],
     3: ['firstName', 'lastName', 'email', 'phone'],
-    4: ['state', 'investmentAmount']
+    4: []
   }
 
   const {
@@ -67,17 +67,21 @@ const FundingWizard = ({ onBack }) => {
       case 1:
         return (
           <div className="space-y-6 animate-fade-in">
+            <HelpText>
+              <strong>💡 Tipp:</strong> Sie haben nicht alle Gebäudedaten zur Hand? Kein Problem! 
+              Lassen Sie einfach die Felder frei, die Sie nicht ausfüllen können. 
+              Unser Energieberater ermittelt fehlende Informationen gerne vor Ort.
+            </HelpText>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Select
                 label="Gebäudetyp"
-                required
                 value={formData.buildingType}
                 onChange={(e) => updateFormData('buildingType', e.target.value)}
                 options={buildingTypeOptions}
               />
               <Input
                 label="Baujahr"
-                required
                 type="number"
                 value={formData.buildingYear}
                 onChange={(e) => updateFormData('buildingYear', e.target.value)}
@@ -87,7 +91,6 @@ const FundingWizard = ({ onBack }) => {
               />
               <Input
                 label="Wohnfläche (m²)"
-                required
                 type="number"
                 value={formData.livingSpace}
                 onChange={(e) => updateFormData('livingSpace', e.target.value)}
@@ -232,10 +235,15 @@ const FundingWizard = ({ onBack }) => {
       case 4:
         return (
           <div className="space-y-6 animate-fade-in">
+            <HelpText>
+              <strong>📋 Optional:</strong> Die folgenden Angaben helfen uns bei der Beratung, 
+              sind aber nicht zwingend erforderlich. Lassen Sie Felder einfach frei, 
+              wenn Sie unsicher sind oder die Information nicht verfügbar haben.
+            </HelpText>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Select
                 label="Bundesland"
-                required
                 value={formData.state}
                 onChange={(e) => updateFormData('state', e.target.value)}
                 options={stateOptions}
@@ -250,7 +258,6 @@ const FundingWizard = ({ onBack }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Select
                 label="Geplante Investitionssumme"
-                required
                 value={formData.investmentAmount}
                 onChange={(e) => updateFormData('investmentAmount', e.target.value)}
                 options={investmentOptions}
