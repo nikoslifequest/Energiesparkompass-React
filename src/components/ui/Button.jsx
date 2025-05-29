@@ -11,16 +11,16 @@ const Button = forwardRef(({
   ...props 
 }, ref) => {
 
-  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform"
 
   const variants = {
-    primary: "bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5",
-    secondary: "bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-500",
-    outline: "border border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500",
-    ghost: "text-primary-600 hover:bg-primary-50 focus:ring-primary-500",
-    success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5",
-    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
-    link: "text-primary-600 hover:text-primary-700 underline-offset-4 hover:underline"
+    primary: "bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    secondary: "bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    outline: "border border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    ghost: "text-primary-600 hover:bg-primary-50 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    link: "text-primary-600 hover:text-primary-700 underline-offset-4 hover:underline shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105"
   }
 
   const sizes = {

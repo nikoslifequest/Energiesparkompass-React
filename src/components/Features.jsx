@@ -1,3 +1,5 @@
+import { Button } from './ui'
+
 const Features = () => {
   const features = [
     {
@@ -63,12 +65,12 @@ const Features = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <a
-            href="#konfigurator"
-            className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10"
+          <Button
+            size="xl"
+            onClick={() => document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Jetzt kostenlos testen
-          </a>
+          </Button>
         </div>
       </div>
     </div>

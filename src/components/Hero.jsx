@@ -1,3 +1,5 @@
+import { Button } from './ui'
+
 const Hero = () => {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -24,23 +26,20 @@ const Hero = () => {
                 Energie zu sparen und Ihre Kosten zu reduzieren. Individuell angepasst an Ihre 
                 Bedürfnisse und Ihr Zuhause.
               </p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
-                  <a
-                    href="#konfigurator"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10"
-                  >
-                    Konfigurator starten
-                  </a>
-                </div>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
-                    href="#features"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 md:py-4 md:text-lg md:px-10"
-                  >
-                    Mehr erfahren
-                  </a>
-                </div>
+              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+                <Button
+                  size="xl"
+                  onClick={() => document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Konfigurator starten
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="xl"
+                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Mehr erfahren
+                </Button>
               </div>
             </div>
           </main>

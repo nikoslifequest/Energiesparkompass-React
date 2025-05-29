@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button } from './ui'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -46,12 +47,11 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
-              href="#konfigurator"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+            <Button
+              onClick={() => document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Jetzt starten
-            </a>
+            </Button>
           </div>
         </div>
       </div>
@@ -96,12 +96,15 @@ const Header = () => {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              <a
-                href="#konfigurator"
-                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+              <Button
+                fullWidth
+                onClick={() => {
+                  setIsMenuOpen(false)
+                  document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
                 Jetzt starten
-              </a>
+              </Button>
             </div>
           </div>
         </div>

@@ -12,11 +12,11 @@ const Stepper = ({
   }
 
   const getStepClasses = (status) => {
-    const baseClasses = "flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium transition-all duration-300 relative z-10 bg-white border-2"
+    const baseClasses = "flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium transition-all duration-300 relative z-10 border-2"
     
     switch (status) {
       case 'completed':
-        return `${baseClasses} border-primary-600 bg-primary-600 text-white shadow-lg transform scale-110`
+        return `${baseClasses} border-primary-600 bg-primary-600 text-white shadow-lg transform scale-110 ring-2 ring-primary-200`
       case 'current':
         return `${baseClasses} border-primary-600 bg-white text-primary-600 ring-4 ring-primary-100`
       case 'upcoming':
