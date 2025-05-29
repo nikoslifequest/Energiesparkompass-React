@@ -1,6 +1,32 @@
 import { Button } from './ui'
 
 const Hero = () => {
+  const scrollToConfigurator = () => {
+    const configuratorElement = document.getElementById('konfigurator')
+    if (configuratorElement) {
+      configuratorElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    } else {
+      // Fallback: scroll to bottom if element not found
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const scrollToFeatures = () => {
+    const featuresElement = document.getElementById('features')
+    if (featuresElement) {
+      featuresElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   return (
     <div className="relative bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -29,14 +55,14 @@ const Hero = () => {
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
                 <Button
                   size="xl"
-                  onClick={() => document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={scrollToConfigurator}
                 >
                   Konfigurator starten
                 </Button>
                 <Button
                   variant="secondary"
                   size="xl"
-                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={scrollToFeatures}
                 >
                   Mehr erfahren
                 </Button>

@@ -4,6 +4,27 @@ import { Button } from './ui'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const scrollToConfigurator = () => {
+    const configuratorElement = document.getElementById('konfigurator')
+    if (configuratorElement) {
+      configuratorElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    } else {
+      // Fallback: scroll to bottom if element not found
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const handleMobileConfiguratorClick = () => {
+    setIsMenuOpen(false)
+    scrollToConfigurator()
+  }
+
   return (
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +69,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <Button
-              onClick={() => document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={scrollToConfigurator}
             >
               Jetzt starten
             </Button>
@@ -98,10 +119,7 @@ const Header = () => {
             <div className="py-6 px-5 space-y-6">
               <Button
                 fullWidth
-                onClick={() => {
-                  setIsMenuOpen(false)
-                  document.getElementById('konfigurator')?.scrollIntoView({ behavior: 'smooth' })
-                }}
+                onClick={handleMobileConfiguratorClick}
               >
                 Jetzt starten
               </Button>

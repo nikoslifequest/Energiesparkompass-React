@@ -127,4 +127,102 @@ export const availableMeasures = [
   { id: 'solar', label: 'Solarthermie', icon: '☀️' },
   { id: 'photovoltaik', label: 'Photovoltaik-Anlage', icon: '⚡' },
   { id: 'lueftung', label: 'Lüftungsanlage', icon: '💨' }
+]
+
+// Energieausweis-spezifische Optionen
+export const energyPassBuildingTypeOptions = [
+  { value: 'freistehendes-efh', label: 'Freistehendes Einfamilienhaus' },
+  { value: 'doppelhaushaelfte', label: 'Doppelhaushälfte' },
+  { value: 'reihenhaus-ende', label: 'Reihenhaus (Endhaus)' },
+  { value: 'reihenhaus-mitte', label: 'Reihenhaus (Mittelhaus)' }
+]
+
+export const constructionYearOptions = [
+  { value: 'vor-1919', label: 'vor 1919' },
+  { value: '1919-1948', label: '1919 - 1948' },
+  { value: '1949-1957', label: '1949 - 1957' },
+  { value: '1958-1968', label: '1958 - 1968' },
+  { value: '1969-1978', label: '1969 - 1978' },
+  { value: '1979-1983', label: '1979 - 1983' },
+  { value: '1984-1994', label: '1984 - 1994' },
+  { value: '1995-2001', label: '1995 - 2001' },
+  { value: '2002-2009', label: '2002 - 2009' },
+  { value: '2010-2015', label: '2010 - 2015' },
+  { value: 'ab-2016', label: 'ab 2016' }
+]
+
+export const wallConstructionOptions = [
+  { value: 'mauerwerk-ungedaemmt', label: 'Mauerwerk ungedämmt' },
+  { value: 'mauerwerk-gedaemmt', label: 'Mauerwerk gedämmt' },
+  { value: 'beton-ungedaemmt', label: 'Beton ungedämmt' },
+  { value: 'beton-gedaemmt', label: 'Beton gedämmt' },
+  { value: 'holzbau', label: 'Holzbau' },
+  { value: 'waermedaemmverbundsystem', label: 'Wärmedämmverbundsystem (WDVS)' }
+]
+
+export const roofConstructionOptions = [
+  { value: 'steildach-ungedaemmt', label: 'Steildach ungedämmt' },
+  { value: 'steildach-gedaemmt', label: 'Steildach gedämmt' },
+  { value: 'flachdach-ungedaemmt', label: 'Flachdach ungedämmt' },
+  { value: 'flachdach-gedaemmt', label: 'Flachdach gedämmt' }
+]
+
+export const windowTypeOptions = [
+  { value: 'einfachverglasung', label: 'Einfachverglasung' },
+  { value: 'zweifachverglasung-alt', label: 'Zweifachverglasung (vor 1995)' },
+  { value: 'zweifachverglasung-waermeschutz', label: 'Zweifachverglasung Wärmeschutz' },
+  { value: 'dreifachverglasung', label: 'Dreifachverglasung' }
+]
+
+export const heatingSystemOptions = [
+  { value: 'gas-niedertemperatur', label: 'Gas-Niedertemperaturkessel' },
+  { value: 'gas-brennwert', label: 'Gas-Brennwertkessel' },
+  { value: 'oel-niedertemperatur', label: 'Öl-Niedertemperaturkessel' },
+  { value: 'oel-brennwert', label: 'Öl-Brennwertkessel' },
+  { value: 'waermepumpe-luft', label: 'Luft-Wärmepumpe' },
+  { value: 'waermepumpe-erdwaerme', label: 'Erdwärme-Wärmepumpe' },
+  { value: 'fernwaerme', label: 'Fernwärme' },
+  { value: 'holz-pellets', label: 'Holz/Pellets' },
+  { value: 'nachtspeicher', label: 'Nachtspeicherheizung' }
+]
+
+export const hotWaterSystemOptions = [
+  { value: 'zentral-mit-heizung', label: 'Zentral (mit Heizung gekoppelt)' },
+  { value: 'zentral-separat', label: 'Zentral (separater Warmwasserspeicher)' },
+  { value: 'dezentral-durchlauferhitzer', label: 'Dezentral (Durchlauferhitzer)' },
+  { value: 'dezentral-boiler', label: 'Dezentral (Boiler/Speicher)' }
+]
+
+export const ventilationTypeOptions = [
+  { value: 'natuerlich', label: 'Natürliche Lüftung (Fenster)' },
+  { value: 'mechanisch-abluft', label: 'Mechanische Abluftanlage' },
+  { value: 'mechanisch-zuabluft', label: 'Mechanische Zu-/Abluftanlage' },
+  { value: 'waermerueckgewinnung', label: 'Lüftung mit Wärmerückgewinnung' }
+]
+
+export const basementOptions = [
+  { value: 'kein-keller', label: 'Kein Keller' },
+  { value: 'unbeheizt-ungedaemmt', label: 'Unbeheizt, ungedämmt' },
+  { value: 'unbeheizt-gedaemmt', label: 'Unbeheizt, gedämmt' },
+  { value: 'beheizt', label: 'Beheizt' }
+]
+
+export const energyPassTypeOptions = [
+  { value: 'verbrauchsausweis', label: 'Verbrauchsausweis' },
+  { value: 'bedarfsausweis', label: 'Bedarfsausweis' },
+  { value: 'beide-vergleich', label: 'Beide zum Vergleich' }
+]
+
+export const utilizationOptions = [
+  { value: 'eigennutzung', label: 'Eigennutzung' },
+  { value: 'vermietung', label: 'Vermietung' },
+  { value: 'verkauf', label: 'Verkauf geplant' }
+]
+
+export const urgencyOptions = [
+  { value: 'sofort', label: 'Sofort benötigt' },
+  { value: '1-woche', label: 'Innerhalb 1 Woche' },
+  { value: '2-wochen', label: 'Innerhalb 2 Wochen' },
+  { value: '1-monat', label: 'Innerhalb 1 Monat' },
+  { value: 'flexibel', label: 'Zeitlich flexibel' }
 ] 
