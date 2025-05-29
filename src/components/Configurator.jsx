@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { Button, Badge, SelectableCard, Alert, Stepper } from './ui'
+import FundingWizard from './FundingWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
   const [isNextEnabled, setIsNextEnabled] = useState(false)
+  const [showServiceFlow, setShowServiceFlow] = useState(false)
 
   const services = [
     {
@@ -10,7 +13,8 @@ const Configurator = () => {
       title: 'Fördermittelberatung',
       description: 'Professionelle Beratung zu verfügbaren Fördermitteln und Zuschüssen',
       icon: '💰',
-      category: 'Förderung'
+      category: 'Förderung',
+      hasFullConfigurator: true
     },
     {
       id: 2,
@@ -77,6 +81,12 @@ const Configurator = () => {
     }
   ]
 
+  const configuratorSteps = [
+    { id: 1, title: 'Service wählen', description: 'Gewünschten Service auswählen' },
+    { id: 2, title: 'Details angeben', description: 'Spezifische Informationen eingeben' },
+    { id: 3, title: 'Angebot erhalten', description: 'Persönliches Angebot bekommen' }
+  ]
+
   const handleServiceSelect = (service) => {
     setSelectedService(service)
     setIsNextEnabled(true)
@@ -85,12 +95,70 @@ const Configurator = () => {
   const handleNext = () => {
     if (selectedService) {
       console.log('Gewählter Service:', selectedService)
-      // Hier würde die Navigation zur nächsten Seite erfolgen
-      alert(`Sie haben "${selectedService.title}" ausgewählt. Die nächste Seite ist noch in Entwicklung.`)
+      setShowServiceFlow(true)
     }
   }
 
+  const handleBackToSelection = () => {
+    setShowServiceFlow(false)
+    setSelectedService(null)
+    setIsNextEnabled(false)
+  }
+
   const categories = [...new Set(services.map(service => service.category))]
+
+  // If service flow is active, show the appropriate component
+  if (showServiceFlow && selectedService) {
+    switch (selectedService.id) {
+      case 1: // Fördermittelberatung
+        return <FundingWizard onBack={handleBackToSelection} />
+      default:
+        return (
+          <div className="py-16 bg-gray-50 min-h-screen">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <Button 
+                variant="link"
+                onClick={handleBackToSelection}
+                className="mb-8 group"
+              >
+                <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Zurück zur Service-Auswahl
+              </Button>
+              
+              <div className="bg-white rounded-2xl shadow-xl p-12">
+                <div className="text-6xl mb-6">{selectedService.icon}</div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedService.title}</h1>
+                <p className="text-xl text-gray-600 mb-8">{selectedService.description}</p>
+                
+                <Alert variant="info" title="Konfigurator in Entwicklung">
+                  Der spezielle Konfigurator für "{selectedService.title}" ist noch in Entwicklung. 
+                  Kontaktieren Sie uns gerne direkt für eine persönliche Beratung.
+                </Alert>
+
+                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={() => window.open('tel:+49123456789', '_self')}
+                  >
+                    📞 Jetzt anrufen
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => window.open('mailto:info@energiesparkompass.de', '_self')}
+                  >
+                    ✉️ E-Mail senden
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+    }
+  }
 
   return (
     <div id="konfigurator" className="py-16 bg-gray-50">
@@ -108,80 +176,40 @@ const Configurator = () => {
           </p>
         </div>
 
-        {/* Progress Indicator */}
-        <div className="mt-8 mb-12">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary-600 text-white rounded-full text-sm font-medium">
-                1
-              </div>
-              <div className="ml-2 text-sm font-medium text-primary-600">Service wählen</div>
-            </div>
-            <div className="mx-4 w-16 h-0.5 bg-gray-300"></div>
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-8 h-8 bg-gray-300 text-gray-500 rounded-full text-sm font-medium">
-                2
-              </div>
-              <div className="ml-2 text-sm font-medium text-gray-500">Details angeben</div>
-            </div>
-            <div className="mx-4 w-16 h-0.5 bg-gray-300"></div>
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-8 h-8 bg-gray-300 text-gray-500 rounded-full text-sm font-medium">
-                3
-              </div>
-              <div className="ml-2 text-sm font-medium text-gray-500">Angebot erhalten</div>
-            </div>
-          </div>
+        {/* Progress Stepper - Full Width like Grid */}
+        <div className="mt-8 mb-8">
+          <Stepper 
+            steps={configuratorSteps} 
+            currentStep={1}
+          />
         </div>
 
         {/* Service Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (
-            <div
+            <SelectableCard
               key={service.id}
-              className={`relative rounded-lg border-2 cursor-pointer transition-all duration-200 hover:shadow-lg ${
-                selectedService?.id === service.id
-                  ? 'border-primary-500 bg-primary-50 shadow-md'
-                  : 'border-gray-200 bg-white hover:border-gray-300'
-              }`}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              isSelected={selectedService?.id === service.id}
               onClick={() => handleServiceSelect(service)}
+              variant="default"
             >
-              <div className="p-6">
-                {/* Category Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                    {service.category}
-                  </span>
-                  {selectedService?.id === service.id && (
-                    <div className="flex items-center justify-center w-6 h-6 bg-primary-600 text-white rounded-full">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-
-                {/* Icon */}
-                <div className="text-4xl mb-4 text-center">
-                  {service.icon}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-medium text-gray-900 text-center mb-3">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-gray-500 text-center">
-                  {service.description}
-                </p>
+              {/* Category Badge */}
+              <div className="mt-4 flex flex-col items-center space-y-2">
+                <Badge variant="default" size="sm">
+                  {service.category}
+                </Badge>
+                
+                {/* Special Badge for completed flows */}
+                {service.hasFullConfigurator && (
+                  <Badge variant="success" size="sm">
+                    ✨ Vollständiger Konfigurator
+                  </Badge>
+                )}
               </div>
-
-              {/* Selection Indicator */}
-              {selectedService?.id === service.id && (
-                <div className="absolute inset-0 rounded-lg ring-2 ring-primary-500 ring-opacity-50 pointer-events-none"></div>
-              )}
-            </div>
+            </SelectableCard>
           ))}
         </div>
 
@@ -196,40 +224,37 @@ const Configurator = () => {
                   <p className="text-sm text-gray-500">{selectedService.description}</p>
                 </div>
               </div>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
+              <Badge variant="primary">
                 Ausgewählt
-              </span>
+              </Badge>
             </div>
           </div>
         )}
 
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button
+          <Button
+            size="lg"
             onClick={handleNext}
             disabled={!isNextEnabled}
-            className={`w-full sm:w-auto px-8 py-3 rounded-md text-base font-medium transition-all duration-200 ${
-              isNextEnabled
-                ? 'bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
           >
-            Weiter zur Detailangabe
-          </button>
+            {selectedService?.hasFullConfigurator ? 'Konfigurator starten' : 'Weiter zur Detailangabe'}
+          </Button>
           
-          <button
+          <Button
+            variant="secondary"
+            size="lg"
             onClick={() => {
               setSelectedService(null)
               setIsNextEnabled(false)
             }}
-            className="w-full sm:w-auto px-8 py-3 border border-gray-300 rounded-md text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           >
             Auswahl zurücksetzen
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   )
 }
 
-export default Configurator 
+export default Configurator
