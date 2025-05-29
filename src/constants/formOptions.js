@@ -260,4 +260,138 @@ export const urgencyOptions = [
   { value: '2-wochen', label: 'Innerhalb 2 Wochen' },
   { value: '1-monat', label: 'Innerhalb 1 Monat' },
   { value: 'flexibel', label: 'Zeitlich flexibel' }
+]
+
+// Hydraulischer Abgleich spezifische Optionen
+export const hydraulicBalancingBuildingTypeOptions = [
+  { value: 'einfamilienhaus', label: 'Einfamilienhaus' },
+  { value: 'doppelhaushaelfte', label: 'Doppelhaushälfte' },
+  { value: 'reihenhaus', label: 'Reihenhaus' },
+  { value: 'mehrfamilienhaus-klein', label: 'Mehrfamilienhaus (bis 6 WE)' },
+  { value: 'mehrfamilienhaus-gross', label: 'Mehrfamilienhaus (über 6 WE)' },
+  { value: 'gewerbe', label: 'Gewerbegebäude' }
+]
+
+export const heatingSystemDetailOptions = [
+  { value: 'radiator-einfach', label: 'Radiatorheizung (einfach)' },
+  { value: 'radiator-modern', label: 'Radiatorheizung (modern)' },
+  { value: 'fussbodenheizung', label: 'Fußbodenheizung' },
+  { value: 'gemischt', label: 'Gemischtes System' },
+  { value: 'deckenheizung', label: 'Deckenheizung' },
+  { value: 'wandheizung', label: 'Wandheizung' }
+]
+
+export const heatGeneratorOptions = [
+  { value: 'gas-brennwert', label: 'Gas-Brennwertkessel' },
+  { value: 'gas-niedertemperatur', label: 'Gas-Niedertemperaturkessel' },
+  { value: 'gas-standard', label: 'Gas-Standardkessel' },
+  { value: 'oel-brennwert', label: 'Öl-Brennwertkessel' },
+  { value: 'oel-niedertemperatur', label: 'Öl-Niedertemperaturkessel' },
+  { value: 'waermepumpe-luft', label: 'Luft-Wärmepumpe' },
+  { value: 'waermepumpe-erdwaerme', label: 'Erdwärme-Wärmepumpe' },
+  { value: 'fernwaerme', label: 'Fernwärme' },
+  { value: 'pellets', label: 'Pelletkessel' },
+  { value: 'holz', label: 'Scheitholzkessel' }
+]
+
+export const pumpTypeOptions = [
+  { value: 'ungeregelteUmwaelzpumpe', label: 'Ungeregelte Umwälzpumpe' },
+  { value: 'stufe regelbare', label: 'Stufenweise regelbare Pumpe' },
+  { value: 'drehzahlgeregelt', label: 'Drehzahlgeregelte Pumpe' },
+  { value: 'differenzdruckgeregelt', label: 'Differenzdruckregelung' },
+  { value: 'hocheffizienz', label: 'Hocheffizienzpumpe' },
+  { value: 'unbekannt', label: 'Nicht bekannt' }
+]
+
+export const valveTypeOptions = [
+  { value: 'standardventil', label: 'Standard Thermostatventil' },
+  { value: 'voreinstellbar', label: 'Voreinstellbares Thermostatventil' },
+  { value: 'elektronisch', label: 'Elektronische Regelung' },
+  { value: 'strangregulierventil', label: 'Strangregulierventil vorhanden' },
+  { value: 'keineRegelung', label: 'Keine Regelung' }
+]
+
+export const heatingDistributionSystemOptions = [
+  { value: 'zweirohr-horizontal', label: 'Zweirohrsystem horizontal' },
+  { value: 'zweirohr-vertikal', label: 'Zweirohrsystem vertikal' },
+  { value: 'einrohr', label: 'Einrohrsystem' },
+  { value: 'stern-verteilt', label: 'Sternverteilung' },
+  { value: 'stockwerk-verteilt', label: 'Stockwerksverteilung' }
+]
+
+export const insulationLevelOptions = [
+  { value: 'ungedaemmt', label: 'Ungedämmt (vor 1978)' },
+  { value: 'teilgedaemmt', label: 'Teilweise gedämmt (1978-1995)' },
+  { value: 'waermeschutz1995', label: 'Wärmeschutz ab 1995' },
+  { value: 'enev2002', label: 'EnEV 2002 Standard' },
+  { value: 'enev2009', label: 'EnEV 2009 Standard' },
+  { value: 'kfw-effizienzhaus', label: 'KfW-Effizienzhaus' },
+  { value: 'passivhaus', label: 'Passivhaus-Standard' }
+]
+
+export const problemDescriptionOptions = [
+  { value: 'einzelne-heizkoerper-kalt', label: 'Einzelne Heizkörper werden nicht warm' },
+  { value: 'ungleichmaessige-waerme', label: 'Ungleichmäßige Wärmeverteilung' },
+  { value: 'geraeusche', label: 'Geräusche in der Heizung' },
+  { value: 'hoher-verbrauch', label: 'Hoher Energieverbrauch' },
+  { value: 'temperatur-schwankungen', label: 'Temperaturschwankungen' },
+  { value: 'pumpe-laeuft-staendig', label: 'Pumpe läuft ständig' },
+  { value: 'neue-foerderung', label: 'Förderung nutzen' },
+  { value: 'modernisierung', label: 'Nach Modernisierung/Sanierung' }
+]
+
+export const urgencyHydraulicOptions = [
+  { value: 'sofort', label: 'Sofort (Heizung funktioniert nicht richtig)' },
+  { value: '1-2-wochen', label: '1-2 Wochen' },
+  { value: '1-monat', label: 'Innerhalb eines Monats' },
+  { value: 'naechste-heizperiode', label: 'Zur nächsten Heizperiode' },
+  { value: 'flexibel', label: 'Flexibel' }
+]
+
+export const heatingCurveOptions = [
+  { value: 'steilkurve', label: 'Steile Heizkurve (über 1,4)' },
+  { value: 'standard', label: 'Standard Heizkurve (1,0-1,4)' },
+  { value: 'flachkurve', label: 'Flache Heizkurve (unter 1,0)' },
+  { value: 'unbekannt', label: 'Einstellung unbekannt' }
+]
+
+// Heizungscheck 2.0 - Schornsteinfeger spezifische Optionen
+export const heatingCheckServiceTypeOptions = [
+  { value: 'standalone', label: 'Einzelner Heizungscheck' },
+  { value: 'combined-kehr', label: 'Kombiniert mit Kehrtermin' },
+  { value: 'combined-feuerstaetten', label: 'Kombiniert mit Feuerstättenschau' },
+  { value: 'combined-abgas', label: 'Kombiniert mit Abgasmessung' },
+  { value: 'combined-wartung', label: 'Kombiniert mit Anlagenwartung' }
+]
+
+export const heatingCheckUrgencyOptions = [
+  { value: 'sofort', label: 'Sofort (innerhalb 2 Wochen)' },
+  { value: 'normal', label: 'Normal (innerhalb 4-6 Wochen)' },
+  { value: 'geplant', label: 'Geplant (innerhalb 3 Monaten)' },
+  { value: 'flexibel', label: 'Flexibel (nach Verfügbarkeit)' }
+]
+
+export const existingDocumentationOptions = [
+  { value: 'feuerstaettenbescheid', label: 'Feuerstättenbescheid vorhanden' },
+  { value: 'abgasmessung', label: 'Letzte Abgasmessung vorhanden' },
+  { value: 'wartungsprotokoll', label: 'Wartungsprotokoll vorhanden' },
+  { value: 'bedienungsanleitung', label: 'Bedienungsanleitung vorhanden' },
+  { value: 'keine', label: 'Keine Dokumentation vorhanden' }
+]
+
+export const heatingSystemAccessOptions = [
+  { value: 'frei-zugaenglich', label: 'Frei zugänglich' },
+  { value: 'schluessel-erforderlich', label: 'Schlüssel erforderlich' },
+  { value: 'anwesenheit-erforderlich', label: 'Anwesenheit des Eigentümers erforderlich' },
+  { value: 'hausmeister', label: 'Zugang über Hausmeister/Verwaltung' },
+  { value: 'besondere-umstaende', label: 'Besondere Umstände (Kommentar erforderlich)' }
+]
+
+export const combinedServiceOptions = [
+  { value: 'kehrung', label: 'Kehrung/Reinigung' },
+  { value: 'abgasmessung', label: 'Abgasmessung' },
+  { value: 'feuerstaettenschau', label: 'Feuerstättenschau' },
+  { value: 'co-messung', label: 'CO-Messung' },
+  { value: 'dichtigkeitspruefung', label: 'Dichtheitsprüfung' },
+  { value: 'rauchrohrreinigung', label: 'Rauchrohrreinigung' }
 ] 

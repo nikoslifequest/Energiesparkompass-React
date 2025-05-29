@@ -3,6 +3,8 @@ import { Button, Badge, SelectableCard, Alert, Stepper } from './ui'
 import FundingWizard from './FundingWizard'
 import EnergyPassWizard from './EnergyPassWizard'
 import MultiEnergyPassWizard from './MultiEnergyPassWizard'
+import HydraulicBalancingWizard from './HydraulicBalancingWizard'
+import HeatingCheckWizard from './HeatingCheckWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -39,14 +41,16 @@ const Configurator = () => {
       title: 'Hydraulischer Abgleich',
       description: 'Optimierung Ihrer Heizungsanlage für maximale Effizienz',
       icon: '🔧',
-      category: 'Heizung'
+      category: 'Heizung',
+      hasFullConfigurator: true
     },
     {
       id: 5,
       title: 'Heizungscheck 2.0',
       description: 'Umfassende Prüfung und Bewertung Ihrer Heizungsanlage',
       icon: '🌡️',
-      category: 'Heizung'
+      category: 'Heizung',
+      hasFullConfigurator: true
     },
     {
       id: 6,
@@ -120,6 +124,10 @@ const Configurator = () => {
         return <EnergyPassWizard onBack={handleBackToSelection} />
       case 3: // Energieausweis Mehrfamilienhaus
         return <MultiEnergyPassWizard onBack={handleBackToSelection} />
+      case 4: // Hydraulischer Abgleich
+        return <HydraulicBalancingWizard onBack={handleBackToSelection} />
+      case 5: // Heizungscheck 2.0
+        return <HeatingCheckWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">
