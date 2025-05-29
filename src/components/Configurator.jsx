@@ -115,22 +115,26 @@ const Configurator = () => {
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <Button 
-                variant="link"
-                onClick={handleBackToSelection}
-                className="mb-8 group"
-              >
-                <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Zurück zur Service-Auswahl
-              </Button>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-8">
+                <Button 
+                  variant="link"
+                  onClick={handleBackToSelection}
+                  className="group"
+                >
+                  <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Zurück zur Service-Auswahl
+                </Button>
+              </div>
               
               <div className="bg-white rounded-2xl shadow-xl p-12">
-                <div className="text-6xl mb-6">{selectedService.icon}</div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedService.title}</h1>
-                <p className="text-xl text-gray-600 mb-8">{selectedService.description}</p>
+                <div className="text-center mb-8">
+                  <div className="text-6xl mb-6">{selectedService.icon}</div>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedService.title}</h1>
+                  <p className="text-xl text-gray-600 mb-8">{selectedService.description}</p>
+                </div>
                 
                 <Alert variant="info" title="Konfigurator in Entwicklung">
                   Der spezielle Konfigurator für "{selectedService.title}" ist noch in Entwicklung. 
@@ -176,11 +180,12 @@ const Configurator = () => {
           </p>
         </div>
 
-        {/* Progress Stepper - Full Width like Grid */}
-        <div className="mt-8 mb-8">
+        {/* Progress Stepper */}
+        <div className="mt-8">
           <Stepper 
             steps={configuratorSteps} 
             currentStep={1}
+            className="mb-4"
           />
         </div>
 
