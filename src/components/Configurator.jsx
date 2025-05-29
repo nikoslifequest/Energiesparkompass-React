@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Badge, SelectableCard, Alert, Stepper } from './ui'
 import FundingWizard from './FundingWizard'
 import EnergyPassWizard from './EnergyPassWizard'
+import MultiEnergyPassWizard from './MultiEnergyPassWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -21,7 +22,7 @@ const Configurator = () => {
       id: 2,
       title: 'Energieausweis Einfamilienhaus',
       description: 'Energieausweis für Ihr Einfamilienhaus nach aktuellen Standards',
-      icon: '📊',
+      icon: '🏠',
       category: 'Energieausweis',
       hasFullConfigurator: true
     },
@@ -30,7 +31,8 @@ const Configurator = () => {
       title: 'Energieausweis Mehrfamilienhaus',
       description: 'Energieausweis für Mehrfamilienhäuser und größere Wohngebäude',
       icon: '🏢',
-      category: 'Energieausweis'
+      category: 'Energieausweis',
+      hasFullConfigurator: true
     },
     {
       id: 4,
@@ -116,6 +118,8 @@ const Configurator = () => {
         return <FundingWizard onBack={handleBackToSelection} />
       case 2: // Energieausweis Einfamilienhaus
         return <EnergyPassWizard onBack={handleBackToSelection} />
+      case 3: // Energieausweis Mehrfamilienhaus
+        return <MultiEnergyPassWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">

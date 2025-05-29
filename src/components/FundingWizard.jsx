@@ -34,7 +34,7 @@ const FundingWizard = ({ onBack }) => {
   const validationRules = {
     1: [],
     2: [(data) => data.measures.length > 0],
-    3: ['firstName', 'lastName', 'email', 'phone'],
+    3: ['firstName', 'lastName', 'email', 'phone', 'street', 'zipCode', 'city'],
     4: []
   }
 
@@ -198,18 +198,22 @@ const FundingWizard = ({ onBack }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Input
                 label="Straße & Hausnummer"
+                required
                 value={formData.street}
                 onChange={(e) => updateFormData('street', e.target.value)}
                 placeholder="Musterstraße 123"
               />
               <Input
                 label="PLZ"
+                required
                 value={formData.zipCode}
                 onChange={(e) => updateFormData('zipCode', e.target.value)}
                 placeholder="12345"
+                maxLength="5"
               />
               <Input
                 label="Ort"
+                required
                 value={formData.city}
                 onChange={(e) => updateFormData('city', e.target.value)}
                 placeholder="Musterstadt"
@@ -380,7 +384,7 @@ const FundingWizard = ({ onBack }) => {
           {!isLastStep ? (
             <Button
               onClick={nextStep}
-              disabled={!isStepValid()}
+              disabled={!isStepValid}
             >
               Weiter
             </Button>

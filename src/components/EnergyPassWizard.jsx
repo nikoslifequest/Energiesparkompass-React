@@ -49,7 +49,7 @@ const EnergyPassWizard = ({ onBack }) => {
     2: [],
     3: [],
     4: [],
-    5: ['firstName', 'lastName', 'email', 'phone'],
+    5: ['firstName', 'lastName', 'email', 'phone', 'street', 'zipCode', 'city'],
     6: []
   }
 
@@ -384,6 +384,7 @@ const EnergyPassWizard = ({ onBack }) => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <Input
                 label="Straße & Hausnummer"
+                required
                 value={formData.street}
                 onChange={(e) => updateFormData('street', e.target.value)}
                 placeholder="Musterstraße 123"
@@ -391,12 +392,15 @@ const EnergyPassWizard = ({ onBack }) => {
               />
               <Input
                 label="PLZ"
+                required
                 value={formData.zipCode}
                 onChange={(e) => updateFormData('zipCode', e.target.value)}
                 placeholder="12345"
+                maxLength="5"
               />
               <Input
                 label="Ort"
+                required
                 value={formData.city}
                 onChange={(e) => updateFormData('city', e.target.value)}
                 placeholder="Musterstadt"
@@ -506,7 +510,7 @@ const EnergyPassWizard = ({ onBack }) => {
           {!isLastStep ? (
             <Button
               onClick={nextStep}
-              disabled={!isStepValid()}
+              disabled={!isStepValid}
             >
               Weiter
             </Button>

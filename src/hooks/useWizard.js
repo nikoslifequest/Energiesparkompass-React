@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 export const useWizard = (initialData = {}, totalSteps = 1, validationRules = {}) => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -9,7 +9,7 @@ export const useWizard = (initialData = {}, totalSteps = 1, validationRules = {}
   }
 
   const nextStep = () => {
-    if (currentStep < totalSteps) {
+    if (currentStep < totalSteps && isStepValid) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -26,20 +26,21 @@ export const useWizard = (initialData = {}, totalSteps = 1, validationRules = {}
     }
   }
 
-  const isStepValid = () => {
+  const isStepValid = useMemo(() => {
     const rules = validationRules[currentStep]
-    if (!rules) return true
+    if (!rules || rules.length === 0) return true
     
     return rules.every(rule => {
       if (typeof rule === 'string') {
-        return formData[rule] && formData[rule].trim() !== ''
+        const value = formData[rule]
+        return value && value.toString().trim() !== ''
       }
       if (typeof rule === 'function') {
         return rule(formData)
       }
       return true
     })
-  }
+  }, [formData, currentStep, validationRules])
 
   const resetWizard = () => {
     setCurrentStep(1)

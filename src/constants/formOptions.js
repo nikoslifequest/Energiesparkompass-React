@@ -137,6 +137,41 @@ export const energyPassBuildingTypeOptions = [
   { value: 'reihenhaus-mitte', label: 'Reihenhaus (Mittelhaus)' }
 ]
 
+// Mehrfamilienhaus-spezifische Gebäudetypen
+export const multiEnergyPassBuildingTypeOptions = [
+  { value: 'mehrfamilienhaus-klein', label: 'Mehrfamilienhaus (3-6 WE)' },
+  { value: 'mehrfamilienhaus-mittel', label: 'Mehrfamilienhaus (7-20 WE)' },
+  { value: 'mehrfamilienhaus-gross', label: 'Mehrfamilienhaus (über 20 WE)' },
+  { value: 'wohnblock', label: 'Wohnblock/Plattenbau' },
+  { value: 'hochhaus', label: 'Hochhaus' }
+]
+
+// Eigentümerschaft-Optionen für Mehrfamilienhäuser
+export const ownershipTypeOptions = [
+  { value: 'weg', label: 'Wohnungseigentümergemeinschaft (WEG)' },
+  { value: 'vermieter', label: 'Vermieter/Eigentümer' },
+  { value: 'einzeleigentuemer', label: 'Einzeleigentümer einer Wohnung' },
+  { value: 'hausverwaltung', label: 'Hausverwaltung' },
+  { value: 'wohnungsbaugesellschaft', label: 'Wohnungsbaugesellschaft' }
+]
+
+// Zentrale vs. dezentrale Versorgung
+export const heatingDistributionOptions = [
+  { value: 'zentral-alle', label: 'Zentral für alle Wohnungen' },
+  { value: 'zentral-teilweise', label: 'Zentral + einzelne Etagenheizungen' },
+  { value: 'dezentral-etage', label: 'Etagenheizungen' },
+  { value: 'dezentral-wohnung', label: 'Einzelöfen/Wohnungsheizungen' },
+  { value: 'gemischt', label: 'Gemischte Systeme' }
+]
+
+// Warmwasserversorgung für Mehrfamilienhäuser
+export const hotWaterDistributionOptions = [
+  { value: 'zentral-alle', label: 'Zentral für alle Wohnungen' },
+  { value: 'zentral-teilweise', label: 'Zentral + einzelne dezentrale' },
+  { value: 'dezentral-alle', label: 'Dezentral in jeder Wohnung' },
+  { value: 'gemischt', label: 'Gemischte Systeme' }
+]
+
 export const constructionYearOptions = [
   { value: 'vor-1919', label: 'vor 1919' },
   { value: '1919-1948', label: '1919 - 1948' },
