@@ -499,4 +499,106 @@ export const contactPreferenceOptions = [
   { value: 'in_person', label: 'Vor-Ort-Termin' },
   { value: 'video', label: 'Videogespräch' },
   { value: 'flexible', label: 'Flexibel' }
+]
+
+// Energieberatung Wohngebäude spezifische Optionen
+export const consultationTypeOptions = [
+  { value: '', label: 'Beratungsart auswählen' },
+  { value: 'step_by_step', label: 'Schritt-für-Schritt Sanierung' },
+  { value: 'comprehensive', label: 'Umfassende Sanierung' },
+  { value: 'efficiency_house', label: 'Effizienzhaus-Standard erreichen' },
+  { value: 'first_consultation', label: 'Erstberatung / Orientierung' }
+]
+
+export const priorityOptions = [
+  { value: '', label: 'Priorität auswählen' },
+  { value: 'energy_costs', label: 'Energiekosten senken' },
+  { value: 'comfort', label: 'Wohnkomfort erhöhen' },
+  { value: 'value_increase', label: 'Immobilienwert steigern' },
+  { value: 'climate_protection', label: 'Klimaschutz / CO₂ reduzieren' },
+  { value: 'modernization', label: 'Allgemeine Modernisierung' }
+]
+
+export const informationSourceOptions = [
+  { value: '', label: 'Wie sind Sie auf uns aufmerksam geworden?' },
+  { value: 'internet_search', label: 'Internet-Suche' },
+  { value: 'recommendation', label: 'Empfehlung von Bekannten' },
+  { value: 'craftsman', label: 'Handwerker / Fachunternehmen' },
+  { value: 'energy_consultant', label: 'Energieberater' },
+  { value: 'municipality', label: 'Gemeinde / Stadtverwaltung' },
+  { value: 'consumer_center', label: 'Verbraucherzentrale' },
+  { value: 'energy_company', label: 'Energieversorger' },
+  { value: 'advertisement', label: 'Werbung / Anzeige' },
+  { value: 'fair_event', label: 'Messe / Veranstaltung' },
+  { value: 'other', label: 'Sonstiges' }
+]
+
+export const heatingIssueOptions = [
+  { value: '', label: 'Problem auswählen' },
+  { value: 'high_costs', label: 'Hohe Heizkosten' },
+  { value: 'cold_rooms', label: 'Einzelne Räume zu kalt' },
+  { value: 'warm_rooms', label: 'Einzelne Räume zu warm' },
+  { value: 'noise', label: 'Geräusche in der Heizung' },
+  { value: 'frequent_defects', label: 'Häufige Defekte' },
+  { value: 'old_system', label: 'Sehr alte Anlage' },
+  { value: 'no_issues', label: 'Keine besonderen Probleme' }
+]
+
+export const comfortIssueOptions = [
+  { value: '', label: 'Problem auswählen' },
+  { value: 'cold_walls', label: 'Kalte Wände / Zugluft' },
+  { value: 'condensation', label: 'Kondenswasser an Fenstern' },
+  { value: 'mold_risk', label: 'Schimmelgefahr' },
+  { value: 'summer_heat', label: 'Überhitzung im Sommer' },
+  { value: 'poor_ventilation', label: 'Schlechte Raumluft' },
+  { value: 'noise_protection', label: 'Mangelnder Lärmschutz' },
+  { value: 'no_issues', label: 'Keine besonderen Probleme' }
+]
+
+export const experienceOptions = [
+  { value: '', label: 'Erfahrung auswählen' },
+  { value: 'none', label: 'Keine Erfahrung' },
+  { value: 'little', label: 'Wenig Erfahrung' },
+  { value: 'some', label: 'Einige Erfahrung' },
+  { value: 'experienced', label: 'Erfahren' },
+  { value: 'professional', label: 'Fachmann' }
+]
+
+export const financingOptions = [
+  { value: '', label: 'Finanzierung auswählen' },
+  { value: 'equity', label: 'Eigenkapital' },
+  { value: 'kfw_loan', label: 'KfW-Kredit' },
+  { value: 'bank_loan', label: 'Bankkredit' },
+  { value: 'subsidy', label: 'Zuschüsse nutzen' },
+  { value: 'combination', label: 'Kombinierte Finanzierung' },
+  { value: 'undecided', label: 'Noch unentschieden' }
+]
+
+export const implementationTimeOptions = [
+  { value: '', label: 'Zeitrahmen auswählen' },
+  { value: 'immediately', label: 'Sofort' },
+  { value: '6_months', label: 'Innerhalb 6 Monate' },
+  { value: '1_year', label: 'Innerhalb 1 Jahr' },
+  { value: '2_years', label: 'Innerhalb 2 Jahre' },
+  { value: '5_years', label: 'Innerhalb 5 Jahre' },
+  { value: 'long_term', label: 'Langfristig (über 5 Jahre)' },
+  { value: 'undefined', label: 'Noch unbestimmt' }
+]
+
+export const preferredMeetingOptions = [
+  { value: '', label: 'Bevorzugter Termin' },
+  { value: 'morning', label: 'Vormittags (9-12 Uhr)' },
+  { value: 'afternoon', label: 'Nachmittags (13-17 Uhr)' },
+  { value: 'evening', label: 'Abends (18-20 Uhr)' },
+  { value: 'weekend', label: 'Wochenende' },
+  { value: 'flexible', label: 'Flexibel' }
+]
+
+export const consultationLocationOptions = [
+  { value: '', label: 'Beratungsort auswählen' },
+  { value: 'on_site', label: 'Vor Ort beim Gebäude' },
+  { value: 'office', label: 'In unserem Büro' },
+  { value: 'video_call', label: 'Online per Video' },
+  { value: 'phone', label: 'Telefonisch' },
+  { value: 'mixed', label: 'Kombination verschiedener Formate' }
 ] 

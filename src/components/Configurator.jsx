@@ -6,6 +6,7 @@ import MultiEnergyPassWizard from './MultiEnergyPassWizard'
 import HydraulicBalancingWizard from './HydraulicBalancingWizard'
 import HeatingCheckWizard from './HeatingCheckWizard'
 import GegWizard from './GegWizard'
+import ResidentialEnergyWizard from './ResidentialEnergyWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -66,7 +67,8 @@ const Configurator = () => {
       title: 'Wohngebäude',
       description: 'Energieberatung für Wohngebäude aller Art',
       icon: '🏘️',
-      category: 'Gebäude'
+      category: 'Gebäude',
+      hasFullConfigurator: true
     },
     {
       id: 8,
@@ -132,6 +134,8 @@ const Configurator = () => {
         return <HeatingCheckWizard onBack={handleBackToSelection} />
       case 6: // GEG-Beratung
         return <GegWizard onBack={handleBackToSelection} />
+      case 7: // Wohngebäude
+        return <ResidentialEnergyWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">
