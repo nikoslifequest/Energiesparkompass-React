@@ -601,4 +601,166 @@ export const consultationLocationOptions = [
   { value: 'video_call', label: 'Online per Video' },
   { value: 'phone', label: 'Telefonisch' },
   { value: 'mixed', label: 'Kombination verschiedener Formate' }
+]
+
+// Nicht-Wohngebäude spezifische Optionen
+export const nonResidentialBuildingTypeOptions = [
+  { value: '', label: 'Gebäudetyp auswählen' },
+  { value: 'office', label: 'Bürogebäude' },
+  { value: 'retail', label: 'Einzelhandel / Verkaufsstätte' },
+  { value: 'hotel', label: 'Hotel / Beherbergung' },
+  { value: 'restaurant', label: 'Restaurant / Gastronomie' },
+  { value: 'school', label: 'Schule / Bildungseinrichtung' },
+  { value: 'hospital', label: 'Krankenhaus / Gesundheitswesen' },
+  { value: 'warehouse', label: 'Lager / Logistik' },
+  { value: 'production', label: 'Produktionsstätte / Industrie' },
+  { value: 'workshop', label: 'Werkstatt / Handwerk' },
+  { value: 'community', label: 'Gemeinschaftsgebäude' },
+  { value: 'sports', label: 'Sportstätte' },
+  { value: 'culture', label: 'Kulturgebäude' },
+  { value: 'mixed_use', label: 'Mischnutzung' },
+  { value: 'other', label: 'Sonstiges' }
+]
+
+export const companyTypeOptions = [
+  { value: '', label: 'Unternehmen auswählen' },
+  { value: 'kmu', label: 'Kleine und mittlere Unternehmen (KMU)' },
+  { value: 'non_kmu_under_500k', label: 'Nicht-KMU (unter 500.000 kWh/Jahr)' },
+  { value: 'municipality', label: 'Kommune / Gebietskörperschaft' },
+  { value: 'non_profit', label: 'Gemeinnützige Organisation' },
+  { value: 'religious', label: 'Religionsgemeinschaft' },
+  { value: 'foundation', label: 'Stiftung' }
+]
+
+export const consultationModuleOptions = [
+  { value: '', label: 'Beratungsmodul auswählen' },
+  { value: 'module1', label: 'Modul 1: Energieaudit DIN EN 16247' },
+  { value: 'module2', label: 'Modul 2: Energieberatung DIN V 18599' },
+  { value: 'module3', label: 'Modul 3: Contracting-Orientierungsberatung' }
+]
+
+export const consultationGoalOptions = [
+  { value: '', label: 'Beratungsziel auswählen' },
+  { value: 'step_by_step', label: 'Schritt-für-Schritt Sanierung' },
+  { value: 'comprehensive', label: 'Umfassende Sanierung' },
+  { value: 'new_construction', label: 'Neubauberatung' },
+  { value: 'contracting', label: 'Contracting-Orientierung' },
+  { value: 'general', label: 'Allgemeine Energieberatung' }
+]
+
+export const operatingHoursOptions = [
+  { value: '', label: 'Betriebszeiten auswählen' },
+  { value: 'normal_office', label: 'Normal (Mo-Fr, 8-18 Uhr)' },
+  { value: 'extended_office', label: 'Erweitert (Mo-Sa, 6-20 Uhr)' },
+  { value: 'shift_work', label: 'Schichtbetrieb (2-3 Schichten)' },
+  { value: 'continuous', label: 'Kontinuierlich (24/7)' },
+  { value: 'seasonal', label: 'Saisonal / unregelmäßig' },
+  { value: 'weekend_only', label: 'Nur Wochenende' }
+]
+
+export const energyConsumptionRangeOptions = [
+  { value: '', label: 'Verbrauchsbereich auswählen' },
+  { value: 'under_50k', label: 'Unter 50.000 kWh/Jahr' },
+  { value: '50k_100k', label: '50.000 - 100.000 kWh/Jahr' },
+  { value: '100k_250k', label: '100.000 - 250.000 kWh/Jahr' },
+  { value: '250k_500k', label: '250.000 - 500.000 kWh/Jahr' },
+  { value: 'over_500k', label: 'Über 500.000 kWh/Jahr' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const coolingSystemOptions = [
+  { value: '', label: 'Kühlsystem auswählen' },
+  { value: 'none', label: 'Keine Kühlung' },
+  { value: 'split_units', label: 'Split-Klimageräte' },
+  { value: 'central_cooling', label: 'Zentrale Kühlung' },
+  { value: 'chiller', label: 'Kaltwassersatz' },
+  { value: 'free_cooling', label: 'Freie Kühlung' },
+  { value: 'mixed', label: 'Gemischte Systeme' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const ventilationSystemOptions = [
+  { value: '', label: 'Lüftungssystem auswählen' },
+  { value: 'natural', label: 'Natürliche Lüftung (Fenster)' },
+  { value: 'mechanical_exhaust', label: 'Mechanische Abluft' },
+  { value: 'balanced', label: 'Zu-/Abluftanlage' },
+  { value: 'heat_recovery', label: 'Mit Wärmerückgewinnung' },
+  { value: 'air_conditioning', label: 'Vollklimaanlage' },
+  { value: 'mixed', label: 'Gemischte Systeme' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const lightingSystemOptions = [
+  { value: '', label: 'Beleuchtung auswählen' },
+  { value: 'led_modern', label: 'LED (modern)' },
+  { value: 'led_older', label: 'LED (älter)' },
+  { value: 'fluorescent', label: 'Leuchtstoffröhren' },
+  { value: 'halogen', label: 'Halogenlampen' },
+  { value: 'incandescent', label: 'Glühlampen' },
+  { value: 'mixed', label: 'Gemischte Beleuchtung' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const itEquipmentOptions = [
+  { value: '', label: 'IT-Ausstattung auswählen' },
+  { value: 'minimal', label: 'Minimal (wenige PCs/Laptops)' },
+  { value: 'standard', label: 'Standard (Büroausstattung)' },
+  { value: 'extensive', label: 'Umfangreich (viele Geräte)' },
+  { value: 'server_room', label: 'Mit Serverraum' },
+  { value: 'data_center', label: 'Rechenzentrum' },
+  { value: 'industrial_control', label: 'Industrielle Steuerung' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const productionProcessOptions = [
+  { value: '', label: 'Produktionsprozesse auswählen' },
+  { value: 'none', label: 'Keine Produktion' },
+  { value: 'light_assembly', label: 'Leichte Montage' },
+  { value: 'mechanical_processing', label: 'Mechanische Bearbeitung' },
+  { value: 'heat_treatment', label: 'Wärmebehandlung' },
+  { value: 'chemical_process', label: 'Chemische Prozesse' },
+  { value: 'food_processing', label: 'Lebensmittelverarbeitung' },
+  { value: 'textile', label: 'Textilverarbeitung' },
+  { value: 'other_industrial', label: 'Sonstige Industrieprozesse' }
+]
+
+export const energyManagementOptions = [
+  { value: '', label: 'Energiemanagement auswählen' },
+  { value: 'none', label: 'Kein System vorhanden' },
+  { value: 'simple_monitoring', label: 'Einfache Überwachung' },
+  { value: 'iso50001', label: 'ISO 50001 zertifiziert' },
+  { value: 'emas', label: 'EMAS registriert' },
+  { value: 'other_certified', label: 'Anderes zertifiziertes System' },
+  { value: 'planned', label: 'Einführung geplant' }
+]
+
+export const lastEnergyConsultationOptions = [
+  { value: '', label: 'Letzte Beratung auswählen' },
+  { value: 'never', label: 'Noch nie' },
+  { value: 'under_4_years', label: 'Weniger als 4 Jahre' },
+  { value: 'over_4_years', label: 'Über 4 Jahre' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const investmentReadinessOptions = [
+  { value: '', label: 'Investitionsbereitschaft auswählen' },
+  { value: 'immediate', label: 'Sofort umsetzbar' },
+  { value: '1_year', label: 'Innerhalb 1 Jahr' },
+  { value: '2_3_years', label: 'Innerhalb 2-3 Jahre' },
+  { value: 'long_term', label: 'Langfristig (>3 Jahre)' },
+  { value: 'depending_on_results', label: 'Abhängig von Beratungsergebnissen' },
+  { value: 'uncertain', label: 'Noch ungewiss' }
+]
+
+export const specialRequirementsOptions = [
+  { value: '', label: 'Besondere Anforderungen' },
+  { value: 'none', label: 'Keine besonderen Anforderungen' },
+  { value: 'monument_protection', label: 'Denkmalschutz' },
+  { value: 'hygiene_requirements', label: 'Hygieneanforderungen' },
+  { value: 'security_requirements', label: 'Sicherheitsanforderungen' },
+  { value: 'noise_protection', label: 'Lärmschutz' },
+  { value: 'accessibility', label: 'Barrierefreiheit' },
+  { value: 'fire_protection', label: 'Brandschutz' },
+  { value: 'explosion_protection', label: 'Explosionsschutz' },
+  { value: 'cleanroom', label: 'Reinraum-Anforderungen' }
 ] 

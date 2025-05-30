@@ -7,6 +7,7 @@ import HydraulicBalancingWizard from './HydraulicBalancingWizard'
 import HeatingCheckWizard from './HeatingCheckWizard'
 import GegWizard from './GegWizard'
 import ResidentialEnergyWizard from './ResidentialEnergyWizard'
+import NonResidentialEnergyWizard from './NonResidentialEnergyWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -75,7 +76,8 @@ const Configurator = () => {
       title: 'Nicht Wohngebäude',
       description: 'Energieberatung für Gewerbe- und Industriegebäude',
       icon: '🏭',
-      category: 'Gebäude'
+      category: 'Gebäude',
+      hasFullConfigurator: true
     },
     {
       id: 9,
@@ -136,6 +138,8 @@ const Configurator = () => {
         return <GegWizard onBack={handleBackToSelection} />
       case 7: // Wohngebäude
         return <ResidentialEnergyWizard onBack={handleBackToSelection} />
+      case 8: // Nicht Wohngebäude
+        return <NonResidentialEnergyWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">
