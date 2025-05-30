@@ -913,4 +913,179 @@ export const fundingAwarenessOptions = [
   { value: 'no_knowledge', label: 'Keine Kenntnisse' },
   { value: 'confused', label: 'Verwirrend / widersprüchliche Infos' },
   { value: 'need_guidance', label: 'Beratung dringend benötigt' }
+]
+
+// Heizlastberechnung spezifische Optionen
+export const calculationMethodOptions = [
+  { value: '', label: 'Berechnungsmethode auswählen' },
+  { value: 'din_12831_detailed', label: 'DIN EN 12831 - Detaillierte Berechnung' },
+  { value: 'din_12831_simplified', label: 'DIN EN 12831 - Vereinfachte Berechnung' },
+  { value: 'din_15378_estimation', label: 'DIN EN 15378 - Überschlägige Berechnung' },
+  { value: 'software_based', label: 'Software-basierte Berechnung' },
+  { value: 'recommendation_needed', label: 'Empfehlung benötigt' }
+]
+
+export const calculationPurposeOptions = [
+  { value: '', label: 'Zweck der Berechnung' },
+  { value: 'heat_pump_sizing', label: 'Wärmepumpen-Auslegung' },
+  { value: 'heating_system_sizing', label: 'Heizungsanlagen-Dimensionierung' },
+  { value: 'radiator_sizing', label: 'Heizkörper-Auslegung' },
+  { value: 'energy_concept', label: 'Energiekonzept erstellen' },
+  { value: 'renovation_planning', label: 'Sanierungsplanung' },
+  { value: 'building_permit', label: 'Baugenehmigung' },
+  { value: 'funding_application', label: 'Förderantrag' },
+  { value: 'energy_consulting', label: 'Energieberatung' },
+  { value: 'hydraulic_balancing', label: 'Hydraulischer Abgleich' },
+  { value: 'efficiency_analysis', label: 'Effizienzanalyse' }
+]
+
+export const heatingSystemPlanOptions = [
+  { value: '', label: 'Geplantes Heizsystem' },
+  { value: 'air_heat_pump', label: 'Luft-Wasser-Wärmepumpe' },
+  { value: 'ground_heat_pump', label: 'Sole-Wasser-Wärmepumpe' },
+  { value: 'water_heat_pump', label: 'Wasser-Wasser-Wärmepumpe' },
+  { value: 'hybrid_heat_pump', label: 'Hybrid-Wärmepumpe' },
+  { value: 'gas_condensing', label: 'Gas-Brennwertkessel' },
+  { value: 'oil_condensing', label: 'Öl-Brennwertkessel' },
+  { value: 'pellet_boiler', label: 'Pelletkessel' },
+  { value: 'wood_boiler', label: 'Holzkessel' },
+  { value: 'district_heating', label: 'Fernwärme' },
+  { value: 'electric_heating', label: 'Elektroheizung' },
+  { value: 'hydrogen_ready', label: 'H2-Ready Gasheizung' },
+  { value: 'undecided', label: 'Noch unentschieden' },
+  { value: 'multiple_options', label: 'Mehrere Optionen prüfen' }
+]
+
+export const currentHeatingSystemOptions = [
+  { value: '', label: 'Aktuelle Heizung' },
+  { value: 'gas_old', label: 'Alte Gasheizung (>15 Jahre)' },
+  { value: 'gas_modern', label: 'Moderne Gasheizung (<15 Jahre)' },
+  { value: 'oil_old', label: 'Alte Ölheizung (>15 Jahre)' },
+  { value: 'oil_modern', label: 'Moderne Ölheizung (<15 Jahre)' },
+  { value: 'electric_old', label: 'Elektroheizung' },
+  { value: 'coal_wood', label: 'Kohle-/Holzheizung' },
+  { value: 'district_heating', label: 'Fernwärme' },
+  { value: 'heat_pump_old', label: 'Alte Wärmepumpe' },
+  { value: 'multiple_systems', label: 'Verschiedene Systeme' },
+  { value: 'none', label: 'Keine Heizung vorhanden' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const buildingQualityOptions = [
+  { value: '', label: 'Gebäudequalität einschätzen' },
+  { value: 'passive_house', label: 'Passivhaus-Standard' },
+  { value: 'kfw_40', label: 'KfW 40 Effizienzhaus' },
+  { value: 'kfw_55', label: 'KfW 55 Effizienzhaus' },
+  { value: 'kfw_70', label: 'KfW 70 Effizienzhaus' },
+  { value: 'kfw_85', label: 'KfW 85 Effizienzhaus' },
+  { value: 'enev_2016', label: 'EnEV 2016 Standard' },
+  { value: 'enev_2009', label: 'EnEV 2009 Standard' },
+  { value: 'well_insulated', label: 'Gut gedämmt (nach 1995)' },
+  { value: 'partially_insulated', label: 'Teilweise gedämmt' },
+  { value: 'minimal_insulation', label: 'Wenig gedämmt (1980er)' },
+  { value: 'uninsulated', label: 'Ungedämmt (vor 1980)' },
+  { value: 'monument_standard', label: 'Denkmalschutz-Standard' },
+  { value: 'unknown_quality', label: 'Unbekannt' }
+]
+
+export const occupancyProfileOptions = [
+  { value: '', label: 'Nutzungsprofil' },
+  { value: 'normal_family', label: 'Normale Familienwohnung' },
+  { value: 'home_office', label: 'Mit Home-Office' },
+  { value: 'elderly_couple', label: 'Älteres Paar (ganztags)' },
+  { value: 'single_working', label: 'Berufstätige Einzelperson' },
+  { value: 'shift_work', label: 'Schichtarbeit' },
+  { value: 'students', label: 'Studenten-WG' },
+  { value: 'weekend_house', label: 'Wochenendhaus' },
+  { value: 'vacation_rental', label: 'Ferienvermietung' },
+  { value: 'low_occupancy', label: 'Selten bewohnt' },
+  { value: 'high_occupancy', label: 'Überdurchschnittlich bewohnt' }
+]
+
+export const roomTemperaturePreferencesOptions = [
+  { value: '', label: 'Temperaturwünsche' },
+  { value: 'standard_20', label: 'Standard (20°C Wohnräume)' },
+  { value: 'comfort_22', label: 'Komfort (22°C Wohnräume)' },
+  { value: 'energy_saving_18', label: 'Energiesparend (18°C)' },
+  { value: 'variable_zones', label: 'Unterschiedliche Zonen' },
+  { value: 'individual_control', label: 'Individuelle Raumregelung' },
+  { value: 'elderly_comfort', label: 'Seniorengerecht (höhere Temperaturen)' },
+  { value: 'child_friendly', label: 'Kinderfreundlich (konstant warm)' },
+  { value: 'health_requirements', label: 'Gesundheitliche Anforderungen' }
+]
+
+export const buildingComplexityOptions = [
+  { value: '', label: 'Gebäudekomplexität' },
+  { value: 'simple_box', label: 'Einfache Gebäudeform' },
+  { value: 'moderate_complexity', label: 'Mittlere Komplexität' },
+  { value: 'complex_geometry', label: 'Komplexe Geometrie' },
+  { value: 'multiple_levels', label: 'Verschiedene Ebenen' },
+  { value: 'mixed_use', label: 'Gemischte Nutzung' },
+  { value: 'historic_structure', label: 'Historische Bausubstanz' },
+  { value: 'extensions', label: 'An-/Umbauten vorhanden' },
+  { value: 'unusual_features', label: 'Besondere Gebäudeteile' }
+]
+
+export const timeframeUrgencyOptions = [
+  { value: '', label: 'Zeitrahmen' },
+  { value: 'very_urgent', label: 'Sehr dringend (sofort)' },
+  { value: 'urgent', label: 'Dringend (diese Woche)' },
+  { value: 'planning_phase', label: 'Planungsphase (1-2 Wochen)' },
+  { value: 'project_preparation', label: 'Projektvorbereitung (1 Monat)' },
+  { value: 'tender_preparation', label: 'Ausschreibungsvorbereitung' },
+  { value: 'next_heating_period', label: 'Zur nächsten Heizperiode' },
+  { value: 'flexible', label: 'Flexibel' }
+]
+
+export const previousCalculationsOptions = [
+  { value: '', label: 'Vorherige Berechnungen' },
+  { value: 'none', label: 'Noch keine Berechnung' },
+  { value: 'rough_estimate', label: 'Grobe Schätzung vorhanden' },
+  { value: 'old_calculation', label: 'Alte Berechnung (>5 Jahre)' },
+  { value: 'recent_calculation', label: 'Aktuelle Berechnung (<2 Jahre)' },
+  { value: 'software_calculation', label: 'Software-Berechnung durchgeführt' },
+  { value: 'expert_calculation', label: 'Fachmann-Berechnung vorhanden' },
+  { value: 'contradictory_results', label: 'Widersprüchliche Ergebnisse' },
+  { value: 'verification_needed', label: 'Verifikation gewünscht' }
+]
+
+export const dataAvailabilityOptions = [
+  { value: '', label: 'Verfügbare Unterlagen' },
+  { value: 'complete_plans', label: 'Vollständige Baupläne' },
+  { value: 'basic_plans', label: 'Grundrisse vorhanden' },
+  { value: 'energy_certificate', label: 'Energieausweis verfügbar' },
+  { value: 'u_values_known', label: 'U-Werte bekannt' },
+  { value: 'consumption_data', label: 'Verbrauchsdaten vorhanden' },
+  { value: 'thermal_images', label: 'Thermografieaufnahmen' },
+  { value: 'building_survey', label: 'Gebäudeaufnahme durchgeführt' },
+  { value: 'minimal_data', label: 'Nur Grunddaten verfügbar' },
+  { value: 'no_documentation', label: 'Keine Unterlagen' },
+  { value: 'partial_documentation', label: 'Unvollständige Unterlagen' }
+]
+
+export const specialBuildingFeaturesOptions = [
+  { value: '', label: 'Besonderheiten' },
+  { value: 'none', label: 'Keine Besonderheiten' },
+  { value: 'large_windows', label: 'Große Fensterflächen' },
+  { value: 'high_ceilings', label: 'Hohe Räume (>3m)' },
+  { value: 'thermal_bridges', label: 'Bekannte Wärmebrücken' },
+  { value: 'ventilation_system', label: 'Lüftungsanlage vorhanden' },
+  { value: 'underfloor_heating', label: 'Fußbodenheizung' },
+  { value: 'radiant_heating', label: 'Strahlungsheizung' },
+  { value: 'swimming_pool', label: 'Schwimmbad/Pool' },
+  { value: 'conservatory', label: 'Wintergarten' },
+  { value: 'basement_heating', label: 'Beheizte Keller' },
+  { value: 'garage_heating', label: 'Beheizte Garage' },
+  { value: 'workshop_spaces', label: 'Werkstatt-/Hobbyräume' }
+]
+
+export const softwarePreferenceOptions = [
+  { value: '', label: 'Software-Präferenz' },
+  { value: 'any_professional', label: 'Beliebige Profi-Software' },
+  { value: 'specific_software', label: 'Bestimmte Software gewünscht' },
+  { value: 'manufacturer_software', label: 'Hersteller-Software' },
+  { value: 'open_source', label: 'Open-Source bevorzugt' },
+  { value: 'simple_tools', label: 'Einfache Tools ausreichend' },
+  { value: 'manual_calculation', label: 'Manuelle Berechnung' },
+  { value: 'no_preference', label: 'Keine Präferenz' }
 ] 

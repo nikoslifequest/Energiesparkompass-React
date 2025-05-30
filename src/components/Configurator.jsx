@@ -9,6 +9,7 @@ import GegWizard from './GegWizard'
 import ResidentialEnergyWizard from './ResidentialEnergyWizard'
 import NonResidentialEnergyWizard from './NonResidentialEnergyWizard'
 import MonumentEnergyWizard from './MonumentEnergyWizard'
+import HeatLoadCalculationWizard from './HeatLoadCalculationWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -93,7 +94,8 @@ const Configurator = () => {
       title: 'Heizlastberechnung',
       description: 'Präzise Berechnung des Heizwärmebedarfs Ihres Gebäudes',
       icon: '📊',
-      category: 'Berechnung'
+      category: 'Berechnung',
+      hasFullConfigurator: true
     }
   ]
 
@@ -144,6 +146,8 @@ const Configurator = () => {
         return <NonResidentialEnergyWizard onBack={handleBackToSelection} />
       case 9: // Denkmalschutz
         return <MonumentEnergyWizard onBack={handleBackToSelection} />
+      case 10: // Heizlastberechnung
+        return <HeatLoadCalculationWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">
