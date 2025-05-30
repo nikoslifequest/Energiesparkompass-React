@@ -8,6 +8,7 @@ import HeatingCheckWizard from './HeatingCheckWizard'
 import GegWizard from './GegWizard'
 import ResidentialEnergyWizard from './ResidentialEnergyWizard'
 import NonResidentialEnergyWizard from './NonResidentialEnergyWizard'
+import MonumentEnergyWizard from './MonumentEnergyWizard'
 
 const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
@@ -84,7 +85,8 @@ const Configurator = () => {
       title: 'Denkmalschutz',
       description: 'Spezielle Energieberatung für denkmalgeschützte Gebäude',
       icon: '🏛️',
-      category: 'Spezial'
+      category: 'Spezial',
+      hasFullConfigurator: true
     },
     {
       id: 10,
@@ -140,6 +142,8 @@ const Configurator = () => {
         return <ResidentialEnergyWizard onBack={handleBackToSelection} />
       case 8: // Nicht Wohngebäude
         return <NonResidentialEnergyWizard onBack={handleBackToSelection} />
+      case 9: // Denkmalschutz
+        return <MonumentEnergyWizard onBack={handleBackToSelection} />
       default:
         return (
           <div className="py-16 bg-gray-50 min-h-screen">

@@ -763,4 +763,154 @@ export const specialRequirementsOptions = [
   { value: 'fire_protection', label: 'Brandschutz' },
   { value: 'explosion_protection', label: 'Explosionsschutz' },
   { value: 'cleanroom', label: 'Reinraum-Anforderungen' }
+]
+
+// Denkmalschutz spezifische Optionen
+export const monumentProtectionLevelOptions = [
+  { value: '', label: 'Denkmalschutz-Status auswählen' },
+  { value: 'full_monument', label: 'Einzeldenkmal (Vollschutz)' },
+  { value: 'ensemble', label: 'Ensembleschutz' },
+  { value: 'listed_building', label: 'Kulturdenkmal' },
+  { value: 'heritage_area', label: 'Denkmalbereich' },
+  { value: 'worthy_preservation', label: 'Erhaltenswert (nicht gelistet)' },
+  { value: 'partial_protection', label: 'Teilweise geschützt' },
+  { value: 'under_review', label: 'Prüfung läuft' },
+  { value: 'unclear', label: 'Status unklar' }
+]
+
+export const monumentBuildingTypeOptions = [
+  { value: '', label: 'Denkmaltyp auswählen' },
+  { value: 'residential_villa', label: 'Wohnhaus / Villa' },
+  { value: 'apartment_building', label: 'Mehrfamilienhaus' },
+  { value: 'farmhouse', label: 'Bauernhaus / Gutshof' },
+  { value: 'castle_palace', label: 'Schloss / Palais' },
+  { value: 'church', label: 'Kirche / religiöses Gebäude' },
+  { value: 'school_historic', label: 'Historisches Schulgebäude' },
+  { value: 'factory_industrial', label: 'Industriedenkmal / Fabrik' },
+  { value: 'half_timbered', label: 'Fachwerkhaus' },
+  { value: 'historic_center', label: 'Altstadtgebäude' },
+  { value: 'public_building', label: 'Öffentliches Gebäude' },
+  { value: 'military', label: 'Militärgebäude' },
+  { value: 'other_monument', label: 'Sonstiges Denkmal' }
+]
+
+export const constructionPeriodOptions = [
+  { value: '', label: 'Bauzeit auswählen' },
+  { value: 'medieval', label: 'Mittelalter (bis 1500)' },
+  { value: 'renaissance', label: 'Renaissance (1500-1650)' },
+  { value: 'baroque', label: 'Barock (1650-1770)' },
+  { value: 'classicism', label: 'Klassizismus (1770-1840)' },
+  { value: 'historicism', label: 'Historismus (1840-1900)' },
+  { value: 'art_nouveau', label: 'Jugendstil (1890-1910)' },
+  { value: 'early_modern', label: 'Frühe Moderne (1900-1933)' },
+  { value: 'post_war', label: 'Nachkriegszeit (1945-1970)' },
+  { value: 'modern_monument', label: 'Moderne Denkmäler (ab 1970)' },
+  { value: 'mixed_periods', label: 'Verschiedene Bauphasen' },
+  { value: 'unknown_period', label: 'Unbekannt' }
+]
+
+export const heritageAuthorityOptions = [
+  { value: '', label: 'Zuständige Behörde' },
+  { value: 'not_contacted', label: 'Noch nicht kontaktiert' },
+  { value: 'state_authority', label: 'Landesdenkmalamt' },
+  { value: 'regional_authority', label: 'Regionale Denkmalschutzbehörde' },
+  { value: 'municipal_authority', label: 'Kommunale Denkmalschutzbehörde' },
+  { value: 'church_authority', label: 'Kirchliche Denkmalpflege' },
+  { value: 'federal_authority', label: 'Bundesdenkmalamt' },
+  { value: 'private_expert', label: 'Privater Sachverständiger' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const previousApprovalsOptions = [
+  { value: '', label: 'Vorherige Genehmigungen' },
+  { value: 'none', label: 'Keine bisherigen Maßnahmen' },
+  { value: 'windows_approved', label: 'Fenster (genehmigt)' },
+  { value: 'roof_approved', label: 'Dach (genehmigt)' },
+  { value: 'heating_approved', label: 'Heizung (genehmigt)' },
+  { value: 'partial_renovation', label: 'Teilrenovierung durchgeführt' },
+  { value: 'pending_applications', label: 'Anträge in Bearbeitung' },
+  { value: 'rejected_applications', label: 'Abgelehnte Anträge' },
+  { value: 'mixed_results', label: 'Gemischte Erfahrungen' }
+]
+
+export const technicalRestrictionsOptions = [
+  { value: '', label: 'Bekannte Einschränkungen' },
+  { value: 'facade_restrictions', label: 'Fassade darf nicht verändert werden' },
+  { value: 'window_restrictions', label: 'Originalfenster müssen erhalten bleiben' },
+  { value: 'roof_restrictions', label: 'Dachform/-material geschützt' },
+  { value: 'interior_restrictions', label: 'Innenräume geschützt' },
+  { value: 'structural_restrictions', label: 'Tragwerk darf nicht verändert werden' },
+  { value: 'material_requirements', label: 'Spezielle Materialvorgaben' },
+  { value: 'color_requirements', label: 'Farbvorgaben' },
+  { value: 'technique_restrictions', label: 'Technische Einschränkungen' },
+  { value: 'access_restrictions', label: 'Eingeschränkter Zugang' },
+  { value: 'seasonal_restrictions', label: 'Saisonale Beschränkungen' },
+  { value: 'no_restrictions', label: 'Keine bekannten Einschränkungen' },
+  { value: 'unclear', label: 'Einschränkungen unklar' }
+]
+
+export const monumentConditionOptions = [
+  { value: '', label: 'Zustand des Denkmals' },
+  { value: 'excellent', label: 'Sehr gut erhalten' },
+  { value: 'good', label: 'Gut erhalten' },
+  { value: 'fair', label: 'Befriedigend' },
+  { value: 'poor', label: 'Sanierungsbedürftig' },
+  { value: 'critical', label: 'Akut gefährdet' },
+  { value: 'partial_damage', label: 'Teilweise beschädigt' },
+  { value: 'renovated', label: 'Bereits teilrenoviert' },
+  { value: 'mixed_condition', label: 'Unterschiedlicher Zustand' },
+  { value: 'assessment_needed', label: 'Bewertung erforderlich' }
+]
+
+export const specialFeaturesOptions = [
+  { value: '', label: 'Besondere Merkmale' },
+  { value: 'historic_heating', label: 'Historische Heizungsanlagen' },
+  { value: 'ornamental_facade', label: 'Ornamentierte Fassade' },
+  { value: 'valuable_interiors', label: 'Wertvolle Innenausstattung' },
+  { value: 'timber_frame', label: 'Fachwerk' },
+  { value: 'natural_stone', label: 'Natursteinmauerwerk' },
+  { value: 'historic_windows', label: 'Historische Fenster' },
+  { value: 'listed_roof', label: 'Denkmalgeschütztes Dach' },
+  { value: 'archaeological', label: 'Archäologische Substanz' },
+  { value: 'artistic_elements', label: 'Künstlerische Elemente' },
+  { value: 'technical_monuments', label: 'Technische Denkmäler' },
+  { value: 'gardens_landscape', label: 'Denkmalgeschützte Garten-/Landschaftsanlage' },
+  { value: 'none_special', label: 'Keine besonderen Merkmale' }
+]
+
+export const expertiseAvailableOptions = [
+  { value: '', label: 'Verfügbare Expertise' },
+  { value: 'heritage_architect', label: 'Denkmalschutz-Architekt vorhanden' },
+  { value: 'heritage_engineer', label: 'Denkmalschutz-Ingenieur vorhanden' },
+  { value: 'restoration_expert', label: 'Restaurator vorhanden' },
+  { value: 'craftsman_specialist', label: 'Spezialisierte Handwerker bekannt' },
+  { value: 'planning_team', label: 'Erfahrenes Planungsteam' },
+  { value: 'previous_projects', label: 'Erfahrung aus anderen Projekten' },
+  { value: 'need_recommendations', label: 'Empfehlungen benötigt' },
+  { value: 'no_expertise', label: 'Keine Expertise vorhanden' }
+]
+
+export const priorityAspectsOptions = [
+  { value: '', label: 'Prioritäten setzen' },
+  { value: 'monument_preservation', label: 'Denkmalschutz hat Vorrang' },
+  { value: 'energy_efficiency', label: 'Energieeffizienz maximieren' },
+  { value: 'cost_optimization', label: 'Kosten minimieren' },
+  { value: 'comfort_improvement', label: 'Wohnkomfort verbessern' },
+  { value: 'structural_integrity', label: 'Bausubstanz erhalten' },
+  { value: 'reversible_measures', label: 'Reversible Maßnahmen bevorzugen' },
+  { value: 'authentic_materials', label: 'Authentische Materialien verwenden' },
+  { value: 'minimal_intervention', label: 'Minimaler Eingriff' },
+  { value: 'future_flexibility', label: 'Zukunftsfähige Lösungen' },
+  { value: 'balanced_approach', label: 'Ausgewogener Ansatz' }
+]
+
+export const fundingAwarenessOptions = [
+  { value: '', label: 'Kenntnis über Fördermöglichkeiten' },
+  { value: 'well_informed', label: 'Gut informiert über Denkmalförderung' },
+  { value: 'basic_knowledge', label: 'Grundkenntnisse vorhanden' },
+  { value: 'some_research', label: 'Eigene Recherche betrieben' },
+  { value: 'heard_about', label: 'Davon gehört' },
+  { value: 'no_knowledge', label: 'Keine Kenntnisse' },
+  { value: 'confused', label: 'Verwirrend / widersprüchliche Infos' },
+  { value: 'need_guidance', label: 'Beratung dringend benötigt' }
 ] 
