@@ -394,4 +394,109 @@ export const combinedServiceOptions = [
   { value: 'co-messung', label: 'CO-Messung' },
   { value: 'dichtigkeitspruefung', label: 'Dichtheitsprüfung' },
   { value: 'rauchrohrreinigung', label: 'Rauchrohrreinigung' }
+]
+
+// GEG Wizard specific options
+export const heatingTypeOptions = [
+  { value: '', label: 'Heizungstyp auswählen' },
+  { value: 'gas', label: 'Gasheizung' },
+  { value: 'oil', label: 'Ölheizung' },
+  { value: 'heat_pump', label: 'Wärmepumpe' },
+  { value: 'wood_pellets', label: 'Pelletheizung' },
+  { value: 'district_heating', label: 'Fernwärme' },
+  { value: 'electric', label: 'Elektroheizung' },
+  { value: 'hybrid', label: 'Hybridheizung' },
+  { value: 'other', label: 'Sonstiges' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const heatingStatusOptions = [
+  { value: '', label: 'Status auswählen' },
+  { value: 'working', label: 'Funktioniert einwandfrei' },
+  { value: 'needs_repair', label: 'Reparaturbedürftig' },
+  { value: 'defective', label: 'Defekt / nicht reparierbar' },
+  { value: 'over_30_years', label: 'Über 30 Jahre alt' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const communityTypeOptions = [
+  { value: '', label: 'Gemeindegröße auswählen' },
+  { value: 'large', label: 'Großstadt (>100.000 Einwohner)' },
+  { value: 'small', label: 'Kleinere Stadt/Gemeinde (<100.000 Einwohner)' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const heatPlanOptions = [
+  { value: '', label: 'Status auswählen' },
+  { value: 'yes', label: 'Ja, vorhanden' },
+  { value: 'no', label: 'Nein, noch nicht vorhanden' },
+  { value: 'planned', label: 'In Planung' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const propertyTypeOptions = [
+  { value: '', label: 'Eigentum auswählen' },
+  { value: 'owner_occupied', label: 'Eigengenutzt' },
+  { value: 'rental', label: 'Vermietet' },
+  { value: 'weg', label: 'Wohnungseigentümergemeinschaft (WEG)' },
+  { value: 'tenant', label: 'Mieter' },
+  { value: 'usufruct', label: 'Nießbrauch' }
+]
+
+export const heatingUrgencyOptions = [
+  { value: '', label: 'Dringlichkeit auswählen' },
+  { value: 'immediate', label: 'Sofort (Heizung defekt)' },
+  { value: 'urgent', label: 'Innerhalb 6 Monaten' },
+  { value: 'planned', label: 'Innerhalb 1-2 Jahren' },
+  { value: 'future', label: 'Längerfristig geplant' },
+  { value: 'none', label: 'Noch nicht geplant' }
+]
+
+export const consultationReasonOptions = [
+  { value: '', label: 'Beratungsgrund auswählen' },
+  { value: 'geg_mandatory', label: 'GEG-Pflichtberatung (neue Gas-/Ölheizung)' },
+  { value: 'heating_replacement', label: 'Heizungsaustausch geplant' },
+  { value: 'general_consultation', label: 'Allgemeine Energieberatung' },
+  { value: 'renovation_planning', label: 'Sanierungsplanung' },
+  { value: 'funding_advice', label: 'Fördermittelberatung' },
+  { value: 'cost_optimization', label: 'Kostenoptimierung' },
+  { value: 'getting_to_know', label: 'Kennenlernen / Erstberatung' }
+]
+
+export const insulationStatusOptions = [
+  { value: '', label: 'Dämmzustand auswählen' },
+  { value: 'good', label: 'Gut gedämmt' },
+  { value: 'moderate', label: 'Teilweise gedämmt' },
+  { value: 'poor', label: 'Schlecht gedämmt' },
+  { value: 'none', label: 'Nicht gedämmt' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const windowStatusOptions = [
+  { value: '', label: 'Fensterqualität auswählen' },
+  { value: 'modern', label: 'Modern (Mehrfachverglasung)' },
+  { value: 'standard', label: 'Standard (Doppelverglasung)' },
+  { value: 'old', label: 'Alt (Einfachverglasung)' },
+  { value: 'mixed', label: 'Gemischt' },
+  { value: 'unknown', label: 'Unbekannt' }
+]
+
+export const budgetRangeOptions = [
+  { value: '', label: 'Budgetrahmen auswählen' },
+  { value: 'under_10k', label: 'Unter 10.000 €' },
+  { value: '10k_25k', label: '10.000 - 25.000 €' },
+  { value: '25k_50k', label: '25.000 - 50.000 €' },
+  { value: '50k_100k', label: '50.000 - 100.000 €' },
+  { value: 'over_100k', label: 'Über 100.000 €' },
+  { value: 'open', label: 'Offen / noch nicht festgelegt' },
+  { value: 'no_answer', label: 'Keine Angabe' }
+]
+
+export const contactPreferenceOptions = [
+  { value: '', label: 'Kontaktart auswählen' },
+  { value: 'phone', label: 'Telefonisch' },
+  { value: 'email', label: 'Per E-Mail' },
+  { value: 'in_person', label: 'Vor-Ort-Termin' },
+  { value: 'video', label: 'Videogespräch' },
+  { value: 'flexible', label: 'Flexibel' }
 ] 
