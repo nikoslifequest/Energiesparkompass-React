@@ -1,20 +1,33 @@
 import { useState } from 'react'
-import MainHeader from './components/MainHeader'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Configurator from './components/Configurator'
-import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import WizardPage from './pages/WizardPage'
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home')
+  const [selectedWizardService, setSelectedWizardService] = useState(null)
+
+  const handleNavigateToWizard = (serviceId) => {
+    setSelectedWizardService(serviceId)
+    setCurrentPage('wizard')
+  }
+
+  const handleBackToMain = () => {
+    setCurrentPage('home')
+    setSelectedWizardService(null)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <MainHeader />
-      <main>
-        <Hero />
-        <Features />
-        <Configurator />
-      </main>
-      <Footer />
+      {currentPage === 'home' && (
+        <HomePage onNavigateToWizard={handleNavigateToWizard} />
+      )}
+      
+      {currentPage === 'wizard' && (
+        <WizardPage 
+          selectedService={selectedWizardService}
+          onBackToMain={handleBackToMain}
+        />
+      )}
     </div>
   )
 }
