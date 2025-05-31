@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Header from './components/Header'
+import MainHeader from './components/MainHeader'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Configurator from './components/Configurator'
@@ -9,13 +9,13 @@ import ModernDesignDemo from './components/ModernDesignDemo'
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <MainHeader />
       <main>
         <Hero />
         <Features />
         <Configurator />
         
-        {/* Neue Design Demo Sektion */}
+        {/* Design Demo Sektion */}
         <section id="design-demo">
           <ModernDesignDemo />
         </section>

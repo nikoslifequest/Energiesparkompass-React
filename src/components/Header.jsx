@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { Button } from './ui'
 
-const Header = () => {
+const Header = ({ 
+  showDesignDemo = true, 
+  onLogoClick = null,
+  customNavigationItems = null,
+  className = ""
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToConfigurator = () => {
@@ -40,13 +45,40 @@ const Header = () => {
     scrollToDemo()
   }
 
+  const handleLogoClick = (e) => {
+    if (onLogoClick) {
+      e.preventDefault()
+      onLogoClick()
+    }
+  }
+
+  // Default navigation items
+  const defaultNavigationItems = [
+    { href: "#features", label: "Features", type: "link" },
+    { href: "#konfigurator", label: "Konfigurator", type: "link" },
+    ...(showDesignDemo ? [{ 
+      onClick: scrollToDemo, 
+      label: "Design Demo", 
+      type: "button",
+      className: "text-primary-600 hover:text-primary-700"
+    }] : []),
+    { href: "#about", label: "Über uns", type: "link" },
+    { href: "#contact", label: "Kontakt", type: "link" }
+  ]
+
+  const navigationItems = customNavigationItems || defaultNavigationItems
+
   return (
-    <header className="bg-white shadow-sm">
+    <header className={`bg-white shadow-sm ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
           {/* Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#" className="text-2xl font-bold text-primary-600">
+            <a 
+              href={onLogoClick ? "#" : "/"} 
+              className="text-2xl font-bold text-primary-600"
+              onClick={handleLogoClick}
+            >
               Energiesparkompass
             </a>
           </div>
@@ -67,24 +99,25 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10">
-            <a href="#features" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Features
-            </a>
-            <a href="#konfigurator" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Konfigurator
-            </a>
-            <button 
-              onClick={scrollToDemo}
-              className="text-base font-medium text-primary-600 hover:text-primary-700"
-            >
-              Design Demo
-            </button>
-            <a href="#about" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Über uns
-            </a>
-            <a href="#contact" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Kontakt
-            </a>
+            {navigationItems.map((item, index) => (
+              item.type === 'button' ? (
+                <button 
+                  key={index}
+                  onClick={item.onClick}
+                  className={item.className || "text-base font-medium text-gray-500 hover:text-gray-900"}
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <a 
+                  key={index}
+                  href={item.href} 
+                  className={item.className || "text-base font-medium text-gray-500 hover:text-gray-900"}
+                >
+                  {item.label}
+                </a>
+              )
+            ))}
           </nav>
 
           {/* CTA Button */}
@@ -122,24 +155,29 @@ const Header = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  <a href="#features" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Features
-                  </a>
-                  <a href="#konfigurator" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Konfigurator
-                  </a>
-                  <button 
-                    onClick={handleMobileDemoClick}
-                    className="text-left text-base font-medium text-primary-600 hover:text-primary-700"
-                  >
-                    Design Demo
-                  </button>
-                  <a href="#about" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Über uns
-                  </a>
-                  <a href="#contact" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Kontakt
-                  </a>
+                  {navigationItems.map((item, index) => (
+                    item.type === 'button' ? (
+                      <button 
+                        key={index}
+                        onClick={() => {
+                          setIsMenuOpen(false)
+                          if (item.onClick) item.onClick()
+                        }}
+                        className={item.className || "text-left text-base font-medium text-gray-900 hover:text-gray-700"}
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <a 
+                        key={index}
+                        href={item.href} 
+                        className={item.className || "text-base font-medium text-gray-900 hover:text-gray-700"}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  ))}
                 </nav>
               </div>
             </div>
