@@ -42,9 +42,14 @@ export const Heading = forwardRef(({
     'gray-500': 'text-gray-500',
     'primary-600': 'text-primary-600',
     'primary-700': 'text-primary-700',
+    'primary-800': 'text-primary-800',
+    'primary-900': 'text-primary-900',
+    'accent-500': 'text-accent-500',
+    'accent-600': 'text-accent-600',
     'white': 'text-white',
-    'red-600': 'text-red-600',
-    'green-600': 'text-green-600',
+    'success-600': 'text-success-600',
+    'warning-600': 'text-warning-600',
+    'error-600': 'text-error-600',
   }
 
   const combinedClasses = [
@@ -106,9 +111,13 @@ export const Text = forwardRef(({
     'gray-400': 'text-gray-400',
     'primary-600': 'text-primary-600',
     'primary-700': 'text-primary-700',
+    'primary-800': 'text-primary-800',
+    'accent-500': 'text-accent-500',
+    'accent-600': 'text-accent-600',
     'white': 'text-white',
-    'red-600': 'text-red-600',
-    'green-600': 'text-green-600',
+    'success-600': 'text-success-600',
+    'warning-600': 'text-warning-600',
+    'error-600': 'text-error-600',
   }
 
   const leadings = {

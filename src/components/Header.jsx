@@ -20,9 +20,24 @@ const Header = () => {
     }
   }
 
+  const scrollToDemo = () => {
+    const demoElement = document.getElementById('design-demo')
+    if (demoElement) {
+      demoElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   const handleMobileConfiguratorClick = () => {
     setIsMenuOpen(false)
     scrollToConfigurator()
+  }
+
+  const handleMobileDemoClick = () => {
+    setIsMenuOpen(false)
+    scrollToDemo()
   }
 
   return (
@@ -32,7 +47,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#" className="text-2xl font-bold text-primary-600">
-              ⚡ Energiesparkompass
+              Energiesparkompass
             </a>
           </div>
 
@@ -58,6 +73,12 @@ const Header = () => {
             <a href="#konfigurator" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Konfigurator
             </a>
+            <button 
+              onClick={scrollToDemo}
+              className="text-base font-medium text-primary-600 hover:text-primary-700"
+            >
+              Design Demo
+            </button>
             <a href="#about" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Über uns
             </a>
@@ -84,7 +105,7 @@ const Header = () => {
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
                 <div className="text-2xl font-bold text-primary-600">
-                  ⚡ Energiesparkompass
+                  Energiesparkompass
                 </div>
                 <div className="-mr-2">
                   <button
@@ -107,6 +128,12 @@ const Header = () => {
                   <a href="#konfigurator" className="text-base font-medium text-gray-900 hover:text-gray-700">
                     Konfigurator
                   </a>
+                  <button 
+                    onClick={handleMobileDemoClick}
+                    className="text-left text-base font-medium text-primary-600 hover:text-primary-700"
+                  >
+                    Design Demo
+                  </button>
                   <a href="#about" className="text-base font-medium text-gray-900 hover:text-gray-700">
                     Über uns
                   </a>

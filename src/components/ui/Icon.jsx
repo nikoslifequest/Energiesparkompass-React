@@ -26,12 +26,16 @@ export const Icon = forwardRef(({
     'gray-700': 'text-gray-700',
     'primary-500': 'text-primary-500',
     'primary-600': 'text-primary-600',
-    'red-500': 'text-red-500',
-    'red-600': 'text-red-600',
-    'green-500': 'text-green-500',
-    'green-600': 'text-green-600',
-    'yellow-500': 'text-yellow-500',
-    'blue-500': 'text-blue-500',
+    'primary-700': 'text-primary-700',
+    'primary-800': 'text-primary-800',
+    'accent-500': 'text-accent-500',
+    'accent-600': 'text-accent-600',
+    'success-500': 'text-success-500',
+    'success-600': 'text-success-600',
+    'warning-500': 'text-warning-500',
+    'warning-600': 'text-warning-600',
+    'error-500': 'text-error-500',
+    'error-600': 'text-error-600',
     'white': 'text-white',
   }
 
@@ -154,6 +158,22 @@ export const Icon = forwardRef(({
     chart: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
+    leaf: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+    ),
+    sun: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
+    eco: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
 

@@ -72,11 +72,24 @@ const Hero = () => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <div className="h-56 w-full bg-gradient-to-br from-primary-400 to-primary-600 sm:h-72 md:h-96 lg:w-full lg:h-full flex items-center justify-center">
-          <div className="text-white text-center">
-            <div className="text-8xl mb-4">⚡</div>
-            <div className="text-6xl mb-4">🏠</div>
-            <div className="text-4xl">💡</div>
+        <div 
+          className="h-56 w-full sm:h-72 md:h-96 lg:w-full lg:h-full relative bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/assets/images/hero1.png')`
+          }}
+        >
+          {/* Grüne Maske/Overlay für professionellen Look */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/80 to-primary-700/70"></div>
+          
+          {/* Optional: Subtle pattern overlay für mehr Textur */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent"></div>
+          
+          {/* Content Overlay - optional für zusätzliche Informationen */}
+          <div className="absolute inset-0 flex items-end justify-center p-8">
+            <div className="text-white text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              <div className="text-sm font-medium mb-1">Moderne Energielösungen</div>
+              <div className="text-xs opacity-90">Nachhaltig • Effizient • Zukunftssicher</div>
+            </div>
           </div>
         </div>
       </div>
