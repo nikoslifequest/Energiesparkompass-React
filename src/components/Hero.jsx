@@ -1,6 +1,9 @@
 import { Button } from './ui'
+import { useState } from 'react'
 
 const Hero = () => {
+  const [activeHotspot, setActiveHotspot] = useState(null)
+
   const scrollToConfigurator = () => {
     const configuratorElement = document.getElementById('konfigurator')
     if (configuratorElement) {
@@ -24,6 +27,69 @@ const Hero = () => {
         behavior: 'smooth',
         block: 'start'
       })
+    }
+  }
+
+  const hotspots = [
+    {
+      id: 'solar',
+      position: { 
+        // Desktop
+        desktop: { top: '25%', left: '60%' },
+        // Tablet
+        tablet: { top: '20%', left: '55%' },
+        // Mobile
+        mobile: { top: '15%', left: '50%' }
+      },
+      title: 'Photovoltaik',
+      description: 'Moderne Solaranlage mit bis zu 30% Eigenverbrauch',
+      details: 'Bis zu 15.000€ Förderung möglich'
+    },
+    {
+      id: 'envelope',
+      position: { 
+        desktop: { top: '45%', left: '45%' },
+        tablet: { top: '40%', left: '40%' },
+        mobile: { top: '35%', left: '35%' }
+      },
+      title: 'Gebäudehülle',
+      description: 'Optimale Dämmung für maximale Energieeffizienz',
+      details: 'KfW-Effizienzhaus Standard'
+    },
+    {
+      id: 'windows',
+      position: { 
+        desktop: { top: '55%', left: '65%' },
+        tablet: { top: '50%', left: '60%' },
+        mobile: { top: '45%', left: '55%' }
+      },
+      title: 'Fenster & Türen',
+      description: '3-fach Verglasung mit Wärmeschutz',
+      details: 'Bis zu 40% weniger Wärmeverluste'
+    },
+    {
+      id: 'heating',
+      position: { 
+        desktop: { top: '70%', left: '25%' },
+        tablet: { top: '65%', left: '30%' },
+        mobile: { top: '60%', left: '35%' }
+      },
+      title: 'Wärmepumpe',
+      description: 'Effiziente Luft-Wasser-Wärmepumpe',
+      details: 'Bis zu 70% BAFA-Förderung'
+    }
+  ]
+
+  // Helper function to get responsive position
+  const getResponsivePosition = (hotspot) => {
+    // Use CSS custom properties for responsive positioning
+    return {
+      '--desktop-top': hotspot.position.desktop.top,
+      '--desktop-left': hotspot.position.desktop.left,
+      '--tablet-top': hotspot.position.tablet.top,
+      '--tablet-left': hotspot.position.tablet.left,
+      '--mobile-top': hotspot.position.mobile.top,
+      '--mobile-left': hotspot.position.mobile.left
     }
   }
 
@@ -120,6 +186,8 @@ const Hero = () => {
           </main>
         </div>
       </div>
+      
+      {/* Rechte Seite mit Bild und interaktiven Hotspots */}
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <div 
           className="h-56 w-full sm:h-72 md:h-96 lg:w-full lg:h-full relative bg-cover bg-center bg-no-repeat"
@@ -135,6 +203,53 @@ const Hero = () => {
           {/* Optional: Subtle pattern overlay für mehr Textur */}
           <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent"></div>
           
+          {/* Interactive Hotspots - Hide on very small screens */}
+          <div className="hidden sm:block">
+            {hotspots.map((hotspot) => (
+              <div
+                key={hotspot.id}
+                className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 hotspot-responsive"
+                style={{
+                  ...getResponsivePosition(hotspot),
+                  top: 'var(--mobile-top)',
+                  left: 'var(--mobile-left)'
+                }}
+              >
+                {/* Pulsierender Dot */}
+                <div 
+                  className="relative cursor-pointer"
+                  onMouseEnter={() => setActiveHotspot(hotspot.id)}
+                  onMouseLeave={() => setActiveHotspot(null)}
+                >
+                  {/* Pulsing Animation */}
+                  <div className="absolute inset-0 w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full animate-ping opacity-75"></div>
+                  <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-primary-500 shadow-lg">
+                    <div className="absolute inset-1 bg-primary-500 rounded-full"></div>
+                  </div>
+                  
+                  {/* Tooltip */}
+                  {activeHotspot === hotspot.id && (
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-48 sm:w-64 z-30">
+                      <div className="bg-white rounded-lg shadow-2xl p-3 sm:p-4 border border-gray-200">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-900 mb-1">
+                          {hotspot.title}
+                        </div>
+                        <div className="text-xs text-gray-600 mb-2">
+                          {hotspot.description}
+                        </div>
+                        <div className="text-xs text-primary-600 font-medium">
+                          {hotspot.details}
+                        </div>
+                        {/* Tooltip Arrow */}
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          
           {/* Content Overlay mit SEO-Keywords */}
           <div className="absolute inset-0 flex items-end justify-center p-8">
             <div className="text-white text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
@@ -144,6 +259,22 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .hotspot-responsive {
+            top: var(--tablet-top) !important;
+            left: var(--tablet-left) !important;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .hotspot-responsive {
+            top: var(--desktop-top) !important;
+            left: var(--desktop-left) !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }
