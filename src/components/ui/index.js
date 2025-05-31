@@ -9,4 +9,13 @@ export { default as Badge } from './Badge'
 export { default as Alert } from './Alert'
 export { default as SelectableCard } from './SelectableCard'
 export { default as MeasureSelector } from './MeasureSelector'
-export { default as HelpText } from './HelpText' 
+export { default as HelpText } from './HelpText'
+
+// New Typography Components
+export { Heading, Text } from './Typography'
+
+// New Layout Components
+export { Container, Grid, Stack, Flex, Divider } from './Layout'
+
+// New Icon Component
+export { Icon } from './Icon' 
