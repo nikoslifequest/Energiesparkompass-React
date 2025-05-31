@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
@@ -25,6 +26,8 @@ import {
 } from '../constants/formOptions'
 
 const ResidentialEnergyWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Gebäudeinformationen
     buildingType: '', buildingYear: '', livingSpace: '', floors: '',
@@ -78,20 +81,33 @@ const ResidentialEnergyWizard = ({ onBack }) => {
     { id: 6, title: 'Zusammenfassung', description: 'Überprüfung & Absendung' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Wohngebäude-Energieberatung Anfrage:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Energieberatung Wohngebäude', {
-      livingSpace: formData.livingSpace,
-      buildingAge: formData.buildingYear,
-      consultationType: formData.consultationType,
-      urgency: formData.urgency,
-      currentEnergyRating: formData.currentEnergyRating
-    })
-    
-    alert('Wohngebäude-Energieberatung wurde erfolgreich angefragt!')
-    onBack()
+    try {
+      console.log('Wohngebäude-Energieberatung Anfrage:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Energieberatung Wohngebäude', {
+        livingSpace: formData.livingSpace,
+        buildingAge: formData.buildingYear,
+        consultationType: formData.consultationType,
+        urgency: formData.urgency,
+        currentEnergyRating: formData.currentEnergyRating
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const toggleArrayValue = (array, value) => {

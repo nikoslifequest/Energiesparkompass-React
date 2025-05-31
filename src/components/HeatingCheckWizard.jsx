@@ -593,6 +593,72 @@ const HeatingCheckWizard = ({ onBack }) => {
               multiline
               rows={3}
             />
+
+            <div className="pt-6">
+              {!submitState.success && !submitState.error && (
+                <Alert variant="info" title="Bereit für Heizungscheck">
+                  Ihre Angaben sind vollständig. Wir erstellen Ihnen ein individuelles Angebot für den professionellen Heizungscheck.
+                </Alert>
+              )}
+
+              {submitState.error && (
+                <Alert variant="danger" title="Fehler beim Versenden">
+                  {submitState.error}
+                  <div className="mt-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => setSubmitState({ loading: false, error: null, success: false })}
+                    >
+                      Erneut versuchen
+                    </Button>
+                  </div>
+                </Alert>
+              )}
+
+              {submitState.success && (
+                <Alert variant="success" title="Anfrage erfolgreich versendet! 🎉">
+                  <div className="space-y-2">
+                    <p>Vielen Dank für Ihre Heizungscheck-Anfrage!</p>
+                    <p className="text-sm">
+                      <strong>Unser qualifizierter Schornsteinfeger wird sich binnen 24 Stunden bei Ihnen melden.</strong>
+                    </p>
+                    <div className="mt-4 space-y-1 text-sm text-gray-600">
+                      <p>✅ Ihre Daten wurden sicher übertragen</p>
+                      <p>✅ Anfrage wurde registriert</p>
+                      <p>✅ Bearbeitung bereits gestartet</p>
+                    </div>
+                    <div className="mt-4">
+                      <Button 
+                        variant="primary" 
+                        onClick={onBack}
+                        className="mr-2"
+                      >
+                        Weitere Services entdecken
+                      </Button>
+                    </div>
+                  </div>
+                </Alert>
+              )}
+
+              {!submitState.success && (
+                <Button
+                  size="xl"
+                  onClick={handleSubmit}
+                  disabled={submitState.loading || !isStepValid}
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  {submitState.loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Anfrage wird verarbeitet...
+                    </div>
+                  ) : (
+                    'Heizungscheck beauftragen'
+                  )}
+                </Button>
+              )}
+            </div>
           </div>
         )
 
@@ -653,16 +719,7 @@ const HeatingCheckWizard = ({ onBack }) => {
             >
               Weiter
             </Button>
-          ) : (
-            <Button
-              size="xl"
-              onClick={handleSubmit}
-              disabled={!isStepValid}
-              className="bg-green-600 hover:bg-green-700"
-            >
-              Heizungscheck beauftragen
-            </Button>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

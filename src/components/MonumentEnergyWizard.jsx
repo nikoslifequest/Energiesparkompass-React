@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   monumentProtectionLevelOptions,
@@ -31,6 +32,8 @@ import {
 } from '../constants/formOptions'
 
 const MonumentEnergyWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Denkmalschutz-spezifische Informationen
     monumentProtectionLevel: '', monumentBuildingType: '', constructionPeriod: '',
@@ -87,19 +90,33 @@ const MonumentEnergyWizard = ({ onBack }) => {
     { id: 7, title: 'Zusammenfassung', description: 'Überprüfung & Absendung' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Denkmalschutz Energieausweis-Anfrage abgesendet:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Energieausweis Denkmalschutz', {
-      livingSpace: formData.livingSpace,
-      heritageStatus: formData.heritageStatus,
-      energyPassType: formData.energyPassType,
-      urgency: formData.urgency,
-      specialRequirements: formData.specialRequirements
-    })
-    
-    alert('Vielen Dank! Ihre Anfrage für Energieausweis unter Denkmalschutz wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
+    try {
+      console.log('Denkmalschutz Energieausweis-Anfrage abgesendet:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Energieausweis Denkmalschutz', {
+        livingSpace: formData.livingSpace,
+        heritageStatus: formData.heritageStatus,
+        energyPassType: formData.energyPassType,
+        urgency: formData.urgency,
+        specialRequirements: formData.specialRequirements
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {

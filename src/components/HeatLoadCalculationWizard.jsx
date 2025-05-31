@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
@@ -30,6 +31,8 @@ import {
 } from '../constants/formOptions'
 
 const HeatLoadCalculationWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Gebäudeinformationen
     buildingType: '', buildingYear: '', livingSpace: '', floors: '',
@@ -88,20 +91,33 @@ const HeatLoadCalculationWizard = ({ onBack }) => {
     { id: 6, title: 'Zusammenfassung', description: 'Überprüfung & Absendung' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Heizlastberechnung Anfrage:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Heizlastberechnung', {
-      livingSpace: formData.livingSpace,
-      calculationType: formData.calculationType,
-      urgency: formData.urgency,
-      heatingSystemType: formData.heatingSystemType,
-      insulationLevel: formData.insulationLevel
-    })
-    
-    alert('Heizlastberechnungs-Anfrage wurde erfolgreich übermittelt!')
-    onBack()
+    try {
+      console.log('Heizlastberechnung Anfrage:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Heizlastberechnung', {
+        livingSpace: formData.livingSpace,
+        calculationType: formData.calculationType,
+        urgency: formData.urgency,
+        heatingSystemType: formData.heatingSystemType,
+        insulationLevel: formData.insulationLevel
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
