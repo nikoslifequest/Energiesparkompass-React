@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button, Icon } from './ui'
+import { sendQuickCheckEmails } from '../services/emailService'
 
 const Navigation = ({ 
   showQuickCheck = true,
@@ -11,6 +12,16 @@ const Navigation = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [miniConfigStep, setMiniConfigStep] = useState(1)
   const [showMiniConfig, setShowMiniConfig] = useState(false)
+  const [configData, setConfigData] = useState({
+    building: '',
+    year: '',
+    interest: '',
+    name: '',
+    email: '',
+    phone: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isCompleted, setIsCompleted] = useState(false)
 
   const defaultScrollToConfigurator = () => {
     const configuratorElement = document.getElementById('konfigurator')
@@ -40,14 +51,72 @@ const Navigation = ({
     defaultScrollToConfigurator()
   }
 
-  const handleMiniConfigNext = () => {
-    if (miniConfigStep < 3) {
+  const handleOptionSelect = (value) => {
+    const stepKeys = ['building', 'year', 'interest']
+    const currentKey = stepKeys[miniConfigStep - 1]
+    
+    setConfigData(prev => ({
+      ...prev,
+      [currentKey]: value
+    }))
+
+    // Move to next step
+    if (miniConfigStep < 4) {
       setMiniConfigStep(miniConfigStep + 1)
-    } else {
-      setShowMiniConfig(false)
-      setMiniConfigStep(1)
-      defaultScrollToConfigurator()
     }
+  }
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Here you would integrate with your email service (EmailJS, Nodemailer, etc.)
+      // For now, we'll simulate the API call
+      await sendQuickCheckData(configData)
+      
+      setIsCompleted(true)
+      
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setShowMiniConfig(false)
+        setMiniConfigStep(1)
+        setIsCompleted(false)
+        setConfigData({
+          building: '',
+          year: '',
+          interest: '',
+          name: '',
+          email: '',
+          phone: ''
+        })
+      }, 3000)
+      
+    } catch (error) {
+      console.error('Error sending quick check data:', error)
+      alert('Fehler beim Senden. Bitte versuchen Sie es erneut.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  // Email sending function
+  const sendQuickCheckData = async (data) => {
+    try {
+      // Send emails using the email service
+      await sendQuickCheckEmails(data)
+      return { success: true }
+    } catch (error) {
+      console.error('Error sending quick check emails:', error)
+      throw error
+    }
+  }
+
+  const handleContactChange = (field, value) => {
+    setConfigData(prev => ({
+      ...prev,
+      [field]: value
+    }))
   }
 
   const miniConfigContent = {
@@ -62,6 +131,10 @@ const Navigation = ({
     3: {
       title: "Hauptinteresse?",
       options: ["Wärmepumpe", "Photovoltaik", "Dämmung", "Komplettsanierung"]
+    },
+    4: {
+      title: "Ihre Kontaktdaten",
+      isForm: true
     }
   }
 
@@ -137,46 +210,114 @@ const Navigation = ({
                 {/* Mini Configurator Dropdown */}
                 {showMiniConfig && (
                   <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 p-6">
-                    <div className="text-center mb-4">
-                      <h3 className="text-lg font-semibold text-gray-900">Energieberatung in 30 Sekunden</h3>
-                      <p className="text-sm text-gray-600">Schritt {miniConfigStep} von 3</p>
-                    </div>
+                    {!isCompleted ? (
+                      <>
+                        <div className="text-center mb-4">
+                          <h3 className="text-lg font-semibold text-gray-900">Energieberatung in 30 Sekunden</h3>
+                          <p className="text-sm text-gray-600">Schritt {miniConfigStep} von 4</p>
+                        </div>
 
-                    <div className="mb-4">
-                      <h4 className="text-base font-medium text-gray-800 mb-3">
-                        {miniConfigContent[miniConfigStep].title}
-                      </h4>
-                      <div className="space-y-2">
-                        {miniConfigContent[miniConfigStep].options.map((option, index) => (
+                        <div className="mb-4">
+                          <h4 className="text-base font-medium text-gray-800 mb-3">
+                            {miniConfigContent[miniConfigStep].title}
+                          </h4>
+                          
+                          {miniConfigStep <= 3 ? (
+                            // Steps 1-3: Option selection
+                            <div className="space-y-2">
+                              {miniConfigContent[miniConfigStep].options.map((option, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => handleOptionSelect(option)}
+                                  className="w-full text-left p-3 rounded-lg border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-colors text-sm"
+                                >
+                                  {option}
+                                </button>
+                              ))}
+                            </div>
+                          ) : (
+                            // Step 4: Contact form
+                            <form onSubmit={handleContactSubmit} className="space-y-3">
+                              <div>
+                                <input
+                                  type="text"
+                                  placeholder="Ihr Name"
+                                  value={configData.name}
+                                  onChange={(e) => handleContactChange('name', e.target.value)}
+                                  required
+                                  className="w-full p-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary-300 focus:ring-1 focus:ring-primary-200"
+                                />
+                              </div>
+                              <div>
+                                <input
+                                  type="email"
+                                  placeholder="Ihre E-Mail"
+                                  value={configData.email}
+                                  onChange={(e) => handleContactChange('email', e.target.value)}
+                                  required
+                                  className="w-full p-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary-300 focus:ring-1 focus:ring-primary-200"
+                                />
+                              </div>
+                              <div>
+                                <input
+                                  type="tel"
+                                  placeholder="Ihre Telefonnummer"
+                                  value={configData.phone}
+                                  onChange={(e) => handleContactChange('phone', e.target.value)}
+                                  required
+                                  className="w-full p-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary-300 focus:ring-1 focus:ring-primary-200"
+                                />
+                              </div>
+                              <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full bg-primary-600 text-white p-3 rounded-lg text-sm font-medium hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                              >
+                                {isSubmitting ? 'Wird gesendet...' : 'Beratung anfragen'}
+                              </button>
+                            </form>
+                          )}
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                          <div className="flex space-x-2">
+                            {[1, 2, 3, 4].map((step) => (
+                              <div
+                                key={step}
+                                className={`w-2 h-2 rounded-full ${
+                                  step <= miniConfigStep ? 'bg-primary-600' : 'bg-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
                           <button
-                            key={index}
-                            onClick={handleMiniConfigNext}
-                            className="w-full text-left p-3 rounded-lg border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-colors text-sm"
+                            onClick={() => setShowMiniConfig(false)}
+                            className="text-sm text-gray-500 hover:text-gray-700"
                           >
-                            {option}
+                            Schließen
                           </button>
-                        ))}
+                        </div>
+                      </>
+                    ) : (
+                      // Success state
+                      <div className="text-center py-4">
+                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Vielen Dank!</h3>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
+                        </p>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                          <p className="text-xs text-green-700">
+                            ✓ E-Mail an Sie gesendet<br/>
+                            ✓ Unser Team wurde benachrichtigt
+                          </p>
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <div className="flex space-x-2">
-                        {[1, 2, 3].map((step) => (
-                          <div
-                            key={step}
-                            className={`w-2 h-2 rounded-full ${
-                              step <= miniConfigStep ? 'bg-primary-600' : 'bg-gray-300'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <button
-                        onClick={() => setShowMiniConfig(false)}
-                        className="text-sm text-gray-500 hover:text-gray-700"
-                      >
-                        Schließen
-                      </button>
-                    </div>
+                    )}
                   </div>
                 )}
               </div>

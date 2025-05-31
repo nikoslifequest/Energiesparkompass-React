@@ -173,6 +173,154 @@ export const EmailServices = {
     sendEmail(formData, 'heizlastberechnung')
 };
 
+// Email Service for Quick Check functionality
+// This can be integrated with EmailJS, Nodemailer, or your backend API
+
+// Configuration for EmailJS (free email service)
+const EMAIL_CONFIG = {
+  serviceId: 'your_service_id', // Replace with your EmailJS service ID
+  templateId: 'quick_check_template', // Replace with your template ID
+  confirmationTemplateId: 'customer_confirmation_template',
+  userId: 'your_user_id' // Replace with your EmailJS user ID
+}
+
+// Send quick check data to company and confirmation to customer
+export const sendQuickCheckEmails = async (data) => {
+  try {
+    // Prepare email data
+    const emailData = {
+      customer_name: data.name,
+      customer_email: data.email,
+      customer_phone: data.phone,
+      building_type: data.building,
+      building_year: data.year,
+      main_interest: data.interest,
+      submission_date: new Date().toLocaleDateString('de-DE'),
+      submission_time: new Date().toLocaleTimeString('de-DE')
+    }
+
+    // 1. Send email to company with customer data
+    await sendToCompany(emailData)
+    
+    // 2. Send confirmation email to customer
+    await sendConfirmationToCustomer(emailData)
+    
+    return { success: true }
+  } catch (error) {
+    console.error('Error sending emails:', error)
+    throw new Error('Fehler beim Senden der E-Mails')
+  }
+}
+
+// Send customer data to company
+const sendToCompany = async (data) => {
+  // Using EmailJS (you can replace this with your preferred email service)
+  
+  // For now, we'll just log the data that would be sent
+  console.log('Email to company:', {
+    to: 'info@energiesparkompass.de',
+    subject: `Neue Quick-Check Anfrage von ${data.customer_name}`,
+    template: 'company_notification',
+    data: data
+  })
+  
+  // Example EmailJS integration:
+  /*
+  if (typeof window !== 'undefined' && window.emailjs) {
+    return window.emailjs.send(
+      EMAIL_CONFIG.serviceId,
+      EMAIL_CONFIG.templateId,
+      {
+        ...data,
+        to_email: 'info@energiesparkompass.de'
+      },
+      EMAIL_CONFIG.userId
+    )
+  }
+  */
+  
+  // Simulate async operation
+  return new Promise(resolve => setTimeout(resolve, 500))
+}
+
+// Send confirmation email to customer
+const sendConfirmationToCustomer = async (data) => {
+  console.log('Confirmation email to customer:', {
+    to: data.customer_email,
+    subject: 'Bestätigung Ihrer Energieberatungs-Anfrage',
+    template: 'customer_confirmation',
+    data: data
+  })
+  
+  // Example EmailJS integration:
+  /*
+  if (typeof window !== 'undefined' && window.emailjs) {
+    return window.emailjs.send(
+      EMAIL_CONFIG.serviceId,
+      EMAIL_CONFIG.confirmationTemplateId,
+      {
+        ...data,
+        to_email: data.customer_email
+      },
+      EMAIL_CONFIG.userId
+    )
+  }
+  */
+  
+  // Simulate async operation
+  return new Promise(resolve => setTimeout(resolve, 500))
+}
+
+// Example email templates that you would set up in EmailJS:
+
+/*
+Company Email Template:
+========================
+Subject: Neue Quick-Check Anfrage von {{customer_name}}
+
+Hallo Team,
+
+eine neue Quick-Check Anfrage ist eingegangen:
+
+Kunde: {{customer_name}}
+E-Mail: {{customer_email}}
+Telefon: {{customer_phone}}
+
+Gebäude: {{building_type}}
+Baujahr: {{building_year}}
+Hauptinteresse: {{main_interest}}
+
+Eingegangen am: {{submission_date}} um {{submission_time}}
+
+Bitte kontaktieren Sie den Kunden zeitnah.
+
+Viele Grüße,
+Ihr Energiesparkompass System
+*/
+
+/*
+Customer Confirmation Template:
+===============================
+Subject: Bestätigung Ihrer Energieberatungs-Anfrage
+
+Hallo {{customer_name}},
+
+vielen Dank für Ihr Interesse an unserer Energieberatung!
+
+Ihre Anfrage Details:
+- Gebäude: {{building_type}}
+- Baujahr: {{building_year}}
+- Hauptinteresse: {{main_interest}}
+
+Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.
+
+Mit freundlichen Grüßen,
+Ihr Energiesparkompass Team
+
+Tel: +49 123 456 789
+E-Mail: info@energiesparkompass.de
+*/
+
 export default {
   sendEmail,
   checkServerHealth,
