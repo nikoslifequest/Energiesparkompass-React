@@ -1,5 +1,7 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, MeasureSelector, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
+import { EmailServices } from '../services/emailService'
 import {
   buildingTypeOptions,
   energyCertificateOptions,
@@ -17,6 +19,8 @@ import {
 } from '../constants/formOptions'
 
 const FundingWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Gebäudedaten
     buildingType: '', buildingYear: '', livingSpace: '', units: '',
@@ -57,9 +61,62 @@ const FundingWizard = ({ onBack }) => {
     { id: 5, title: 'Zusammenfassung', description: 'Überprüfung und Absendung' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Formular abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
+
+    try {
+      // Prepare data for email service
+      const emailData = {
+        // Contact information
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        // Address
+        address: formData.street,
+        zipCode: formData.zipCode,
+        city: formData.city,
+        // Building data
+        buildingType: formData.buildingType || 'Nicht angegeben',
+        constructionYear: formData.buildingYear || 'Nicht angegeben',
+        livingSpace: formData.livingSpace || 'Nicht angegeben',
+        numberOfUnits: formData.units || 'Nicht angegeben',
+        monumentStatus: formData.monument || 'Nicht angegeben',
+        energyCertificate: formData.energyCertificate || 'Nicht angegeben',
+        // Measures and scope
+        selectedMeasures: formData.measures || [],
+        renovationScope: formData.renovationScope || 'Nicht angegeben',
+        // Personal details
+        ownership: formData.ownershipStatus || 'Nicht angegeben',
+        householdSize: formData.householdSize || 'Nicht angegeben',
+        // Regional and financial data
+        state: formData.state || 'Nicht angegeben',
+        energyProvider: formData.energyProvider || 'Nicht angegeben',
+        investmentAmount: formData.investmentAmount || 'Nicht angegeben',
+        availableCapital: formData.ownCapital || 'Nicht angegeben',
+        fundingPreferences: formData.fundingType ? [formData.fundingType] : [],
+        timeline: formData.timeline || 'Nicht angegeben'
+      }
+
+      console.log('📧 Versende Fördermittelberatungs-Anfrage...', emailData)
+
+      const result = await EmailServices.sendFundingConsultationEmail(emailData)
+
+      if (result.success) {
+        setSubmitState({ loading: false, error: null, success: true })
+        console.log('✅ Email erfolgreich versendet:', result)
+      } else {
+        throw new Error(result.message || 'Email konnte nicht versendet werden')
+      }
+
+    } catch (error) {
+      console.error('❌ Fehler beim Email-Versand:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
@@ -295,39 +352,104 @@ const FundingWizard = ({ onBack }) => {
       case 5:
         return (
           <div className="space-y-6 animate-fade-in">
-            <Alert variant="success" title="Ihre Anfrage ist fast fertig!">
-              Bitte überprüfen Sie Ihre Angaben und senden Sie das Formular ab.
-            </Alert>
+            {!submitState.success && !submitState.error && (
+              <Alert variant="success" title="Ihre Anfrage ist fast fertig!">
+                Bitte überprüfen Sie Ihre Angaben und senden Sie das Formular ab.
+              </Alert>
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Gebäudedaten</h3>
-                <div className="space-y-2 text-sm">
-                  <div><span className="font-medium">Typ:</span> {buildingTypeOptions.find(o => o.value === formData.buildingType)?.label}</div>
-                  <div><span className="font-medium">Baujahr:</span> {formData.buildingYear}</div>
-                  <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace} m²</div>
+            {submitState.error && (
+              <Alert variant="danger" title="Fehler beim Versenden">
+                {submitState.error}
+                <div className="mt-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setSubmitState({ loading: false, error: null, success: false })}
+                  >
+                    Erneut versuchen
+                  </Button>
                 </div>
-              </div>
+              </Alert>
+            )}
 
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Kontakt</h3>
-                <div className="space-y-2 text-sm">
-                  <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
-                  <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
-                  <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
+            {submitState.success && (
+              <Alert variant="success" title="Anfrage erfolgreich versendet! 🎉">
+                <div className="space-y-2">
+                  <p>Vielen Dank für Ihre Anfrage zur Fördermittelberatung!</p>
+                  <p className="text-sm">
+                    <strong>Unser Energieberater wird sich binnen 24 Stunden bei Ihnen melden.</strong>
+                  </p>
+                  <div className="mt-4 space-y-1 text-sm text-gray-600">
+                    <p>✅ Ihre Daten wurden sicher übertragen</p>
+                    <p>✅ Email-Bestätigung versendet</p>
+                    <p>✅ Bearbeitung bereits gestartet</p>
+                  </div>
+                  <div className="mt-4">
+                    <Button 
+                      variant="primary" 
+                      onClick={onBack}
+                      className="mr-2"
+                    >
+                      Weitere Services entdecken
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Alert>
+            )}
 
-            <div className="pt-6">
-              <Button
-                size="xl"
-                onClick={handleSubmit}
-                className="w-full"
-              >
-                Anfrage absenden
-              </Button>
-            </div>
+            {!submitState.success && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Gebäudedaten</h3>
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-medium">Typ:</span> {buildingTypeOptions.find(o => o.value === formData.buildingType)?.label}</div>
+                      <div><span className="font-medium">Baujahr:</span> {formData.buildingYear}</div>
+                      <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace} m²</div>
+                      {formData.measures.length > 0 && (
+                        <div>
+                          <span className="font-medium">Geplante Maßnahmen:</span>
+                          <ul className="mt-1 ml-4 list-disc list-inside">
+                            {formData.measures.map((measure, index) => (
+                              <li key={index} className="text-xs">{measure}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Kontakt</h3>
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
+                      <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
+                      <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
+                      <div><span className="font-medium">Adresse:</span> {formData.street}, {formData.zipCode} {formData.city}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <Button
+                    size="xl"
+                    onClick={handleSubmit}
+                    disabled={submitState.loading}
+                    className="w-full"
+                  >
+                    {submitState.loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Anfrage wird gesendet...
+                      </div>
+                    ) : (
+                      'Anfrage absenden'
+                    )}
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         )
 
