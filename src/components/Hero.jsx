@@ -109,77 +109,79 @@ const Hero = () => {
 
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
-              <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+              <h1 className="text-4xl tracking-tight font-heading font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
                 <span className="block xl:inline">Energieberater</span>{' '}
                 <span className="block text-primary-600 xl:inline">Berlin Brandenburg</span>
               </h1>
-              <h2 className="mt-2 text-2xl tracking-tight font-bold text-gray-700 sm:text-3xl">
+              <h2 className="mt-3 text-xl sm:text-2xl md:text-3xl tracking-tight font-heading font-semibold text-gray-700 leading-snug">
                 Professionelle Energieberatung für maximale Effizienz
               </h2>
-              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                <strong>Zertifizierte Energieberatung</strong> für Ihr Zuhause in Berlin und Brandenburg. 
-                Wir erstellen Ihren <strong>individuellen Sanierungsfahrplan (iSFP)</strong>, beraten zu 
-                <strong>Wärmepumpen, Photovoltaik und BAFA-Förderungen</strong>. Bis zu 70% Energiekosten sparen!
+              <p className="mt-4 text-base text-gray-600 sm:mt-6 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-6 md:text-xl lg:mx-0 leading-relaxed font-normal">
+                <strong className="font-semibold">Zertifizierte Energieberatung</strong> für Ihr Zuhause in Berlin und Brandenburg. 
+                Wir erstellen Ihren <strong className="font-semibold">individuellen Sanierungsfahrplan (iSFP)</strong>, beraten zu 
+                <strong className="font-semibold">Wärmepumpen, Photovoltaik und BAFA-Förderungen</strong>. Bis zu 70% Energiekosten sparen!
               </p>
               
               {/* SEO-optimierte Feature-Liste */}
-              <div className="mt-6 space-y-2 text-sm text-gray-600 sm:text-base lg:mx-0">
+              <div className="mt-8 space-y-3 text-sm text-gray-600 sm:text-base lg:mx-0">
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>dena-zertifizierte <strong>Energieberater</strong> vor Ort</span>
+                  <span className="font-medium">dena-zertifizierte <strong className="font-semibold text-gray-800">Energieberater</strong> vor Ort</span>
                 </div>
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span><strong>KfW 458</strong> und <strong>BAFA-Förderung</strong> bis zu 15.000€</span>
+                  <span className="font-medium"><strong className="font-semibold text-gray-800">KfW 458</strong> und <strong className="font-semibold text-gray-800">BAFA-Förderung</strong> bis zu 15.000€</span>
                 </div>
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span><strong>Wärmepumpen-Beratung</strong> für Altbau & Neubau</span>
+                  <span className="font-medium"><strong className="font-semibold text-gray-800">Wärmepumpen-Beratung</strong> für Altbau & Neubau</span>
                 </div>
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span><strong>Energieausweis</strong> und <strong>Gebäudeenergiegesetz (GEG)</strong></span>
+                  <span className="font-medium"><strong className="font-semibold text-gray-800">Energieausweis</strong> und <strong className="font-semibold text-gray-800">Gebäudeenergiegesetz (GEG)</strong></span>
                 </div>
               </div>
 
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+              <div className="mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4">
                 <Button
-                  size="xl"
+                  size="lg"
                   onClick={scrollToConfigurator}
+                  className="font-semibold"
                 >
                   Kostenlose Beratung starten
                 </Button>
                 <Button
                   variant="secondary"
-                  size="xl"
+                  size="lg"
                   onClick={scrollToFeatures}
+                  className="font-medium"
                 >
                   Leistungen entdecken
                 </Button>
               </div>
 
               {/* Trust-Signale für SEO */}
-              <div className="mt-8 flex flex-wrap items-center gap-6 text-xs text-gray-500 lg:justify-start sm:justify-center">
+              <div className="mt-10 flex flex-wrap items-center gap-8 text-sm text-gray-500 lg:justify-start sm:justify-center">
                 <div className="flex items-center">
-                  <span className="font-semibold text-primary-600 text-lg mr-1">5.0</span>
-                  <div className="flex text-yellow-400">
+                  <span className="font-bold text-primary-600 text-2xl mr-2">5.0</span>
+                  <div className="flex text-yellow-400 mr-2">
                     {'★'.repeat(5)}
                   </div>
-                  <span className="ml-2">Google Bewertungen</span>
+                  <span className="font-medium">Google Bewertungen</span>
                 </div>
-                <div className="border-l border-gray-300 pl-6">
-                  <span className="font-semibold">500+</span> erfolgreiche Projekte
+                <div className="border-l border-gray-300 pl-8">
+                  <span className="font-bold text-gray-800">500+</span> <span className="font-medium">erfolgreiche Projekte</span>
                 </div>
-                <div className="border-l border-gray-300 pl-6">
-                  <span className="font-semibold">ISO 9001</span> zertifiziert
+                <div className="border-l border-gray-300 pl-8">
+                  <span className="font-bold text-gray-800">ISO 9001</span> <span className="font-medium">zertifiziert</span>
                 </div>
               </div>
             </div>
