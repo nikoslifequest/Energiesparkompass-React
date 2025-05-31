@@ -1,34 +1,40 @@
-import { Button } from './ui'
+import { Button, Icon } from './ui'
 
 const Features = () => {
   const features = [
     {
-      icon: '🔍',
+      icon: 'search',
+      iconColor: 'white',
       title: 'Intelligente Analyse',
       description: 'Unser System analysiert Ihr Zuhause und identifiziert die besten Einsparpotentiale.'
     },
     {
-      icon: '💰',
+      icon: 'currency',
+      iconColor: 'white',
       title: 'Kostenersparnis',
       description: 'Reduzieren Sie Ihre Energiekosten um bis zu 40% mit unseren maßgeschneiderten Lösungen.'
     },
     {
-      icon: '🌱',
+      icon: 'leaf',
+      iconColor: 'white',
       title: 'Umweltfreundlich',
       description: 'Leisten Sie einen Beitrag zum Klimaschutz durch reduzierten Energieverbrauch.'
     },
     {
-      icon: '⚙️',
+      icon: 'settings',
+      iconColor: 'white',
       title: 'Einfache Umsetzung',
       description: 'Schritt-für-Schritt Anleitungen für die praktische Umsetzung aller Maßnahmen.'
     },
     {
-      icon: '📊',
+      icon: 'chart',
+      iconColor: 'white',
       title: 'Detaillierte Berichte',
       description: 'Erhalten Sie ausführliche Analysen und Empfehlungen für Ihr Energiesparpotential.'
     },
     {
-      icon: '🏆',
+      icon: 'award',
+      iconColor: 'white',
       title: 'Bewährte Methoden',
       description: 'Profitieren Sie von erprobten Energiesparmaßnahmen und Expertenwissen.'
     }
@@ -53,8 +59,12 @@ const Features = () => {
             {features.map((feature, index) => (
               <div key={index} className="relative">
                 <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white text-2xl">
-                    {feature.icon}
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500">
+                    <Icon 
+                      name={feature.icon} 
+                      size="lg" 
+                      color={feature.iconColor}
+                    />
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{feature.title}</p>
                 </dt>
