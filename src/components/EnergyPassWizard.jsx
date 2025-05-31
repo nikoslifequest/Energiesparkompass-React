@@ -448,41 +448,95 @@ const EnergyPassWizard = ({ onBack }) => {
       case 6:
         return (
           <div className="space-y-6 animate-fade-in">
-            <Alert variant="success" title="Ihre Energieausweis-Anfrage ist bereit!">
-              Prüfen Sie Ihre Angaben und fordern Sie Ihr individuelles Angebot an.
-            </Alert>
+            {!submitState.success && !submitState.error && (
+              <Alert variant="success" title="Ihre Energieausweis-Anfrage ist bereit!">
+                Prüfen Sie Ihre Angaben und fordern Sie Ihr individuelles Angebot an.
+              </Alert>
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Gebäudedaten</h3>
-                <div className="space-y-2 text-sm">
-                  <div><span className="font-medium">Typ:</span> {energyPassBuildingTypeOptions.find(o => o.value === formData.buildingType)?.label || 'Nicht angegeben'}</div>
-                  <div><span className="font-medium">Baualter:</span> {constructionYearOptions.find(o => o.value === formData.constructionYear)?.label || 'Nicht angegeben'}</div>
-                  <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace ? `${formData.livingSpace} m²` : 'Nicht angegeben'}</div>
-                  <div><span className="font-medium">Ausweis-Typ:</span> {energyPassTypeOptions.find(o => o.value === formData.energyPassType)?.label || 'Nicht angegeben'}</div>
+            {submitState.error && (
+              <Alert variant="danger" title="Fehler beim Versenden">
+                {submitState.error}
+                <div className="mt-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setSubmitState({ loading: false, error: null, success: false })}
+                  >
+                    Erneut versuchen
+                  </Button>
                 </div>
-              </div>
+              </Alert>
+            )}
 
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Kontakt</h3>
-                <div className="space-y-2 text-sm">
-                  <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
-                  <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
-                  <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
-                  <div><span className="font-medium">Zeitrahmen:</span> {urgencyOptions.find(o => o.value === formData.urgency)?.label || 'Nicht angegeben'}</div>
+            {submitState.success && (
+              <Alert variant="success" title="Anfrage erfolgreich versendet! 🎉">
+                <div className="space-y-2">
+                  <p>Vielen Dank für Ihre Energieausweis-Anfrage!</p>
+                  <p className="text-sm">
+                    <strong>Wir erstellen Ihnen binnen 24 Stunden ein individuelles Angebot.</strong>
+                  </p>
+                  <div className="mt-4 space-y-1 text-sm text-gray-600">
+                    <p>✅ Ihre Daten wurden sicher übertragen</p>
+                    <p>✅ Anfrage wurde registriert</p>
+                    <p>✅ Bearbeitung bereits gestartet</p>
+                  </div>
+                  <div className="mt-4">
+                    <Button 
+                      variant="primary" 
+                      onClick={onBack}
+                      className="mr-2"
+                    >
+                      Weitere Services entdecken
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Alert>
+            )}
 
-            <div className="pt-6">
-              <Button
-                size="xl"
-                onClick={handleSubmit}
-                className="w-full"
-              >
-                Angebot für Energieausweis anfordern
-              </Button>
-            </div>
+            {!submitState.success && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Gebäudedaten</h3>
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-medium">Typ:</span> {energyPassBuildingTypeOptions.find(o => o.value === formData.buildingType)?.label || 'Nicht angegeben'}</div>
+                      <div><span className="font-medium">Baualter:</span> {constructionYearOptions.find(o => o.value === formData.constructionYear)?.label || 'Nicht angegeben'}</div>
+                      <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace ? `${formData.livingSpace} m²` : 'Nicht angegeben'}</div>
+                      <div><span className="font-medium">Ausweis-Typ:</span> {energyPassTypeOptions.find(o => o.value === formData.energyPassType)?.label || 'Nicht angegeben'}</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Kontakt</h3>
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
+                      <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
+                      <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
+                      <div><span className="font-medium">Zeitrahmen:</span> {urgencyOptions.find(o => o.value === formData.urgency)?.label || 'Nicht angegeben'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <Button
+                    size="xl"
+                    onClick={handleSubmit}
+                    disabled={submitState.loading}
+                    className="w-full"
+                  >
+                    {submitState.loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Anfrage wird verarbeitet...
+                      </div>
+                    ) : (
+                      'Angebot für Energieausweis anfordern'
+                    )}
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         )
 

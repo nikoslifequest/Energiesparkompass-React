@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import {
   hydraulicBalancingBuildingTypeOptions,
   heatingSystemDetailOptions,
@@ -18,6 +19,8 @@ import {
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 
 const HydraulicBalancingWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Schritt 1: Gebäude-Grunddaten
     buildingType: '', constructionYear: '', totalLivingSpace: '', 
@@ -76,20 +79,33 @@ const HydraulicBalancingWizard = ({ onBack }) => {
     isStepValid
   } = useWizard(initialFormData, steps.length, validationRules)
 
-  const handleSubmit = () => {
-    console.log('Hydraulischer Abgleich Anfrage:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Hydraulischer Abgleich', {
-      heatedArea: formData.heatedArea,
-      heatingSystemType: formData.heatingSystemType,
-      numberOfRadiators: formData.numberOfRadiators,
-      urgency: formData.urgency,
-      currentIssues: formData.currentIssues?.join(', ') || 'Keine'
-    })
-    
-    alert('Hydraulischer Abgleich Anfrage wurde erfolgreich übermittelt!')
-    onBack()
+    try {
+      console.log('Hydraulischer Abgleich Anfrage:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Hydraulischer Abgleich', {
+        heatedArea: formData.heatedArea,
+        heatingSystemType: formData.heatingSystemType,
+        numberOfRadiators: formData.numberOfRadiators,
+        urgency: formData.urgency,
+        currentIssues: formData.currentIssues?.join(', ') || 'Keine'
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
@@ -604,13 +620,69 @@ const HydraulicBalancingWizard = ({ onBack }) => {
             />
             
             <div className="pt-6">
-              <Button
-                size="xl"
-                onClick={handleSubmit}
-                className="w-full"
-              >
-                Anfrage für hydraulischen Abgleich senden
-              </Button>
+              {!submitState.success && !submitState.error && (
+                <Alert variant="info" title="Bereit für hydraulischen Abgleich">
+                  Ihre Angaben sind vollständig. Wir erstellen Ihnen ein individuelles Angebot für den hydraulischen Abgleich nach Verfahren B.
+                </Alert>
+              )}
+
+              {submitState.error && (
+                <Alert variant="danger" title="Fehler beim Versenden">
+                  {submitState.error}
+                  <div className="mt-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => setSubmitState({ loading: false, error: null, success: false })}
+                    >
+                      Erneut versuchen
+                    </Button>
+                  </div>
+                </Alert>
+              )}
+
+              {submitState.success && (
+                <Alert variant="success" title="Anfrage erfolgreich versendet! 🎉">
+                  <div className="space-y-2">
+                    <p>Vielen Dank für Ihre Anfrage zum hydraulischen Abgleich!</p>
+                    <p className="text-sm">
+                      <strong>Unser Fachmann wird sich binnen 24 Stunden bei Ihnen melden.</strong>
+                    </p>
+                    <div className="mt-4 space-y-1 text-sm text-gray-600">
+                      <p>✅ Ihre Daten wurden sicher übertragen</p>
+                      <p>✅ Anfrage wurde registriert</p>
+                      <p>✅ Bearbeitung bereits gestartet</p>
+                    </div>
+                    <div className="mt-4">
+                      <Button 
+                        variant="primary" 
+                        onClick={onBack}
+                        className="mr-2"
+                      >
+                        Weitere Services entdecken
+                      </Button>
+                    </div>
+                  </div>
+                </Alert>
+              )}
+
+              {!submitState.success && (
+                <Button
+                  size="xl"
+                  onClick={handleSubmit}
+                  disabled={submitState.loading}
+                  className="w-full"
+                >
+                  {submitState.loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Anfrage wird verarbeitet...
+                    </div>
+                  ) : (
+                    'Anfrage für hydraulischen Abgleich senden'
+                  )}
+                </Button>
+              )}
             </div>
           </div>
         )

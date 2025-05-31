@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
@@ -21,6 +22,8 @@ import {
 } from '../constants/formOptions'
 
 const GegWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Grunddaten Gebäude & Lage
     buildingType: '', buildingYear: '', livingSpace: '', units: '',
@@ -71,21 +74,34 @@ const GegWizard = ({ onBack }) => {
     { id: 6, title: 'Zusammenfassung', description: 'Überprüfung' }
   ]
 
-  const handleSubmit = () => {
-    console.log('GEG-Beratung Anfrage:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'GEG-Beratung', {
-      consultationReason: formData.consultationReason,
-      heatingType: formData.heatingType,
-      heatingAge: formData.heatingAge,
-      heatingUrgency: formData.heatingUrgency,
-      budgetRange: formData.budgetRange,
-      plannedMeasures: formData.plannedMeasures
-    })
-    
-    alert('GEG-Beratungsanfrage wurde erfolgreich übermittelt!')
-    onBack()
+    try {
+      console.log('GEG-Beratung Anfrage:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'GEG-Beratung', {
+        consultationReason: formData.consultationReason,
+        heatingType: formData.heatingType,
+        heatingAge: formData.heatingAge,
+        heatingUrgency: formData.heatingUrgency,
+        budgetRange: formData.budgetRange,
+        plannedMeasures: formData.plannedMeasures
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
@@ -431,42 +447,96 @@ const GegWizard = ({ onBack }) => {
       case 6:
         return (
           <div className="space-y-6 animate-fade-in">
-            <Alert variant="success" title="Ihre GEG-Beratungsanfrage ist fast fertig!">
-              Bitte überprüfen Sie Ihre Angaben und senden Sie das Formular ab.
-            </Alert>
+            {!submitState.success && !submitState.error && (
+              <Alert variant="success" title="Ihre GEG-Beratungsanfrage ist fast fertig!">
+                Bitte überprüfen Sie Ihre Angaben und senden Sie das Formular ab.
+              </Alert>
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Gebäude & Heizung</h3>
-                <div className="space-y-2 text-sm">
-                  {formData.buildingType && <div><span className="font-medium">Typ:</span> {buildingTypeOptions.find(o => o.value === formData.buildingType)?.label}</div>}
-                  {formData.buildingYear && <div><span className="font-medium">Baujahr:</span> {formData.buildingYear}</div>}
-                  {formData.livingSpace && <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace} m²</div>}
-                  {formData.heatingType && <div><span className="font-medium">Heizung:</span> {heatingTypeOptions.find(o => o.value === formData.heatingType)?.label}</div>}
-                  {formData.heatingAge && <div><span className="font-medium">Alter:</span> {formData.heatingAge} Jahre</div>}
+            {submitState.error && (
+              <Alert variant="danger" title="Fehler beim Versenden">
+                {submitState.error}
+                <div className="mt-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setSubmitState({ loading: false, error: null, success: false })}
+                  >
+                    Erneut versuchen
+                  </Button>
                 </div>
-              </div>
+              </Alert>
+            )}
 
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900">Kontakt & Beratung</h3>
-                <div className="space-y-2 text-sm">
-                  <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
-                  <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
-                  <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
-                  {formData.consultationReason && <div><span className="font-medium">Grund:</span> {consultationReasonOptions.find(o => o.value === formData.consultationReason)?.label}</div>}
+            {submitState.success && (
+              <Alert variant="success" title="Anfrage erfolgreich versendet! 🎉">
+                <div className="space-y-2">
+                  <p>Vielen Dank für Ihre GEG-Beratungsanfrage!</p>
+                  <p className="text-sm">
+                    <strong>Unser Energieberater wird sich binnen 24 Stunden bei Ihnen melden.</strong>
+                  </p>
+                  <div className="mt-4 space-y-1 text-sm text-gray-600">
+                    <p>✅ Ihre Daten wurden sicher übertragen</p>
+                    <p>✅ Anfrage wurde registriert</p>
+                    <p>✅ Bearbeitung bereits gestartet</p>
+                  </div>
+                  <div className="mt-4">
+                    <Button 
+                      variant="primary" 
+                      onClick={onBack}
+                      className="mr-2"
+                    >
+                      Weitere Services entdecken
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Alert>
+            )}
 
-            <div className="pt-6">
-              <Button
-                size="xl"
-                onClick={handleSubmit}
-                className="w-full"
-              >
-                GEG-Beratungsanfrage absenden
-              </Button>
-            </div>
+            {!submitState.success && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Gebäude & Heizung</h3>
+                    <div className="space-y-2 text-sm">
+                      {formData.buildingType && <div><span className="font-medium">Typ:</span> {buildingTypeOptions.find(o => o.value === formData.buildingType)?.label}</div>}
+                      {formData.buildingYear && <div><span className="font-medium">Baujahr:</span> {formData.buildingYear}</div>}
+                      {formData.livingSpace && <div><span className="font-medium">Wohnfläche:</span> {formData.livingSpace} m²</div>}
+                      {formData.heatingType && <div><span className="font-medium">Heizung:</span> {heatingTypeOptions.find(o => o.value === formData.heatingType)?.label}</div>}
+                      {formData.heatingAge && <div><span className="font-medium">Alter:</span> {formData.heatingAge} Jahre</div>}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900">Kontakt & Beratung</h3>
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
+                      <div><span className="font-medium">E-Mail:</span> {formData.email}</div>
+                      <div><span className="font-medium">Telefon:</span> {formData.phone}</div>
+                      {formData.consultationReason && <div><span className="font-medium">Grund:</span> {consultationReasonOptions.find(o => o.value === formData.consultationReason)?.label}</div>}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <Button
+                    size="xl"
+                    onClick={handleSubmit}
+                    disabled={submitState.loading}
+                    className="w-full"
+                  >
+                    {submitState.loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Anfrage wird verarbeitet...
+                      </div>
+                    ) : (
+                      'GEG-Beratungsanfrage absenden'
+                    )}
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         )
 

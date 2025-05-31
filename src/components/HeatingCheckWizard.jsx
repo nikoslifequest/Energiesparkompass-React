@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   hydraulicBalancingBuildingTypeOptions,
@@ -16,6 +17,8 @@ import {
 } from '../constants/formOptions'
 
 const HeatingCheckWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Schritt 1: Service-Art und Dringlichkeit
     serviceType: '', urgency: '', combinedServices: [],
@@ -68,20 +71,33 @@ const HeatingCheckWizard = ({ onBack }) => {
     validationRules
   )
 
-  const handleSubmit = () => {
-    console.log('Heizungscheck 2.0 Daten:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Heizungscheck 2.0', {
-      serviceType: formData.serviceType,
-      urgency: formData.urgency,
-      heatedArea: formData.heatedArea,
-      heatingSystemType: formData.heatingSystemType,
-      combinedServices: formData.combinedServices?.join(', ') || 'Keine'
-    })
-    
-    alert('Heizungscheck-Anfrage wurde erfolgreich übermittelt!')
-    onBack()
+    try {
+      console.log('Heizungscheck 2.0 Daten:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Heizungscheck 2.0', {
+        serviceType: formData.serviceType,
+        urgency: formData.urgency,
+        heatedArea: formData.heatedArea,
+        heatingSystemType: formData.heatingSystemType,
+        combinedServices: formData.combinedServices?.join(', ') || 'Keine'
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderCurrentStep = () => {

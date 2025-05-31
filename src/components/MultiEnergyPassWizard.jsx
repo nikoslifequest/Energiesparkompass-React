@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
 import {
   multiEnergyPassBuildingTypeOptions,
   ownershipTypeOptions,
@@ -21,6 +22,8 @@ import {
 import { saveToAdminDashboard } from '../utils/adminHelpers'
 
 const MultiEnergyPassWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Gebäude-Grunddaten (erweitert für MFH)
     buildingType: '', constructionYear: '', totalLivingSpace: '', 
@@ -84,19 +87,33 @@ const MultiEnergyPassWizard = ({ onBack }) => {
     { id: 7, title: 'Zusammenfassung', description: 'Prüfung und Angebot anfordern' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Energieausweis Mehrfamilienhaus-Anfrage abgesendet:', formData)
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
     
-    // Save to Admin Dashboard
-    saveToAdminDashboard(formData, 'Energieausweis Mehrfamilienhaus', {
-      numberOfUnits: formData.numberOfUnits,
-      totalArea: formData.totalArea,
-      energyPassType: formData.energyPassType,
-      urgency: formData.urgency,
-      managementType: formData.managementType
-    })
-    
-    alert('Vielen Dank! Ihre Energieausweis-Anfrage für Mehrfamilienhaus wurde übermittelt. Wir erstellen Ihnen binnen 24 Stunden ein individuelles Angebot.')
+    try {
+      console.log('Energieausweis Mehrfamilienhaus-Anfrage abgesendet:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Energieausweis Mehrfamilienhaus', {
+        numberOfUnits: formData.numberOfUnits,
+        totalArea: formData.totalArea,
+        energyPassType: formData.energyPassType,
+        urgency: formData.urgency,
+        managementType: formData.managementType
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
