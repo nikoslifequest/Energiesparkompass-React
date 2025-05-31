@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   nonResidentialBuildingTypeOptions,
   titleOptions,
@@ -85,8 +86,19 @@ const NonResidentialEnergyWizard = ({ onBack }) => {
   ]
 
   const handleSubmit = () => {
-    console.log('Nicht-Wohngebäude Energieberatungsanfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage zur Energieberatung für Nicht-Wohngebäude wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
+    console.log('Nicht-Wohngebäude Energieberatung Anfrage:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Energieberatung Nicht-Wohngebäude', {
+      buildingArea: formData.buildingArea,
+      buildingUsage: formData.buildingUsage,
+      consultationType: formData.consultationType,
+      urgency: formData.urgency,
+      energyStandard: formData.energyStandard
+    })
+    
+    alert('Energieberatung für Nicht-Wohngebäude wurde erfolgreich angefragt!')
+    onBack()
   }
 
   const renderStep = () => {

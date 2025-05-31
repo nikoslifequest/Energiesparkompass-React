@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   monumentProtectionLevelOptions,
   monumentBuildingTypeOptions,
@@ -87,8 +88,18 @@ const MonumentEnergyWizard = ({ onBack }) => {
   ]
 
   const handleSubmit = () => {
-    console.log('Denkmalschutz Energieberatungsanfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage zur Energieberatung für denkmalgeschützte Gebäude wurde übermittelt. Ein spezialisierter Denkmalschutz-Energieberater wird sich binnen 24 Stunden bei Ihnen melden.')
+    console.log('Denkmalschutz Energieausweis-Anfrage abgesendet:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Energieausweis Denkmalschutz', {
+      livingSpace: formData.livingSpace,
+      heritageStatus: formData.heritageStatus,
+      energyPassType: formData.energyPassType,
+      urgency: formData.urgency,
+      specialRequirements: formData.specialRequirements
+    })
+    
+    alert('Vielen Dank! Ihre Anfrage für Energieausweis unter Denkmalschutz wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
   }
 
   const renderStep = () => {

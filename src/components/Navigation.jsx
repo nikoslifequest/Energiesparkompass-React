@@ -71,8 +71,25 @@ const Navigation = ({
     setIsSubmitting(true)
 
     try {
-      // Here you would integrate with your email service (EmailJS, Nodemailer, etc.)
-      // For now, we'll simulate the API call
+      // Create submission object
+      const submission = {
+        id: Date.now().toString(),
+        name: configData.name,
+        email: configData.email,
+        phone: configData.phone,
+        building: configData.building,
+        year: configData.year,
+        interest: configData.interest,
+        status: 'new',
+        submittedAt: new Date().toISOString()
+      }
+
+      // Save to localStorage for admin dashboard
+      const existingSubmissions = JSON.parse(localStorage.getItem('quickCheckSubmissions') || '[]')
+      existingSubmissions.push(submission)
+      localStorage.setItem('quickCheckSubmissions', JSON.stringify(existingSubmissions))
+
+      // Send emails using the email service
       await sendQuickCheckData(configData)
       
       setIsCompleted(true)

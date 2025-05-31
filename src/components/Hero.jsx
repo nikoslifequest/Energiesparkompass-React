@@ -262,7 +262,9 @@ const Hero = () => {
         </div>
       </div>
       
-      <style jsx>{`
+      {/* CSS-in-JS replacement with regular classes */}
+      <style>
+        {`
         @media (min-width: 640px) and (max-width: 1023px) {
           .hotspot-responsive {
             top: var(--tablet-top) !important;
@@ -276,7 +278,8 @@ const Hero = () => {
             left: var(--desktop-left) !important;
           }
         }
-      `}</style>
+        `}
+      </style>
     </div>
   )
 }

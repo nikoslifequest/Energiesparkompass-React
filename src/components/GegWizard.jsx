@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
   titleOptions,
@@ -71,8 +72,20 @@ const GegWizard = ({ onBack }) => {
   ]
 
   const handleSubmit = () => {
-    console.log('GEG Beratungsanfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
+    console.log('GEG-Beratung Anfrage:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'GEG-Beratung', {
+      consultationReason: formData.consultationReason,
+      heatingType: formData.heatingType,
+      heatingAge: formData.heatingAge,
+      heatingUrgency: formData.heatingUrgency,
+      budgetRange: formData.budgetRange,
+      plannedMeasures: formData.plannedMeasures
+    })
+    
+    alert('GEG-Beratungsanfrage wurde erfolgreich übermittelt!')
+    onBack()
   }
 
   const renderStep = () => {

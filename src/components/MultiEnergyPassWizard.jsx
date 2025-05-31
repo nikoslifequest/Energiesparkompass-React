@@ -18,6 +18,7 @@ import {
   titleOptions,
   stateOptions
 } from '../constants/formOptions'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 
 const MultiEnergyPassWizard = ({ onBack }) => {
   const initialFormData = {
@@ -85,7 +86,17 @@ const MultiEnergyPassWizard = ({ onBack }) => {
 
   const handleSubmit = () => {
     console.log('Energieausweis Mehrfamilienhaus-Anfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Energieausweis-Anfrage für das Mehrfamilienhaus wurde übermittelt. Wir erstellen Ihnen binnen 24 Stunden ein individuelles Angebot.')
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Energieausweis Mehrfamilienhaus', {
+      numberOfUnits: formData.numberOfUnits,
+      totalArea: formData.totalArea,
+      energyPassType: formData.energyPassType,
+      urgency: formData.urgency,
+      managementType: formData.managementType
+    })
+    
+    alert('Vielen Dank! Ihre Energieausweis-Anfrage für Mehrfamilienhaus wurde übermittelt. Wir erstellen Ihnen binnen 24 Stunden ein individuelles Angebot.')
   }
 
   const renderStep = () => {
@@ -627,7 +638,7 @@ const MultiEnergyPassWizard = ({ onBack }) => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-br from-primary-50 to-blue-50 min-h-screen">
+    <div className="wizard-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

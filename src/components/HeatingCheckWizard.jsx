@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   hydraulicBalancingBuildingTypeOptions,
   heatingSystemDetailOptions,
@@ -69,6 +70,16 @@ const HeatingCheckWizard = ({ onBack }) => {
 
   const handleSubmit = () => {
     console.log('Heizungscheck 2.0 Daten:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Heizungscheck 2.0', {
+      serviceType: formData.serviceType,
+      urgency: formData.urgency,
+      heatedArea: formData.heatedArea,
+      heatingSystemType: formData.heatingSystemType,
+      combinedServices: formData.combinedServices?.join(', ') || 'Keine'
+    })
+    
     alert('Heizungscheck-Anfrage wurde erfolgreich übermittelt!')
     onBack()
   }
@@ -575,7 +586,7 @@ const HeatingCheckWizard = ({ onBack }) => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-br from-primary-50 to-blue-50 min-h-screen">
+    <div className="wizard-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

@@ -17,6 +17,7 @@ import {
   fundingTypeOptions,
   availableMeasures
 } from '../constants/formOptions'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 
 const FundingWizard = ({ onBack }) => {
   const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
@@ -63,30 +64,32 @@ const FundingWizard = ({ onBack }) => {
 
   const handleSubmit = async () => {
     setSubmitState({ loading: true, error: null, success: false })
-
+    
     try {
-      // Prepare data for email service
+      // Email Daten zusammenstellen
       const emailData = {
-        // Contact information
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
+        // Personal data
+        title: formData.title || 'Nicht angegeben',
+        firstName: formData.firstName || 'Unbekannt',
+        lastName: formData.lastName || 'Unbekannt',
+        email: formData.email || 'keine@email.de',
+        phone: formData.phone || 'Nicht angegeben',
         // Address
-        address: formData.street,
-        zipCode: formData.zipCode,
-        city: formData.city,
+        street: formData.street || 'Nicht angegeben',
+        zipCode: formData.zipCode || 'Nicht angegeben',
+        city: formData.city || 'Nicht angegeben',
         // Building data
         buildingType: formData.buildingType || 'Nicht angegeben',
-        constructionYear: formData.buildingYear || 'Nicht angegeben',
+        buildingYear: formData.buildingYear || 'Nicht angegeben',
         livingSpace: formData.livingSpace || 'Nicht angegeben',
-        numberOfUnits: formData.units || 'Nicht angegeben',
-        monumentStatus: formData.monument || 'Nicht angegeben',
+        units: formData.units || 'Nicht angegeben',
+        monument: formData.monument || 'Nicht angegeben',
         energyCertificate: formData.energyCertificate || 'Nicht angegeben',
-        // Measures and scope
-        selectedMeasures: formData.measures || [],
+        // Renovation data
+        measures: formData.measures && formData.measures.length > 0 
+          ? formData.measures.join(', ') 
+          : 'Keine Maßnahmen angegeben',
         renovationScope: formData.renovationScope || 'Nicht angegeben',
-        // Personal details
         ownership: formData.ownershipStatus || 'Nicht angegeben',
         householdSize: formData.householdSize || 'Nicht angegeben',
         // Regional and financial data
@@ -100,6 +103,16 @@ const FundingWizard = ({ onBack }) => {
 
       console.log('📧 Versende Fördermittelberatungs-Anfrage...', emailData)
 
+      // 1. Save to Admin Dashboard (localStorage)
+      saveToAdminDashboard(emailData, 'Fördermittelberatung', {
+        livingSpace: emailData.livingSpace,
+        measures: emailData.measures,
+        renovationScope: emailData.renovationScope,
+        investmentAmount: emailData.investmentAmount,
+        timeline: emailData.timeline
+      })
+
+      // 2. Send Email
       const result = await EmailServices.sendFundingConsultationEmail(emailData)
 
       if (result.success) {
@@ -459,7 +472,7 @@ const FundingWizard = ({ onBack }) => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-br from-primary-50 to-blue-50 min-h-screen">
+    <div className="wizard-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

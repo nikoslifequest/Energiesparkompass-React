@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
   titleOptions,
@@ -78,8 +79,19 @@ const ResidentialEnergyWizard = ({ onBack }) => {
   ]
 
   const handleSubmit = () => {
-    console.log('Energieberatungsanfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage zur Energieberatung wurde übermittelt. Wir melden uns binnen 24 Stunden bei Ihnen.')
+    console.log('Wohngebäude-Energieberatung Anfrage:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Energieberatung Wohngebäude', {
+      livingSpace: formData.livingSpace,
+      buildingAge: formData.buildingYear,
+      consultationType: formData.consultationType,
+      urgency: formData.urgency,
+      currentEnergyRating: formData.currentEnergyRating
+    })
+    
+    alert('Wohngebäude-Energieberatung wurde erfolgreich angefragt!')
+    onBack()
   }
 
   const toggleArrayValue = (array, value) => {

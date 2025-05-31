@@ -1,5 +1,6 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   buildingTypeOptions,
   titleOptions,
@@ -88,8 +89,19 @@ const HeatLoadCalculationWizard = ({ onBack }) => {
   ]
 
   const handleSubmit = () => {
-    console.log('Heizlastberechnung Anfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Anfrage zur Heizlastberechnung wurde übermittelt. Ein Fachingenieur wird sich binnen 24 Stunden bei Ihnen melden.')
+    console.log('Heizlastberechnung Anfrage:', formData)
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Heizlastberechnung', {
+      livingSpace: formData.livingSpace,
+      calculationType: formData.calculationType,
+      urgency: formData.urgency,
+      heatingSystemType: formData.heatingSystemType,
+      insulationLevel: formData.insulationLevel
+    })
+    
+    alert('Heizlastberechnungs-Anfrage wurde erfolgreich übermittelt!')
+    onBack()
   }
 
   const renderStep = () => {

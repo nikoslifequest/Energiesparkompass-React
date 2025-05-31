@@ -1,5 +1,7 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
 import { useWizard } from '../hooks/useWizard'
+import { useState } from 'react'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 import {
   energyPassBuildingTypeOptions,
   constructionYearOptions,
@@ -18,6 +20,8 @@ import {
 } from '../constants/formOptions'
 
 const EnergyPassWizard = ({ onBack }) => {
+  const [submitState, setSubmitState] = useState({ loading: false, error: null, success: false })
+
   const initialFormData = {
     // Gebäude-Grunddaten
     buildingType: '', constructionYear: '', livingSpace: '', 
@@ -73,9 +77,34 @@ const EnergyPassWizard = ({ onBack }) => {
     { id: 6, title: 'Zusammenfassung', description: 'Prüfung und Angebot anfordern' }
   ]
 
-  const handleSubmit = () => {
-    console.log('Energieausweis-Anfrage abgesendet:', formData)
-    alert('Vielen Dank! Ihre Energieausweis-Anfrage wurde übermittelt. Wir erstellen Ihnen binnen 24 Stunden ein individuelles Angebot.')
+  const handleSubmit = async () => {
+    setSubmitState({ loading: true, error: null, success: false })
+    
+    try {
+      console.log('Energieausweis-Anfrage abgesendet:', formData)
+      
+      // Save to Admin Dashboard
+      saveToAdminDashboard(formData, 'Energieausweis Einfamilienhaus', {
+        livingSpace: formData.livingSpace,
+        buildingAge: formData.constructionYear,
+        energyPassType: formData.energyPassType,
+        urgency: formData.urgency,
+        heatingSystem: formData.heatingSystem,
+        specialFeatures: formData.specialFeatures
+      })
+      
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitState({ loading: false, error: null, success: true })
+    } catch (error) {
+      console.error('Fehler beim Verarbeiten der Anfrage:', error)
+      setSubmitState({ 
+        loading: false, 
+        error: error.message || 'Ein unerwarteter Fehler ist aufgetreten', 
+        success: false 
+      })
+    }
   }
 
   const renderStep = () => {
@@ -463,7 +492,7 @@ const EnergyPassWizard = ({ onBack }) => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-br from-primary-50 to-blue-50 min-h-screen">
+    <div className="wizard-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

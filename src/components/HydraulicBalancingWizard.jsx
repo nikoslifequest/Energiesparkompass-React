@@ -15,6 +15,7 @@ import {
   titleOptions,
   stateOptions
 } from '../constants/formOptions'
+import { saveToAdminDashboard } from '../utils/adminHelpers'
 
 const HydraulicBalancingWizard = ({ onBack }) => {
   const initialFormData = {
@@ -77,7 +78,18 @@ const HydraulicBalancingWizard = ({ onBack }) => {
 
   const handleSubmit = () => {
     console.log('Hydraulischer Abgleich Anfrage:', formData)
-    alert('Vielen Dank! Wir werden uns zeitnah bei Ihnen melden, um den hydraulischen Abgleich zu besprechen.')
+    
+    // Save to Admin Dashboard
+    saveToAdminDashboard(formData, 'Hydraulischer Abgleich', {
+      heatedArea: formData.heatedArea,
+      heatingSystemType: formData.heatingSystemType,
+      numberOfRadiators: formData.numberOfRadiators,
+      urgency: formData.urgency,
+      currentIssues: formData.currentIssues?.join(', ') || 'Keine'
+    })
+    
+    alert('Hydraulischer Abgleich Anfrage wurde erfolgreich übermittelt!')
+    onBack()
   }
 
   const renderStep = () => {
@@ -609,7 +621,7 @@ const HydraulicBalancingWizard = ({ onBack }) => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-br from-primary-50 to-blue-50 min-h-screen">
+    <div className="wizard-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
