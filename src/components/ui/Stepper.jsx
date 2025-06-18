@@ -2,7 +2,8 @@ const Stepper = ({
   steps = [], 
   currentStep = 1, 
   className = '',
-  orientation = 'horizontal'
+  orientation = 'horizontal',
+  showStepInfo = true
 }) => {
   
   const getStepStatus = (stepId) => {
@@ -71,7 +72,7 @@ const Stepper = ({
   }
 
   return (
-    <div className={`mb-12 w-full ${className}`}>
+    <div className={`mb-12 w-full max-w-2xl mx-auto ${className}`}>
       {/* Horizontal Progress Line */}
       <div className="relative flex items-center justify-between w-full mb-4">
         {/* Background Line */}
@@ -111,14 +112,16 @@ const Stepper = ({
       </div>
       
       {/* Current Step Info */}
-      <div className="text-center">
-        <h2 className="text-xl font-semibold text-gray-900">
-          {steps.find(step => step.id === currentStep)?.title}
-        </h2>
-        <p className="text-gray-600">
-          {steps.find(step => step.id === currentStep)?.description}
-        </p>
-      </div>
+      {showStepInfo && (
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-gray-900">
+            {steps.find(step => step.id === currentStep)?.title}
+          </h2>
+          <p className="text-gray-600">
+            {steps.find(step => step.id === currentStep)?.description}
+          </p>
+        </div>
+      )}
     </div>
   )
 }

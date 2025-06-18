@@ -127,14 +127,14 @@ const HomePage = ({ onNavigateToWizard }) => {
               </p>
             </div>
 
-            <Stepper steps={configuratorSteps} currentStep={1} className="mb-12" />
+            <Stepper steps={configuratorSteps} currentStep={1} className="mb-12 mx-auto" showStepInfo={false} />
 
             <div className="bg-gray-50 rounded-3xl p-8 lg:p-12">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-heading font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-heading font-bold text-gray-900 mb-4 mx-auto max-w-4xl">
                   Schritt 1: Wählen Sie Ihren gewünschten Service
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mx-auto max-w-3xl leading-relaxed">
                   Welche Energieberatung benötigen Sie? Wählen Sie aus unseren spezialisierten Services.
                 </p>
               </div>
