@@ -4,94 +4,13 @@ import Hero from '../components/Hero'
 import Features from '../components/Features'
 import Footer from '../components/Footer'
 import { Button, Badge, SelectableCard, Stepper } from '../components/ui'
+import { services } from '../constants/services'
+import ServiceIcon from '../utils/serviceIcons'
 
 const HomePage = ({ onNavigateToWizard }) => {
   // Removed unused state since we navigate directly
   // const [selectedService, setSelectedService] = useState(null)
   // const [isNextEnabled, setIsNextEnabled] = useState(false)
-
-  const services = [
-    {
-      id: 1,
-      title: 'Fördermittelberatung',
-      description: 'Professionelle Beratung zu verfügbaren Fördermitteln und Zuschüssen',
-      icon: '💰',
-      category: 'Förderung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 2,
-      title: 'Energieausweis Einfamilienhaus',
-      description: 'Energieausweis für Ihr Einfamilienhaus nach aktuellen Standards',
-      icon: '🏠',
-      category: 'Energieausweis',
-      hasFullConfigurator: true
-    },
-    {
-      id: 3,
-      title: 'Energieausweis Mehrfamilienhaus',
-      description: 'Energieausweis für Mehrfamilienhäuser und größere Wohngebäude',
-      icon: '🏢',
-      category: 'Energieausweis',
-      hasFullConfigurator: true
-    },
-    {
-      id: 4,
-      title: 'Hydraulischer Abgleich',
-      description: 'Optimierung Ihrer Heizungsanlage für maximale Effizienz',
-      icon: '🔧',
-      category: 'Heizung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 5,
-      title: 'Heizungscheck 2.0',
-      description: 'Umfassende Prüfung und Bewertung Ihrer Heizungsanlage',
-      icon: '🌡️',
-      category: 'Heizung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 6,
-      title: 'GEG-Beratung',
-      description: 'Beratung zum Gebäudeenergiegesetz und dessen Anforderungen',
-      icon: '⚖️',
-      category: 'Beratung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 7,
-      title: 'Wohngebäude',
-      description: 'Energieberatung für Wohngebäude aller Art',
-      icon: '🏘️',
-      category: 'Gebäude',
-      hasFullConfigurator: true
-    },
-    {
-      id: 8,
-      title: 'Nicht Wohngebäude',
-      description: 'Energieberatung für Gewerbe- und Industriegebäude',
-      icon: '🏭',
-      category: 'Gebäude',
-      hasFullConfigurator: true
-    },
-    {
-      id: 9,
-      title: 'Denkmalschutz',
-      description: 'Spezielle Energieberatung für denkmalgeschützte Gebäude',
-      icon: '🏛️',
-      category: 'Spezial',
-      hasFullConfigurator: true
-    },
-    {
-      id: 10,
-      title: 'Heizlastberechnung',
-      description: 'Präzise Berechnung des Heizwärmebedarfs Ihres Gebäudes',
-      icon: '📊',
-      category: 'Berechnung',
-      hasFullConfigurator: true
-    }
-  ]
 
   const configuratorSteps = [
     { id: 1, title: 'Service wählen', description: 'Gewünschten Service auswählen' },
@@ -148,7 +67,13 @@ const HomePage = ({ onNavigateToWizard }) => {
                     className="p-6 cursor-pointer hover:shadow-lg transition-shadow"
                   >
                     <div className="text-center">
-                      <div className="text-4xl mb-4">{service.icon}</div>
+                      <div className="flex justify-center mb-4">
+                        <ServiceIcon 
+                          serviceId={service.id} 
+                          size={48} 
+                          weight="duotone"
+                        />
+                      </div>
                       <h4 className="font-semibold text-gray-900 mb-2 text-sm">
                         {service.title}
                       </h4>

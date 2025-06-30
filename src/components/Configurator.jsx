@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Button, Badge, SelectableCard, Alert, Stepper } from './ui'
+import { services } from '../constants/services'
+import ServiceIcon from '../utils/serviceIcons'
 import FundingWizard from './FundingWizard'
 import EnergyPassWizard from './EnergyPassWizard'
 import MultiEnergyPassWizard from './MultiEnergyPassWizard'
@@ -15,89 +17,6 @@ const Configurator = () => {
   const [selectedService, setSelectedService] = useState(null)
   const [isNextEnabled, setIsNextEnabled] = useState(false)
   const [showServiceFlow, setShowServiceFlow] = useState(false)
-
-  const services = [
-    {
-      id: 1,
-      title: 'Fördermittelberatung',
-      description: 'Professionelle Beratung zu verfügbaren Fördermitteln und Zuschüssen',
-      icon: '💰',
-      category: 'Förderung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 2,
-      title: 'Energieausweis Einfamilienhaus',
-      description: 'Energieausweis für Ihr Einfamilienhaus nach aktuellen Standards',
-      icon: '🏠',
-      category: 'Energieausweis',
-      hasFullConfigurator: true
-    },
-    {
-      id: 3,
-      title: 'Energieausweis Mehrfamilienhaus',
-      description: 'Energieausweis für Mehrfamilienhäuser und größere Wohngebäude',
-      icon: '🏢',
-      category: 'Energieausweis',
-      hasFullConfigurator: true
-    },
-    {
-      id: 4,
-      title: 'Hydraulischer Abgleich',
-      description: 'Optimierung Ihrer Heizungsanlage für maximale Effizienz',
-      icon: '🔧',
-      category: 'Heizung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 5,
-      title: 'Heizungscheck 2.0',
-      description: 'Umfassende Prüfung und Bewertung Ihrer Heizungsanlage',
-      icon: '🌡️',
-      category: 'Heizung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 6,
-      title: 'GEG-Beratung',
-      description: 'Beratung zum Gebäudeenergiegesetz und dessen Anforderungen',
-      icon: '⚖️',
-      category: 'Beratung',
-      hasFullConfigurator: true
-    },
-    {
-      id: 7,
-      title: 'Wohngebäude',
-      description: 'Energieberatung für Wohngebäude aller Art',
-      icon: '🏘️',
-      category: 'Gebäude',
-      hasFullConfigurator: true
-    },
-    {
-      id: 8,
-      title: 'Nicht Wohngebäude',
-      description: 'Energieberatung für Gewerbe- und Industriegebäude',
-      icon: '🏭',
-      category: 'Gebäude',
-      hasFullConfigurator: true
-    },
-    {
-      id: 9,
-      title: 'Denkmalschutz',
-      description: 'Spezielle Energieberatung für denkmalgeschützte Gebäude',
-      icon: '🏛️',
-      category: 'Spezial',
-      hasFullConfigurator: true
-    },
-    {
-      id: 10,
-      title: 'Heizlastberechnung',
-      description: 'Präzise Berechnung des Heizwärmebedarfs Ihres Gebäudes',
-      icon: '📊',
-      category: 'Berechnung',
-      hasFullConfigurator: true
-    }
-  ]
 
   const configuratorSteps = [
     { id: 1, title: 'Service wählen', description: 'Gewünschten Service auswählen' },
@@ -167,7 +86,13 @@ const Configurator = () => {
               
               <div className="bg-white rounded-2xl shadow-xl p-12">
                 <div className="text-center mb-8">
-                  <div className="text-6xl mb-6">{selectedService.icon}</div>
+                  <div className="flex justify-center mb-6">
+                                         <ServiceIcon 
+                       serviceId={selectedService.id} 
+                       size={72} 
+                       weight="duotone"
+                     />
+                  </div>
                   <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedService.title}</h1>
                   <p className="text-xl text-gray-600 mb-8">{selectedService.description}</p>
                 </div>
@@ -230,7 +155,7 @@ const Configurator = () => {
           {services.map((service) => (
             <SelectableCard
               key={service.id}
-              icon={service.icon}
+              icon={<ServiceIcon serviceId={service.id} size={40} weight="duotone" />}
               title={service.title}
               description={service.description}
               isSelected={selectedService?.id === service.id}
@@ -259,7 +184,13 @@ const Configurator = () => {
           <div className="mt-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div className="text-2xl mr-4">{selectedService.icon}</div>
+                <div className="mr-4">
+                                     <ServiceIcon 
+                     serviceId={selectedService.id} 
+                     size={32} 
+                     weight="duotone"
+                   />
+                </div>
                 <div>
                   <h4 className="text-lg font-medium text-gray-900">{selectedService.title}</h4>
                   <p className="text-sm text-gray-500">{selectedService.description}</p>

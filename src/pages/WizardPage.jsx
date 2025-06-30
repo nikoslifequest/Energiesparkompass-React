@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Button } from '../components/ui'
 import Navigation from '../components/Navigation'
+import { servicesById } from '../constants/services'
+import ServiceIcon from '../utils/serviceIcons'
 import FundingWizard from '../components/FundingWizard'
 import EnergyPassWizard from '../components/EnergyPassWizard'
 import MultiEnergyPassWizard from '../components/MultiEnergyPassWizard'
@@ -15,21 +17,7 @@ import HeatLoadCalculationWizard from '../components/HeatLoadCalculationWizard'
 const WizardPage = ({ selectedService, onBackToMain }) => {
   const [currentStep, setCurrentStep] = useState(1)
 
-  // Services data - should match the main configurator
-  const services = {
-    1: { title: 'Fördermittelberatung', icon: '💰', description: 'Professionelle Beratung zu verfügbaren Fördermitteln und Zuschüssen' },
-    2: { title: 'Energieausweis Einfamilienhaus', icon: '🏠', description: 'Energieausweis für Ihr Einfamilienhaus nach aktuellen Standards' },
-    3: { title: 'Energieausweis Mehrfamilienhaus', icon: '🏢', description: 'Energieausweis für Mehrfamilienhäuser und größere Wohngebäude' },
-    4: { title: 'Hydraulischer Abgleich', icon: '🔧', description: 'Optimierung Ihrer Heizungsanlage für maximale Effizienz' },
-    5: { title: 'Heizungscheck 2.0', icon: '🌡️', description: 'Umfassende Prüfung und Bewertung Ihrer Heizungsanlage' },
-    6: { title: 'GEG-Beratung', icon: '⚖️', description: 'Beratung zum Gebäudeenergiegesetz und dessen Anforderungen' },
-    7: { title: 'Wohngebäude', icon: '🏘️', description: 'Energieberatung für Wohngebäude aller Art' },
-    8: { title: 'Nicht Wohngebäude', icon: '🏭', description: 'Energieberatung für Gewerbe- und Industriegebäude' },
-    9: { title: 'Denkmalschutz', icon: '🏛️', description: 'Spezielle Energieberatung für denkmalgeschützte Gebäude' },
-    10: { title: 'Heizlastberechnung', icon: '📊', description: 'Präzise Berechnung des Heizwärmebedarfs Ihres Gebäudes' }
-  }
-
-  const service = services[selectedService] || services[1]
+  const service = servicesById[selectedService] || servicesById[1]
 
   // Custom navigation items for wizard page
   const wizardNavItems = [
@@ -84,7 +72,13 @@ const WizardPage = ({ selectedService, onBackToMain }) => {
           <div className="min-h-screen bg-gray-50 py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-                <div className="text-6xl mb-6">{service.icon}</div>
+                <div className="flex justify-center mb-6">
+                                     <ServiceIcon 
+                     serviceId={service.id} 
+                     size={72} 
+                     weight="duotone"
+                   />
+                </div>
                 <h1 className="text-3xl font-heading font-bold text-gray-900 mb-4">
                   {service.title}
                 </h1>
@@ -167,7 +161,11 @@ const WizardPage = ({ selectedService, onBackToMain }) => {
                 Zurück
               </button>
               <div className="flex items-center space-x-2">
-                <span className="text-2xl">{service.icon}</span>
+                <ServiceIcon 
+                  serviceId={service.id} 
+                  size={24} 
+                  weight="duotone"
+                />
                 <h1 className="text-lg font-semibold text-gray-900">
                   {service.title}
                 </h1>

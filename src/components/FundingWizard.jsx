@@ -2,6 +2,7 @@ import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, MeasureSelecto
 import { useWizard } from '../hooks/useWizard'
 import { useState } from 'react'
 import { EmailServices } from '../services/emailService'
+import ServiceIcon from '../utils/serviceIcons'
 import {
   buildingTypeOptions,
   energyCertificateOptions,
@@ -489,7 +490,13 @@ const FundingWizard = ({ onBack }) => {
           </Button>
           
           <div className="flex items-center justify-center mb-6">
-            <div className="text-4xl mr-4">💰</div>
+            <div className="mr-4">
+                             <ServiceIcon 
+                 serviceId={1} 
+                 size={48} 
+                 weight="duotone"
+               />
+            </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Fördermittelberatung</h1>
               <p className="text-lg text-gray-600">Professionelle Beratung zu verfügbaren Fördermitteln</p>

@@ -1,4 +1,5 @@
 import { Button, Input, Select, Card, Stepper, RadioGroup, Alert, HelpText } from './ui'
+import ServiceIcon from '../utils/serviceIcons'
 import { useWizard } from '../hooks/useWizard'
 import { useState } from 'react'
 import { saveToAdminDashboard } from '../utils/adminHelpers'
@@ -690,7 +691,13 @@ const HeatLoadCalculationWizard = ({ onBack }) => {
           </Button>
           
           <div className="flex items-center justify-center mb-6">
-            <div className="text-4xl mr-4">📊</div>
+            <div className="mr-4">
+                             <ServiceIcon 
+                 serviceId={10} 
+                 size={48} 
+                 weight="duotone"
+               />
+            </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Heizlastberechnung</h1>
               <p className="text-lg text-gray-600">Normgerechte Berechnung nach DIN EN 12831 für optimale Heizungsauslegung</p>
