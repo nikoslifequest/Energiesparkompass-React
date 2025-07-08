@@ -22,15 +22,6 @@ const HeatingCheckServiceStep = ({ formData, updateFormData, stepConfig = {} }) 
       <HelpText>
         <strong>🔧 {title}:</strong> {helpText}
       </HelpText>
-      
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          {title}
-        </h3>
-        <p className="text-gray-600">
-          {description}
-        </p>
-      </div>
 
       <div className="bg-blue-50 p-4 rounded-lg">
         <h3 className="font-semibold text-blue-900 mb-2">Heizungscheck 2.0 nach GEG §60b</h3>

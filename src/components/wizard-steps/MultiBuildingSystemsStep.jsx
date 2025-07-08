@@ -27,15 +27,6 @@ const MultiBuildingSystemsStep = ({ formData, updateFormData, stepConfig = {} })
       <HelpText>
         <strong>⚙️ {title}:</strong> {helpText}
       </HelpText>
-      
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          {title}
-        </h3>
-        <p className="text-gray-600">
-          {description}
-        </p>
-      </div>
 
       <div className="space-y-6">
         {fields.heatingDistribution && (

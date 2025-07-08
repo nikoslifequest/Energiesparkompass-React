@@ -19,15 +19,13 @@ const DocumentationAccessStep = ({ formData, updateFormData, stepConfig = {} }) 
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <HelpText>
+            <HelpText>
         <strong>📋 {title}:</strong> {helpText}
       </HelpText>
-      
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          {title}
-        </h3>
-        <p className="text-gray-600">
+
+      <div className="bg-blue-50 p-4 rounded-lg">
+        <h3 className="font-semibold text-blue-900 mb-2">Wichtige Informationen</h3>
+        <p className="text-blue-800 text-sm">
           {description}
         </p>
       </div>

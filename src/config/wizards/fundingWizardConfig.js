@@ -1,4 +1,8 @@
-import { BuildingDataStep, ContactDataStep, SummaryStep, MeasuresSelectionStep, FinancingStep } from '../../components/wizard-steps'
+import { SummaryStep } from '../../components/wizard-steps'
+import ModernBuildingDataStep from '../../components/wizard-steps/ModernBuildingDataStep'
+import ModernMeasuresSelectionStep from '../../components/wizard-steps/ModernMeasuresSelectionStep'
+import ModernFinancingStep from '../../components/wizard-steps/ModernFinancingStep'
+import ModernContactDataStep from '../../components/wizard-steps/ModernContactDataStep'
 import { EmailServices } from '../../services/emailService'
 
 export const fundingWizardConfig = {
@@ -35,7 +39,7 @@ export const fundingWizardConfig = {
       id: 1,
       title: 'Gebäudedaten',
       description: 'Grundinformationen zu Ihrem Gebäude',
-      component: BuildingDataStep,
+      component: ModernBuildingDataStep,
       fields: {
         buildingType: true,
         buildingYear: true,
@@ -51,19 +55,19 @@ export const fundingWizardConfig = {
       id: 2,
       title: 'Maßnahmen',
       description: 'Geplante Energiesparmaßnahmen',
-      component: MeasuresSelectionStep
+      component: ModernMeasuresSelectionStep
     },
     {
       id: 3,
       title: 'Finanzierung',
       description: 'Budget und Zeitvorstellungen',
-      component: FinancingStep
+      component: ModernFinancingStep
     },
     {
       id: 4,
       title: 'Kontaktdaten',
       description: 'Ihre persönlichen Daten',
-      component: ContactDataStep,
+      component: ModernContactDataStep,
       fields: {
         title: true,
         name: true,

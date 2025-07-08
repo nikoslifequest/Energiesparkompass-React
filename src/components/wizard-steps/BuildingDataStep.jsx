@@ -4,7 +4,9 @@ import {
   stateOptions,
   monumentOptions,
   energyCertificateOptions,
-  utilizationOptions
+  utilizationOptions,
+  energyPassBuildingTypeOptions,
+  constructionYearOptions
 } from '../../constants/formOptions'
 
 const BuildingDataStep = ({ 
@@ -33,14 +35,39 @@ const BuildingDataStep = ({
     layout = "default"
   } = stepConfig
 
+  // Available option sets for string resolution
+  const optionSets = {
+    buildingTypeOptions,
+    stateOptions,
+    monumentOptions,
+    energyCertificateOptions,
+    utilizationOptions,
+    energyPassBuildingTypeOptions,
+    constructionYearOptions
+  }
+
+  // Helper function to resolve string references to actual option arrays
+  const resolveOptions = (optionRef, defaultOptions) => {
+    if (typeof optionRef === 'string') {
+      return optionSets[optionRef] || defaultOptions
+    }
+    return optionRef || defaultOptions
+  }
+
   // Merge custom options with defaults
   const options = {
-    buildingType: customOptions.buildingType || buildingTypeOptions,
-    state: customOptions.state || stateOptions,
-    monument: customOptions.monument || monumentOptions,
-    energyCertificate: customOptions.energyCertificate || energyCertificateOptions,
-    utilization: customOptions.utilization || utilizationOptions,
-    ...customOptions
+    buildingType: resolveOptions(customOptions.buildingType, buildingTypeOptions),
+    state: resolveOptions(customOptions.state, stateOptions),
+    monument: resolveOptions(customOptions.monument, monumentOptions),
+    energyCertificate: resolveOptions(customOptions.energyCertificate, energyCertificateOptions),
+    utilization: resolveOptions(customOptions.utilization, utilizationOptions),
+    buildingYear: resolveOptions(customOptions.buildingYear, constructionYearOptions),
+    ...Object.fromEntries(
+      Object.entries(customOptions).map(([key, value]) => [
+        key, 
+        resolveOptions(value, optionSets[key] || [])
+      ])
+    )
   }
 
   return (
@@ -62,15 +89,24 @@ const BuildingDataStep = ({
         )}
         
         {fields.buildingYear && (
-          <Input
-            label="Baujahr"
-            type="number"
-            value={formData.buildingYear}
-            onChange={(e) => updateFormData('buildingYear', e.target.value)}
-            placeholder="z.B. 1985"
-            min="1800"
-            max="2024"
-          />
+          options.buildingYear && options.buildingYear.length > 0 ? (
+            <Select
+              label="Baujahr"
+              value={formData.buildingYear || formData.constructionYear}
+              onChange={(e) => updateFormData('buildingYear', e.target.value)}
+              options={options.buildingYear}
+            />
+          ) : (
+            <Input
+              label="Baujahr"
+              type="number"
+              value={formData.buildingYear || formData.constructionYear}
+              onChange={(e) => updateFormData('buildingYear', e.target.value)}
+              placeholder="z.B. 1985"
+              min="1800"
+              max="2024"
+            />
+          )
         )}
         
         {fields.livingSpace && (

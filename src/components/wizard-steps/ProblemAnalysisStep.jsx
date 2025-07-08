@@ -24,17 +24,8 @@ const ProblemAnalysisStep = ({ formData, updateFormData, stepConfig = {} }) => {
       <HelpText>
         <strong>🔍 {title}:</strong> {helpText}
       </HelpText>
-      
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          {title}
-        </h3>
-        <p className="text-gray-600">
-          {description}
-        </p>
-      </div>
 
-      <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fields.problemDescription && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">

@@ -5,19 +5,29 @@ import { servicesById } from '../constants/services'
 import ServiceIcon from '../utils/serviceIcons'
 import FundingWizard from '../components/FundingWizard'
 import OptimizedFundingWizard from '../components/OptimizedFundingWizard'
+import ModernFundingWizard from '../components/ModernFundingWizard'
 import EnergyPassWizard from '../components/EnergyPassWizard'
 import OptimizedEnergyPassWizard from '../components/OptimizedEnergyPassWizard'
+import ModernEnergyPassWizard from '../components/ModernEnergyPassWizard'
 import MultiEnergyPassWizard from '../components/MultiEnergyPassWizard'
 import OptimizedMultiEnergyPassWizard from '../components/OptimizedMultiEnergyPassWizard'
+import ModernMultiEnergyPassWizard from '../components/ModernMultiEnergyPassWizard'
 import HydraulicBalancingWizard from '../components/HydraulicBalancingWizard'
 import OptimizedHeatingCheckWizard from '../components/OptimizedHeatingCheckWizard'
+import ModernHeatingCheckWizard from '../components/ModernHeatingCheckWizard'
 import GegWizard from '../components/GegWizard'
 import OptimizedGegWizard from '../components/OptimizedGegWizard'
+import ModernGegWizard from '../components/ModernGegWizard'
 import OptimizedHydraulicBalancingWizard from '../components/OptimizedHydraulicBalancingWizard'
+import ModernHydraulicBalancingWizard from '../components/ModernHydraulicBalancingWizard'
 import OptimizedResidentialEnergyWizard from '../components/OptimizedResidentialEnergyWizard'
+import ModernResidentialEnergyWizard from '../components/ModernResidentialEnergyWizard'
 import OptimizedNonResidentialEnergyWizard from '../components/OptimizedNonResidentialEnergyWizard'
+import ModernNonResidentialEnergyWizard from '../components/ModernNonResidentialEnergyWizard'
 import OptimizedMonumentEnergyWizard from '../components/OptimizedMonumentEnergyWizard'
+import ModernMonumentEnergyWizard from '../components/ModernMonumentEnergyWizard'
 import OptimizedHeatLoadCalculationWizard from '../components/OptimizedHeatLoadCalculationWizard'
+import ModernHeatLoadCalculationWizard from '../components/ModernHeatLoadCalculationWizard'
 
 const WizardPage = ({ selectedService, onBackToMain }) => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -53,25 +63,25 @@ const WizardPage = ({ selectedService, onBackToMain }) => {
 
     switch (selectedService) {
       case 1:
-        return <OptimizedFundingWizard {...commonProps} />
+        return <ModernFundingWizard {...commonProps} />
       case 2:
-        return <OptimizedEnergyPassWizard {...commonProps} />
+        return <ModernEnergyPassWizard {...commonProps} />
       case 3:
-        return <OptimizedMultiEnergyPassWizard {...commonProps} />
+        return <ModernMultiEnergyPassWizard {...commonProps} />
       case 4:
-        return <OptimizedHydraulicBalancingWizard {...commonProps} />
+        return <ModernHydraulicBalancingWizard {...commonProps} />
       case 5:
-        return <OptimizedHeatingCheckWizard {...commonProps} />
+        return <ModernHeatingCheckWizard {...commonProps} />
       case 6:
-        return <OptimizedGegWizard {...commonProps} />
+        return <ModernGegWizard {...commonProps} />
       case 7:
-        return <OptimizedResidentialEnergyWizard {...commonProps} />
+        return <ModernResidentialEnergyWizard {...commonProps} />
       case 8:
-        return <OptimizedNonResidentialEnergyWizard {...commonProps} />
+        return <ModernNonResidentialEnergyWizard {...commonProps} />
       case 9:
-        return <OptimizedMonumentEnergyWizard {...commonProps} />
+        return <ModernMonumentEnergyWizard {...commonProps} />
       case 10:
-        return <OptimizedHeatLoadCalculationWizard {...commonProps} />
+        return <ModernHeatLoadCalculationWizard {...commonProps} />
       default:
         return (
           <div className="min-h-screen bg-gray-50 py-16">
@@ -151,38 +161,6 @@ const WizardPage = ({ selectedService, onBackToMain }) => {
         className="border-b border-gray-200"
       />
       
-      {/* Progress Indicator */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={handleBackToMain}
-                className="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Zurück
-              </button>
-              <div className="flex items-center space-x-2">
-                <ServiceIcon 
-                  serviceId={service.id} 
-                  size={24} 
-                  weight="duotone"
-                />
-                <h1 className="text-lg font-semibold text-gray-900">
-                  {service.title}
-                </h1>
-              </div>
-            </div>
-            <div className="text-sm text-gray-500">
-              Schritt {currentStep} von 3
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Wizard Content */}
       <main className="flex-1">
         {renderWizard()}

@@ -14,7 +14,7 @@ export const energyPassWizardConfig = {
   
   initialFormData: {
     // Gebäude-Grunddaten
-    buildingType: '', constructionYear: '', livingSpace: '', 
+    buildingType: '', buildingYear: '', livingSpace: '', 
     floors: '', basement: '', utilization: '',
     
     // Konstruktion & Hülle
@@ -149,7 +149,7 @@ export const energyPassWizardConfig = {
           editStep: 1,
           fields: [
             { key: 'buildingType', label: 'Gebäudetyp' },
-            { key: 'constructionYear', label: 'Baualter' },
+            { key: 'buildingYear', label: 'Baualter' },
             { key: 'livingSpace', label: 'Wohnfläche', suffix: 'm²' },
             { key: 'floors', label: 'Geschosse' },
             { key: 'utilization', label: 'Nutzung' }
@@ -195,7 +195,7 @@ export const energyPassWizardConfig = {
     title: 'Energieausweis Einfamilienhaus',
     summary: (formData) => ({
       livingSpace: formData.livingSpace,
-      buildingAge: formData.constructionYear,
+      buildingAge: formData.buildingYear,
       energyPassType: formData.energyPassType,
       urgency: formData.urgency,
       heatingSystem: formData.heatingSystem,
