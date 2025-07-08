@@ -4,15 +4,20 @@ import Navigation from '../components/Navigation'
 import { servicesById } from '../constants/services'
 import ServiceIcon from '../utils/serviceIcons'
 import FundingWizard from '../components/FundingWizard'
+import OptimizedFundingWizard from '../components/OptimizedFundingWizard'
 import EnergyPassWizard from '../components/EnergyPassWizard'
+import OptimizedEnergyPassWizard from '../components/OptimizedEnergyPassWizard'
 import MultiEnergyPassWizard from '../components/MultiEnergyPassWizard'
+import OptimizedMultiEnergyPassWizard from '../components/OptimizedMultiEnergyPassWizard'
 import HydraulicBalancingWizard from '../components/HydraulicBalancingWizard'
-import HeatingCheckWizard from '../components/HeatingCheckWizard'
+import OptimizedHeatingCheckWizard from '../components/OptimizedHeatingCheckWizard'
 import GegWizard from '../components/GegWizard'
-import ResidentialEnergyWizard from '../components/ResidentialEnergyWizard'
-import NonResidentialEnergyWizard from '../components/NonResidentialEnergyWizard'
-import MonumentEnergyWizard from '../components/MonumentEnergyWizard'
-import HeatLoadCalculationWizard from '../components/HeatLoadCalculationWizard'
+import OptimizedGegWizard from '../components/OptimizedGegWizard'
+import OptimizedHydraulicBalancingWizard from '../components/OptimizedHydraulicBalancingWizard'
+import OptimizedResidentialEnergyWizard from '../components/OptimizedResidentialEnergyWizard'
+import OptimizedNonResidentialEnergyWizard from '../components/OptimizedNonResidentialEnergyWizard'
+import OptimizedMonumentEnergyWizard from '../components/OptimizedMonumentEnergyWizard'
+import OptimizedHeatLoadCalculationWizard from '../components/OptimizedHeatLoadCalculationWizard'
 
 const WizardPage = ({ selectedService, onBackToMain }) => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -48,25 +53,25 @@ const WizardPage = ({ selectedService, onBackToMain }) => {
 
     switch (selectedService) {
       case 1:
-        return <FundingWizard {...commonProps} />
+        return <OptimizedFundingWizard {...commonProps} />
       case 2:
-        return <EnergyPassWizard {...commonProps} />
+        return <OptimizedEnergyPassWizard {...commonProps} />
       case 3:
-        return <MultiEnergyPassWizard {...commonProps} />
+        return <OptimizedMultiEnergyPassWizard {...commonProps} />
       case 4:
-        return <HydraulicBalancingWizard {...commonProps} />
+        return <OptimizedHydraulicBalancingWizard {...commonProps} />
       case 5:
-        return <HeatingCheckWizard {...commonProps} />
+        return <OptimizedHeatingCheckWizard {...commonProps} />
       case 6:
-        return <GegWizard {...commonProps} />
+        return <OptimizedGegWizard {...commonProps} />
       case 7:
-        return <ResidentialEnergyWizard {...commonProps} />
+        return <OptimizedResidentialEnergyWizard {...commonProps} />
       case 8:
-        return <NonResidentialEnergyWizard {...commonProps} />
+        return <OptimizedNonResidentialEnergyWizard {...commonProps} />
       case 9:
-        return <MonumentEnergyWizard {...commonProps} />
+        return <OptimizedMonumentEnergyWizard {...commonProps} />
       case 10:
-        return <HeatLoadCalculationWizard {...commonProps} />
+        return <OptimizedHeatLoadCalculationWizard {...commonProps} />
       default:
         return (
           <div className="min-h-screen bg-gray-50 py-16">

@@ -34,12 +34,12 @@ const Hero = () => {
     {
       id: 'solar',
       position: { 
-        // Desktop
-        desktop: { top: '25%', left: '60%' },
+        // Desktop - Solaranlage auf dem Dach
+        desktop: { top: '15%', left: '45%' },
         // Tablet
-        tablet: { top: '20%', left: '55%' },
+        tablet: { top: '12%', left: '42%' },
         // Mobile
-        mobile: { top: '15%', left: '50%' }
+        mobile: { top: '10%', left: '40%' }
       },
       title: 'Photovoltaik',
       description: 'Moderne Solaranlage mit bis zu 30% Eigenverbrauch',
@@ -48,9 +48,10 @@ const Hero = () => {
     {
       id: 'envelope',
       position: { 
-        desktop: { top: '45%', left: '45%' },
-        tablet: { top: '40%', left: '40%' },
-        mobile: { top: '35%', left: '35%' }
+        // Desktop - Gebäudehülle am Hauptgebäude
+        desktop: { top: '45%', left: '25%' },
+        tablet: { top: '45%', left: '28%' },
+        mobile: { top: '40%', left: '30%' }
       },
       title: 'Gebäudehülle',
       description: 'Optimale Dämmung für maximale Energieeffizienz',
@@ -59,9 +60,10 @@ const Hero = () => {
     {
       id: 'windows',
       position: { 
-        desktop: { top: '55%', left: '65%' },
-        tablet: { top: '50%', left: '60%' },
-        mobile: { top: '45%', left: '55%' }
+        // Desktop - Große Glasflächen in der Mitte
+        desktop: { top: '65%', left: '40%' },
+        tablet: { top: '60%', left: '38%' },
+        mobile: { top: '55%', left: '35%' }
       },
       title: 'Fenster & Türen',
       description: '3-fach Verglasung mit Wärmeschutz',
@@ -70,9 +72,10 @@ const Hero = () => {
     {
       id: 'heating',
       position: { 
-        desktop: { top: '70%', left: '25%' },
-        tablet: { top: '65%', left: '30%' },
-        mobile: { top: '60%', left: '35%' }
+        // Desktop - Wärmepumpe rechts am Haus
+        desktop: { top: '75%', left: '80%' },
+        tablet: { top: '70%', left: '75%' },
+        mobile: { top: '65%', left: '70%' }
       },
       title: 'Wärmepumpe',
       description: 'Effiziente Luft-Wasser-Wärmepumpe',
