@@ -1,269 +1,207 @@
 # 🎨 Energiesparkompass Design System
 
-Ein umfassendes, modulares Design System für konsistente und skalierbare UI-Entwicklung.
+Ein einheitliches Design System für konsistente, zugängliche und schöne Benutzeroberflächen.
 
-## 📋 Übersicht
+## 🚀 Quick Start
 
-Das Design System umfasst **20+ Komponenten** in 5 Hauptkategorien:
+### Zugriff auf die Design System Dokumentation
 
-### 🧩 **Basis-Komponenten**
-- `Button` - Vielseitige Schaltflächen (7 Varianten, 4 Größen)
-- `Input` - Eingabefelder mit Validierung
-- `Select` - Dropdown-Auswahlfelder
-- `RadioGroup` - Radio-Button-Gruppen
-- `Card` - Container mit konfigurierbaren Schatten
-- `Badge` - Status- und Label-Anzeigen
-- `Alert` - Benachrichtigungen (4 Varianten)
+1. **Live-Dokumentation**: Besuchen Sie die Website und klicken Sie auf das 🎨 Symbol (unten rechts)
+2. **Entwicklung**: `npm run dev` und navigieren Sie zur Design System Seite
 
-### 📝 **Typography-System**
+### Komponenten verwenden
+
 ```jsx
-import { Heading, Text } from './ui'
+import { Button, Alert, ModernInput, ModernSelect, ModernCheckbox } from '../components/ui'
 
-// Heading Component
-<Heading 
-  as="h1"           // h1, h2, h3, h4, h5, h6
-  size="4xl"        // xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl
-  weight="bold"     // thin, light, normal, medium, semibold, bold, extrabold
-  color="primary-600" // Alle Design-Token-Farben
->
-  Titel
-</Heading>
+// Button
+<Button variant="primary" size="lg">Click me</Button>
 
-// Text Component  
-<Text 
-  as="p"            // p, span, div, etc.
-  size="lg"         // xs, sm, base, lg, xl
-  weight="medium"   // Wie bei Heading
-  color="gray-700"  // Alle Design-Token-Farben
-  leading="relaxed" // none, tight, normal, relaxed, loose
->
-  Fließtext
-</Text>
+// Form Controls (Modern)
+<ModernInput label="Name" placeholder="Ihr Name..." />
+<ModernSelect label="Auswahl" options={options} />
+<ModernCheckbox label="Zustimmen" />
+
+// Alert Message
+<Alert variant="success">Erfolgreich gespeichert!</Alert>
 ```
 
-### 🏗️ **Layout-System**
-```jsx
-import { Container, Grid, Stack, Flex, Divider } from './ui'
+## 📚 Komponenten-Übersicht
 
-// Container - Zentrierte Inhalte
-<Container 
-  size="lg"         // sm, md, lg, xl, full
-  padding="md"      // none, sm, md, lg
->
-  Content
-</Container>
+### UI Components
+- **Button** - Primary, Secondary, Outline Variants
+- **Alert** - Success, Warning, Error, Info Messages
+- **Badge** - Status und Kategorie-Labels
+- **Card** - Container für Content-Bereiche
+- **Stepper** - Fortschritts-Anzeige
 
-// Grid - CSS Grid Layout
-<Grid 
-  cols={3}          // 1, 2, 3, 4, 6, 12 (responsive)
-  gap="md"          // none, sm, md, lg, xl
->
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Grid>
+### Form Controls
+- **ModernInput** - Text, Email, Password, Number Inputs
+- **ModernSelect** - Moderne Dropdown-Menüs  
+- **ModernCheckbox** - Stylisierte Checkboxen
+- **ModernRadioGroup** - Moderne Radio-Buttons
 
-// Stack - Vertikale Layouts
-<Stack 
-  spacing="lg"      // none, xs, sm, md, lg, xl
-  align="center"    // start, center, end, stretch
->
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Stack>
+### Layout & Wizard
+- **ModernWizard** - Multi-Step Form Container
+- **HelpText** - Hilfe- und Info-Texte
+- **SelectableCard** - Interaktive Karten
+- **Icon** - Icon-System
+- **MeasureSelector** - Spezielle Auswahl-Komponente
 
-// Flex - Horizontale Layouts
-<Flex 
-  direction="row"   // row, row-reverse, col, col-reverse
-  justify="between" // start, end, center, between, around, evenly
-  align="center"    // start, end, center, baseline, stretch
-  gap="md"          // none, xs, sm, md, lg, xl
-  wrap={true}       // true, false
->
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Flex>
-
-// Divider - Trennlinien
-<Divider 
-  orientation="horizontal" // horizontal, vertical
-  variant="solid"          // solid, dashed, dotted
-  color="gray-200"         // Design-Token-Farben
-/>
-```
-
-### 🎯 **Icon-System**
-```jsx
-import { Icon } from './ui'
-
-<Icon 
-  name="lightning"  // 20+ vordefinierte Icons
-  size="lg"         // xs, sm, md, lg, xl, 2xl
-  color="primary-600" // Alle Design-Token-Farben
-/>
-```
-
-**Verfügbare Icons:**
-- **Navigation:** `menu`, `close`, `chevron-left`, `chevron-right`, `chevron-down`
-- **Status:** `check`, `warning`, `error`, `info`
-- **Actions:** `phone`, `mail`, `download`, `upload`, `search`, `plus`, `minus`, `edit`, `trash`
-- **Energy:** `lightning`, `home`, `chart`
-- **Loading:** `spinner`
-
-### 🎛️ **Spezialisierte Komponenten**
-- `Stepper` - Multi-Step-Formulare
-- `SelectableCard` - Klickbare Karten
-- `MeasureSelector` - Maßnahmen-Auswahl
-- `HelpText` - Hilfe-Tooltips
-
-## 🎨 **Design Tokens**
+## 🎯 Design Tokens
 
 ### Farben
-```javascript
-// Primärfarben
-primary-50, primary-500, primary-600, primary-700
+```js
+// Primary Colors
+bg-primary-50   // Sehr hell
+bg-primary-500  // Standard
+bg-primary-600  // Dunkel
+bg-primary-700  // Sehr dunkel
 
-// Graustufen
-gray-50 bis gray-900
-
-// Semantische Farben
-green-600 (Success), red-600 (Error), yellow-600 (Warning), blue-600 (Info)
+// Semantic Colors
+bg-green-600    // Success
+bg-yellow-600   // Warning  
+bg-red-600      // Error
+bg-blue-600     // Info
 ```
 
-### Abstände
-```javascript
-// Spacing Scale
-none: 0, xs: 4px, sm: 8px, md: 16px, lg: 24px, xl: 32px, 2xl: 48px, 3xl: 64px
+### Spacing
+```js
+// Spacing Scale (Tailwind-basiert)
+p-1   // 4px
+p-2   // 8px
+p-4   // 16px
+p-6   // 24px
+p-8   // 32px
+p-12  // 48px
+p-16  // 64px
 ```
 
-### Schatten
-```javascript
-// Shadow Scale
-none, sm, md, lg, xl, 2xl
+### Typography
+```js
+text-xs    // 12px
+text-sm    // 14px
+text-base  // 16px
+text-lg    // 18px
+text-xl    // 20px
+text-2xl   // 24px
+text-3xl   // 30px
 ```
 
-## 💡 **Verwendungsbeispiele**
+## 🛠️ Entwicklung
 
-### Typische Seitensektion
+### Neue Komponenten erstellen
+
+1. **Komponente erstellen**: `src/components/ui/MyComponent.jsx`
+2. **Exports hinzufügen**: `src/components/ui/index.js`
+3. **Dokumentation**: Design System Seite aktualisieren
+
+### Best Practices
+
 ```jsx
-<Container size="lg">
-  <Stack spacing="xl">
-    <Heading as="h1" size="4xl" color="primary-600">
-      Energiespar-Dashboard
-    </Heading>
-    
-    <Text size="lg" color="gray-600">
-      Übersicht Ihrer Energiespar-Maßnahmen
-    </Text>
-    
-    <Grid cols={3} gap="lg">
-      <Card padding="lg" shadow="md">
-        <Stack spacing="md">
-          <Flex align="center" gap="md">
-            <Icon name="lightning" size="xl" color="primary-600" />
-            <Heading as="h3" size="lg">Energieeinsparung</Heading>
-          </Flex>
-          <Text>25% weniger Verbrauch</Text>
-        </Stack>
-      </Card>
-      
-      <Card padding="lg" shadow="md">
-        <Stack spacing="md">
-          <Flex align="center" gap="md">
-            <Icon name="chart" size="xl" color="green-600" />
-            <Heading as="h3" size="lg">Kosteneinsparung</Heading>
-          </Flex>
-          <Text>€ 1.200 jährlich</Text>
-        </Stack>
-      </Card>
-      
-      <Card padding="lg" shadow="md">
-        <Stack spacing="md">
-          <Flex align="center" gap="md">
-            <Icon name="home" size="xl" color="blue-600" />
-            <Heading as="h3" size="lg">CO₂-Reduktion</Heading>
-          </Flex>
-          <Text>2.5t weniger CO₂</Text>
-        </Stack>
-      </Card>
-    </Grid>
-  </Stack>
-</Container>
+// ✅ Gut - Moderne Form Controls verwenden
+<ModernInput 
+  label="Name" 
+  placeholder="Ihr Name..." 
+  value={formData.name}
+  onChange={(e) => setFormData({...formData, name: e.target.value})}
+/>
+
+// ✅ Gut - Konsistente Button-Varianten
+<Button variant="primary" size="lg" disabled={loading}>
+  {loading ? 'Lädt...' : 'Speichern'}
+</Button>
+
+// ✅ Gut - Design Tokens verwenden
+<div className="p-6 bg-primary-50 rounded-lg">
+  Content
+</div>
+
+// ❌ Schlecht - Alte Input-Komponenten
+<Input label="Name" placeholder="Name..." />
+
+// ❌ Schlecht - Inline Styles
+<button style={{backgroundColor: '#blue', padding: '10px'}}>
+  Button
+</button>
+
+// ❌ Schlecht - Inkonsistente Abstände
+<div style={{marginTop: '13px', paddingLeft: '7px'}}>
+  Content
+</div>
 ```
 
-### Button-Kombinationen
+### Komponenten-Struktur
+
 ```jsx
-<Flex gap="md">
-  <Button variant="primary">
-    <Icon name="phone" size="sm" className="mr-2" />
-    Anrufen
-  </Button>
+import { forwardRef } from 'react'
+
+const MyComponent = forwardRef(({ 
+  variant = 'default',
+  size = 'md',
+  className = '',
+  children,
+  ...props 
+}, ref) => {
+  const baseStyles = "base-classes-here"
+  const variantStyles = {
+    default: "default-styles",
+    primary: "primary-styles"
+  }
   
-  <Button variant="outline">
-    <Icon name="mail" size="sm" className="mr-2" />
-    E-Mail
-  </Button>
-  
-  <Button variant="ghost">
-    <Icon name="download" size="sm" className="mr-2" />
-    Download
-  </Button>
-</Flex>
+  const combinedClasses = [
+    baseStyles, 
+    variantStyles[variant], 
+    className
+  ].filter(Boolean).join(' ')
+
+  return (
+    <div ref={ref} className={combinedClasses} {...props}>
+      {children}
+    </div>
+  )
+})
+
+MyComponent.displayName = 'MyComponent'
+export default MyComponent
 ```
 
-### Responsive Grid
-```jsx
-<Grid cols={4} gap="md"> {/* 1 col mobile, 2 cols tablet, 4 cols desktop */}
-  {services.map(service => (
-    <Card key={service.id} padding="md" shadow="sm">
-      <Stack spacing="sm" align="center">
-        <Icon name={service.icon} size="2xl" color="primary-600" />
-        <Heading as="h4" size="md">{service.title}</Heading>
-        <Text size="sm" color="gray-600">{service.description}</Text>
-      </Stack>
-    </Card>
-  ))}
-</Grid>
-```
+## 🎨 Design Principles
 
-## 🔧 **Technische Details**
+### 1. Konsistenz
+- Einheitliche Abstände und Größen
+- Konsistente Farbverwendung  
+- Standardisierte Interaktionen
 
-### Import-Syntax
-```jsx
-// Einzelne Komponenten
-import { Button, Card, Heading } from './components/ui'
+### 2. Zugänglichkeit
+- Keyboard-Navigation
+- Screen Reader Support
+- Ausreichende Kontraste
+- Focus-Management
 
-// Alle Komponenten
-import * as UI from './components/ui'
-```
+### 3. Performance
+- Optimierte Bundle-Größe
+- Lazy Loading wo möglich
+- Effiziente Re-Renders
 
-### Customization
-Alle Komponenten unterstützen:
-- `className` für zusätzliche Tailwind-Klassen
-- `ref` via `forwardRef` für DOM-Zugriff
-- Alle nativen HTML-Props via `...props`
+### 4. Developer Experience
+- Intuitive APIs
+- TypeScript Support (geplant)
+- Ausführliche Dokumentation
+- Live-Beispiele
 
-### Performance
-- **Tree-Shaking** - Nur verwendete Komponenten werden gebündelt
-- **Optimierte Re-Renders** - Minimal re-renders durch React.memo
-- **Keine Runtime-Dependencies** - Nur Tailwind CSS
+## 📖 Weitere Ressourcen
 
-## 🚀 **Vorteile**
+- **Tailwind CSS**: [https://tailwindcss.com/](https://tailwindcss.com/)
+- **React**: [https://react.dev/](https://react.dev/)
+- **Accessibility**: [https://www.w3.org/WAI/WCAG21/quickref/](https://www.w3.org/WAI/WCAG21/quickref/)
 
-✅ **Zentrale Änderungen** - Button-Stil in einer Datei → überall wirksam  
-✅ **Typ-Sicherheit** - PropTypes und TypeScript-ready  
-✅ **Accessibility** - ARIA-Labels, Keyboard-Navigation, Screen-Reader  
-✅ **Performance** - Tree-Shaking, optimierte Bundles  
-✅ **Consistency** - Einheitliche Spacing, Colors, Typography  
-✅ **Developer Experience** - Intuitive API, ausführliche Dokumentation  
+## 🔄 Versioning
 
-## 📈 **Erweiterungen**
-
-Das System ist designed für einfache Erweiterungen:
-- Neue Icons in `Icon.jsx` hinzufügen
-- Neue Farben in `tailwind.config.js` definieren
-- Custom Components nach dem gleichen Pattern erstellen
+- **v1.0** - Initial Design System
+- Semantic Versioning für Breaking Changes
+- Changelog in jeder Release
 
 ---
 
-**Entwickelt für maximale Wiederverwendbarkeit und Wartbarkeit** 🌟 
+**Entwickelt mit ❤️ für das Energiesparkompass Team** 
