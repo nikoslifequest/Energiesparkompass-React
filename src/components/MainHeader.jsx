@@ -1,7 +1,7 @@
 import Navigation from './Navigation'
 
-const MainHeader = () => {
-  return <Navigation showQuickCheck={true} />
+const MainHeader = ({ onNavigateToHeizungscheck }) => {
+  return <Navigation showQuickCheck={true} onNavigateToHeizungscheck={onNavigateToHeizungscheck} />
 }
 
 export default MainHeader 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Icon } from './ui'
 import { sendQuickCheckEmails } from '../services/emailService'
 
@@ -7,9 +7,12 @@ const Navigation = ({
   ctaText = "Beratung",
   ctaAction = null,
   customNavItems = null,
-  className = ""
+  className = "",
+  onNavigateToHeizungscheck = null
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [dropdownTimeout, setDropdownTimeout] = useState(null)
   const [miniConfigStep, setMiniConfigStep] = useState(1)
   const [showMiniConfig, setShowMiniConfig] = useState(false)
   const [configData, setConfigData] = useState({
@@ -136,6 +139,30 @@ const Navigation = ({
     }))
   }
 
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout)
+      setDropdownTimeout(null)
+    }
+    setIsServicesDropdownOpen(true)
+  }
+
+  const handleDropdownLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsServicesDropdownOpen(false)
+    }, 150) // 150ms Verzögerung
+    setDropdownTimeout(timeout)
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout)
+      }
+    }
+  }, [dropdownTimeout])
+
   const miniConfigContent = {
     1: {
       title: "Ihr Gebäude?",
@@ -155,8 +182,45 @@ const Navigation = ({
     }
   }
 
+  const servicesDropdownItems = [
+    ...(onNavigateToHeizungscheck ? [{ 
+      label: "Heizungscheck 2.0", 
+      type: "button", 
+      onClick: onNavigateToHeizungscheck,
+      description: "Professionelle Heizungsoptimierung"
+    }] : []),
+    { 
+      label: "Energieberatung", 
+      type: "link", 
+      href: "#konfigurator",
+      description: "Individuelle Beratung für Ihr Gebäude"
+    },
+    { 
+      label: "Hydraulischer Abgleich", 
+      type: "link", 
+      href: "#konfigurator",
+      description: "Optimierung der Heizungsverteilung"
+    },
+    { 
+      label: "Energieausweis", 
+      type: "link", 
+      href: "#konfigurator",
+      description: "Gesetzlich vorgeschriebene Bewertung"
+    },
+    { 
+      label: "Fördermittelberatung", 
+      type: "link", 
+      href: "#konfigurator",
+      description: "Unterstützung bei Förderanträgen"
+    }
+  ]
+
   const defaultNavItems = [
-    { href: "#features", label: "Leistungen", type: "link" },
+    { 
+      label: "Leistungen", 
+      type: "dropdown", 
+      dropdown: servicesDropdownItems 
+    },
     { href: "#konfigurator", label: "Beratung", type: "link" },
     { href: "#about", label: "Über uns", type: "link" },
     { href: "#contact", label: "Kontakt", type: "link" }
@@ -190,7 +254,57 @@ const Navigation = ({
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 lg:flex-1 lg:justify-center">
             {navItems.map((item, index) => (
-              item.type === "link" ? (
+              item.type === "dropdown" ? (
+                <div 
+                  key={index}
+                  className="relative"
+                  onMouseEnter={handleDropdownEnter}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <button className="text-base font-medium text-gray-700 hover:text-primary-600 transition-colors flex items-center space-x-1">
+                    <span>{item.label}</span>
+                    <Icon name="chevron-down" size="sm" />
+                  </button>
+                  
+                  {isServicesDropdownOpen && (
+                    <div 
+                      className="absolute left-0 top-full mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 py-4"
+                      onMouseEnter={handleDropdownEnter}
+                      onMouseLeave={handleDropdownLeave}
+                    >
+                      {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                        dropdownItem.type === "link" ? (
+                          <a
+                            key={dropdownIndex}
+                            href={dropdownItem.href}
+                            className="block px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                            onClick={() => setIsServicesDropdownOpen(false)}
+                          >
+                            <div className="font-medium">{dropdownItem.label}</div>
+                            <div className="text-sm text-gray-500">{dropdownItem.description}</div>
+                          </a>
+                        ) : (
+                          <button
+                            key={dropdownIndex}
+                            onClick={() => {
+                              setIsServicesDropdownOpen(false)
+                              if (dropdownTimeout) {
+                                clearTimeout(dropdownTimeout)
+                                setDropdownTimeout(null)
+                              }
+                              dropdownItem.onClick()
+                            }}
+                            className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          >
+                            <div className="font-medium">{dropdownItem.label}</div>
+                            <div className="text-sm text-gray-500">{dropdownItem.description}</div>
+                          </button>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : item.type === "link" ? (
                 <a 
                   key={index}
                   href={item.href} 
@@ -373,9 +487,42 @@ const Navigation = ({
                 </div>
               </div>
               <div className="mt-6">
-                <nav className="grid gap-y-8">
+                <nav className="grid gap-y-6">
                   {navItems.map((item, index) => (
-                    item.type === "link" ? (
+                    item.type === "dropdown" ? (
+                      <div key={index} className="space-y-3">
+                        <div className="text-base font-medium text-gray-900 border-b border-gray-200 pb-2">
+                          {item.label}
+                        </div>
+                        <div className="pl-4 space-y-3">
+                          {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                            dropdownItem.type === "link" ? (
+                              <a
+                                key={dropdownIndex}
+                                href={dropdownItem.href}
+                                className="block text-sm text-gray-700 hover:text-primary-600"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                <div className="font-medium">{dropdownItem.label}</div>
+                                <div className="text-xs text-gray-500">{dropdownItem.description}</div>
+                              </a>
+                            ) : (
+                              <button
+                                key={dropdownIndex}
+                                onClick={() => {
+                                  setIsMenuOpen(false)
+                                  dropdownItem.onClick()
+                                }}
+                                className="block w-full text-left text-sm text-gray-700 hover:text-primary-600"
+                              >
+                                <div className="font-medium">{dropdownItem.label}</div>
+                                <div className="text-xs text-gray-500">{dropdownItem.description}</div>
+                              </button>
+                            )
+                          ))}
+                        </div>
+                      </div>
+                    ) : item.type === "link" ? (
                       <a 
                         key={index}
                         href={item.href} 

@@ -7,7 +7,7 @@ import { Button, Badge, SelectableCard, Stepper } from '../components/ui'
 import { services } from '../constants/services'
 import ServiceIcon from '../utils/serviceIcons'
 
-const HomePage = ({ onNavigateToWizard }) => {
+const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck }) => {
   // Removed unused state since we navigate directly
   // const [selectedService, setSelectedService] = useState(null)
   // const [isNextEnabled, setIsNextEnabled] = useState(false)
@@ -29,7 +29,7 @@ const HomePage = ({ onNavigateToWizard }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <MainHeader />
+      <MainHeader onNavigateToHeizungscheck={onNavigateToHeizungscheck} />
       <main>
         <Hero />
         <Features />

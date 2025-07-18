@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage'
 import WizardPage from './pages/WizardPage'
 import AdminDashboard from './pages/AdminDashboard'
 import DesignSystemPage from './pages/DesignSystemPage'
+import HeizungscheckPage from './pages/HeizungscheckPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -21,6 +22,10 @@ function App() {
 
   const handleNavigateToDesignSystem = () => {
     setCurrentPage('design-system')
+  }
+
+  const handleNavigateToHeizungscheck = () => {
+    setCurrentPage('heizungscheck')
   }
 
   const handleAdminLogin = () => {
@@ -49,6 +54,7 @@ function App() {
       {/* Hidden Access Buttons */}
       {currentPage === 'home' && (
         <div className="fixed bottom-4 right-4 flex flex-col space-y-2">
+
           {/* Design System Access Button */}
           <button
             onClick={handleNavigateToDesignSystem}
@@ -69,7 +75,10 @@ function App() {
       )}
 
       {currentPage === 'home' && (
-        <HomePage onNavigateToWizard={handleNavigateToWizard} />
+        <HomePage 
+          onNavigateToWizard={handleNavigateToWizard} 
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+        />
       )}
       
       {currentPage === 'wizard' && (
@@ -85,6 +94,10 @@ function App() {
 
       {currentPage === 'design-system' && (
         <DesignSystemPage onBackToMain={handleBackToMain} />
+      )}
+
+      {currentPage === 'heizungscheck' && (
+        <HeizungscheckPage onBackToMain={handleBackToMain} />
       )}
     </div>
   )

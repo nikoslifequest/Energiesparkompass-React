@@ -17,6 +17,8 @@ export { default as ModernRadioGroup } from './ModernRadioGroup'
 export { default as ModernInput } from './ModernInput'
 export { default as ModernSelect } from './ModernSelect'
 export { default as ModernCheckbox } from './ModernCheckbox'
+export { default as ModernHero } from './ModernHero'
+export { default as SimpleHero } from './SimpleHero'
 
 // New Typography Components
 export { Heading, Text } from './Typography'
@@ -25,4 +27,4 @@ export { Heading, Text } from './Typography'
 export { Container, Grid, Stack, Flex, Divider } from './Layout'
 
 // New Icon Component
-export { Icon } from './Icon' 
+export { default as Icon } from './Icon' 
