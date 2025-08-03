@@ -8,7 +8,11 @@ const Navigation = ({
   ctaAction = null,
   customNavItems = null,
   className = "",
-  onNavigateToHeizungscheck = null
+  onNavigateToHeizungscheck = null,
+  onNavigateToEnergie = null,
+  onNavigateToHydraulisch = null,
+  onNavigateToEnergieausweis = null,
+  onNavigateToFoerder = null
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
@@ -189,30 +193,50 @@ const Navigation = ({
       onClick: onNavigateToHeizungscheck,
       description: "Professionelle Heizungsoptimierung"
     }] : []),
-    { 
+    ...(onNavigateToEnergie ? [{ 
+      label: "Energieberatung", 
+      type: "button", 
+      onClick: onNavigateToEnergie,
+      description: "KfW-förderfähige Vor-Ort-Beratung"
+    }] : [{ 
       label: "Energieberatung", 
       type: "link", 
       href: "#konfigurator",
       description: "Individuelle Beratung für Ihr Gebäude"
-    },
-    { 
+    }]),
+    ...(onNavigateToHydraulisch ? [{ 
+      label: "Hydraulischer Abgleich", 
+      type: "button", 
+      onClick: onNavigateToHydraulisch,
+      description: "BAFA-geförderte Heizungsoptimierung"
+    }] : [{ 
       label: "Hydraulischer Abgleich", 
       type: "link", 
       href: "#konfigurator",
       description: "Optimierung der Heizungsverteilung"
-    },
-    { 
+    }]),
+    ...(onNavigateToEnergieausweis ? [{ 
+      label: "Energieausweis", 
+      type: "button", 
+      onClick: onNavigateToEnergieausweis,
+      description: "Schnell & günstig ab 99€"
+    }] : [{ 
       label: "Energieausweis", 
       type: "link", 
       href: "#konfigurator",
       description: "Gesetzlich vorgeschriebene Bewertung"
-    },
-    { 
+    }]),
+    ...(onNavigateToFoerder ? [{ 
+      label: "Fördermittelberatung", 
+      type: "button", 
+      onClick: onNavigateToFoerder,
+      description: "Bis zu 15.000€ Förderung sichern"
+    }] : [{ 
       label: "Fördermittelberatung", 
       type: "link", 
       href: "#konfigurator",
       description: "Unterstützung bei Förderanträgen"
-    }
+    }])
   ]
 
   const defaultNavItems = [

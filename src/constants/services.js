@@ -69,6 +69,13 @@ export const services = [
     description: 'Präzise Berechnung des Heizwärmebedarfs Ihres Gebäudes',
     category: 'Berechnung',
     hasFullConfigurator: true
+  },
+  {
+    id: 11,
+    title: 'Energieberatung',
+    description: 'KfW-förderfähige Vor-Ort-Beratung mit individuellem Sanierungsfahrplan',
+    category: 'Beratung',
+    hasFullConfigurator: true
   }
 ]
 

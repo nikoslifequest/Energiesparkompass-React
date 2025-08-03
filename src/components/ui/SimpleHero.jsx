@@ -1,6 +1,19 @@
 import { forwardRef } from 'react'
 import { Button, Badge, Icon } from './index'
 
+// Helper component to safely render HTML content
+const HTMLContent = ({ content, className = "", as: Element = "div", ...props }) => {
+  if (!content) return null
+  
+  return (
+    <Element 
+      className={className}
+      dangerouslySetInnerHTML={{ __html: content }}
+      {...props}
+    />
+  )
+}
+
 const SimpleHero = forwardRef(({ 
   badge,
   title,
@@ -58,11 +71,13 @@ const SimpleHero = forwardRef(({
 
             {/* Description */}
             {description && (
-              <p className={`mt-6 text-base text-gray-600 sm:text-lg md:text-xl leading-relaxed font-normal ${
-                centered ? 'max-w-3xl mx-auto' : 'sm:max-w-xl sm:mx-auto lg:mx-0'
-              }`}>
-                {description}
-              </p>
+              <HTMLContent 
+                content={description}
+                as="p"
+                className={`mt-6 text-base text-gray-600 sm:text-lg md:text-xl leading-relaxed font-normal ${
+                  centered ? 'max-w-3xl mx-auto' : 'sm:max-w-xl sm:mx-auto lg:mx-0'
+                }`}
+              />
             )}
 
             {/* Features List */}

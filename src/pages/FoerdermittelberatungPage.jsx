@@ -1,7 +1,7 @@
 import ServicePageTemplate from '../components/ServicePageTemplate'
-import { heizungscheckConfig } from '../config/servicePages/heizungscheckConfig'
+import { foerdermittelberatungConfig } from '../config/servicePages/foerdermittelberatungConfig'
 
-const HeizungscheckPage = ({ 
+const FoerdermittelberatungPage = ({ 
   onBackToMain,
   onNavigateToHeizungscheck,
   onNavigateToEnergie,
@@ -11,7 +11,7 @@ const HeizungscheckPage = ({
 }) => {
   return (
     <ServicePageTemplate 
-      config={heizungscheckConfig}
+      config={foerdermittelberatungConfig}
       onBackToMain={onBackToMain}
       onNavigateToHeizungscheck={onNavigateToHeizungscheck}
       onNavigateToEnergie={onNavigateToEnergie}
@@ -22,4 +22,4 @@ const HeizungscheckPage = ({
   )
 }
 
-export default HeizungscheckPage
+export default FoerdermittelberatungPage

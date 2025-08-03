@@ -7,7 +7,7 @@ import { Button, Badge, SelectableCard, Stepper } from '../components/ui'
 import { services } from '../constants/services'
 import ServiceIcon from '../utils/serviceIcons'
 
-const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck }) => {
+const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck, onNavigateToEnergie, onNavigateToHydraulisch, onNavigateToEnergieausweis, onNavigateToFoerder }) => {
   // Removed unused state since we navigate directly
   // const [selectedService, setSelectedService] = useState(null)
   // const [isNextEnabled, setIsNextEnabled] = useState(false)
@@ -19,8 +19,21 @@ const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck }) => {
   ]
 
   const handleServiceSelect = (service) => {
-    // Direct navigation to wizard - no intermediate step needed
-    if (onNavigateToWizard) {
+    // Handle special services with dedicated pages
+    if (service.id === 1 && onNavigateToFoerder) {
+      // Fördermittelberatung has dedicated landing page
+      onNavigateToFoerder()
+    } else if ((service.id === 2 || service.id === 3) && onNavigateToEnergieausweis) {
+      // Energieausweis (both types) has dedicated landing page
+      onNavigateToEnergieausweis()
+    } else if (service.id === 4 && onNavigateToHydraulisch) {
+      // Hydraulischer Abgleich has dedicated landing page
+      onNavigateToHydraulisch()
+    } else if (service.id === 11 && onNavigateToEnergie) {
+      // Energieberatung has dedicated landing page
+      onNavigateToEnergie()
+    } else if (onNavigateToWizard) {
+      // All other services go to wizard
       onNavigateToWizard(service.id)
     }
   }
@@ -29,7 +42,13 @@ const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <MainHeader onNavigateToHeizungscheck={onNavigateToHeizungscheck} />
+      <MainHeader 
+        onNavigateToHeizungscheck={onNavigateToHeizungscheck}
+        onNavigateToEnergie={onNavigateToEnergie}
+        onNavigateToHydraulisch={onNavigateToHydraulisch}
+        onNavigateToEnergieausweis={onNavigateToEnergieausweis}
+        onNavigateToFoerder={onNavigateToFoerder}
+      />
       <main>
         <Hero />
         <Features />

@@ -4,6 +4,10 @@ import WizardPage from './pages/WizardPage'
 import AdminDashboard from './pages/AdminDashboard'
 import DesignSystemPage from './pages/DesignSystemPage'
 import HeizungscheckPage from './pages/HeizungscheckPage'
+import EnergieberatungPage from './pages/EnergieberatungPage'
+import HydraulischerAbgleichPage from './pages/HydraulischerAbgleichPage'
+import EnergieausweisPage from './pages/EnergieausweisPage'
+import FoerdermittelberatungPage from './pages/FoerdermittelberatungPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -26,6 +30,22 @@ function App() {
 
   const handleNavigateToHeizungscheck = () => {
     setCurrentPage('heizungscheck')
+  }
+
+  const handleNavigateToEnergie = () => {
+    setCurrentPage('energieberatung')
+  }
+
+  const handleNavigateToHydraulisch = () => {
+    setCurrentPage('hydraulischer-abgleich')
+  }
+
+  const handleNavigateToEnergieausweis = () => {
+    setCurrentPage('energieausweis')
+  }
+
+  const handleNavigateToFoerder = () => {
+    setCurrentPage('foerdermittelberatung')
   }
 
   const handleAdminLogin = () => {
@@ -78,6 +98,10 @@ function App() {
         <HomePage 
           onNavigateToWizard={handleNavigateToWizard} 
           onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
         />
       )}
       
@@ -97,7 +121,58 @@ function App() {
       )}
 
       {currentPage === 'heizungscheck' && (
-        <HeizungscheckPage onBackToMain={handleBackToMain} />
+        <HeizungscheckPage 
+          onBackToMain={handleBackToMain}
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
+        />
+      )}
+
+      {currentPage === 'energieberatung' && (
+        <EnergieberatungPage 
+          onBackToMain={handleBackToMain}
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
+        />
+      )}
+
+      {currentPage === 'hydraulischer-abgleich' && (
+        <HydraulischerAbgleichPage 
+          onBackToMain={handleBackToMain}
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
+        />
+      )}
+
+      {currentPage === 'energieausweis' && (
+        <EnergieausweisPage 
+          onBackToMain={handleBackToMain}
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
+        />
+      )}
+
+      {currentPage === 'foerdermittelberatung' && (
+        <FoerdermittelberatungPage 
+          onBackToMain={handleBackToMain}
+          onNavigateToHeizungscheck={handleNavigateToHeizungscheck}
+          onNavigateToEnergie={handleNavigateToEnergie}
+          onNavigateToHydraulisch={handleNavigateToHydraulisch}
+          onNavigateToEnergieausweis={handleNavigateToEnergieausweis}
+          onNavigateToFoerder={handleNavigateToFoerder}
+        />
       )}
     </div>
   )

@@ -8,7 +8,8 @@ import {
   HouseLine,
   Factory,
   Bank,
-  ChartBar
+  ChartBar,
+  ClipboardText
 } from 'phosphor-react'
 
 // Service Icon Mapping
@@ -22,7 +23,8 @@ export const serviceIconMap = {
   7: HouseLine,       // Wohngebäude
   8: Factory,         // Nicht Wohngebäude
   9: Bank,            // Denkmalschutz
-  10: ChartBar        // Heizlastberechnung
+  10: ChartBar,       // Heizlastberechnung
+  11: ClipboardText   // Energieberatung
 }
 
 // Service Icon Component

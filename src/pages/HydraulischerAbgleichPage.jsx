@@ -1,7 +1,7 @@
 import ServicePageTemplate from '../components/ServicePageTemplate'
-import { heizungscheckConfig } from '../config/servicePages/heizungscheckConfig'
+import { hydraulischerAbgleichConfig } from '../config/servicePages/hydraulischerAbgleichConfig'
 
-const HeizungscheckPage = ({ 
+const HydraulischerAbgleichPage = ({ 
   onBackToMain,
   onNavigateToHeizungscheck,
   onNavigateToEnergie,
@@ -11,7 +11,7 @@ const HeizungscheckPage = ({
 }) => {
   return (
     <ServicePageTemplate 
-      config={heizungscheckConfig}
+      config={hydraulischerAbgleichConfig}
       onBackToMain={onBackToMain}
       onNavigateToHeizungscheck={onNavigateToHeizungscheck}
       onNavigateToEnergie={onNavigateToEnergie}
@@ -22,4 +22,4 @@ const HeizungscheckPage = ({
   )
 }
 
-export default HeizungscheckPage
+export default HydraulischerAbgleichPage
