@@ -60,7 +60,7 @@ const Features = () => {
             {features.map((feature, index) => (
               <div key={index} className="relative">
                 <dt>
-                  <div className="absolute flex items-center justify-center h-14 w-14 rounded-xl bg-primary-500 shadow-lg">
+                  <div className="absolute flex items-center justify-center h-14 w-14 rounded-xl bg-secondary-800 shadow-lg">
                     <Icon 
                       name={feature.icon} 
                       size="lg" 

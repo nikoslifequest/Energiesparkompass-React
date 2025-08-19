@@ -184,10 +184,8 @@ const ModernHero = forwardRef(({
               />
             )}
 
-            {/* Overlay */}
-            {image.overlay && (
-              <div className={`absolute inset-0 ${image.overlay}`} />
-            )}
+            {/* Neutral overlay for readability (removed green overlay) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/15 to-transparent lg:from-black/25"></div>
 
             {/* Content Overlay */}
             {image.content && (
@@ -199,10 +197,7 @@ const ModernHero = forwardRef(({
               </div>
             )}
 
-            {/* Gradient for better text contrast */}
-            {!image.overlay && (
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent lg:from-white/40"></div>
-            )}
+            {/* Additional contrast layer removed to keep design clean */}
           </div>
         </div>
       )}

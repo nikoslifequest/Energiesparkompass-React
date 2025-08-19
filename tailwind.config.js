@@ -20,17 +20,19 @@ export default {
           900: '#14532d',  // Tiefes Waldgrün
           950: '#052e16',  // Evergreen
         },
+        // Oxford blue inspired secondary palette
+        // 800 approximates classic Oxford Blue (#002147)
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#f2f6fb',
+          100: '#e6eef7',
+          200: '#c7d7ee',
+          300: '#a8c0e5',
+          400: '#6a93d2',
+          500: '#2e66bf',
+          600: '#224e92',
+          700: '#193a6d',
+          800: '#002147',
+          900: '#001733',
         },
         accent: {
           50: '#fefce8',   // Warmes Gelb (Energie)

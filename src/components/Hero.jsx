@@ -202,11 +202,8 @@ const Hero = () => {
           role="img"
           aria-label="Modernes Haus mit Solaranlage und Wärmepumpe - Energieeffiziente Gebäudetechnik"
         >
-          {/* Grüne Maske/Overlay für professionellen Look */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/80 to-primary-700/70"></div>
-          
-          {/* Optional: Subtle pattern overlay für mehr Textur */}
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent"></div>
+          {/* Neutral, dezentes Overlay statt grünem Verlauf */}
+          <div className="absolute inset-0 bg-black/20"></div>
           
           {/* Interactive Hotspots - Hide on very small screens */}
           <div className="hidden sm:block">

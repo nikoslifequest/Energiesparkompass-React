@@ -159,10 +159,8 @@ const SimpleHero = forwardRef(({
                   />
                 )}
 
-                {/* Overlay */}
-                {image.overlay && (
-                  <div className={`absolute inset-0 ${image.overlay}`} />
-                )}
+                {/* Neutral overlay for readability (removed green overlay) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
                 {/* Content Overlay */}
                 {image.content && (
@@ -174,10 +172,7 @@ const SimpleHero = forwardRef(({
                   </div>
                 )}
 
-                {/* Default gradient for better contrast */}
-                {!image.overlay && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                )}
+                {/* Additional contrast layer removed to keep design clean */}
               </div>
             </div>
           )}

@@ -15,7 +15,7 @@ const Button = forwardRef(({
 
   const variants = {
     primary: "bg-gradient-to-r from-primary-600 to-green-600 text-white hover:from-primary-700 hover:to-green-700 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
-    secondary: "bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
+    secondary: "bg-secondary-800 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
     outline: "border border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
     ghost: "text-primary-600 hover:bg-primary-50 focus:ring-primary-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",
     success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-lg transform hover:-translate-y-1 hover:scale-105",

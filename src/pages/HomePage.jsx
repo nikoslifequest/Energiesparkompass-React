@@ -19,21 +19,8 @@ const HomePage = ({ onNavigateToWizard, onNavigateToHeizungscheck, onNavigateToE
   ]
 
   const handleServiceSelect = (service) => {
-    // Handle special services with dedicated pages
-    if (service.id === 1 && onNavigateToFoerder) {
-      // Fördermittelberatung has dedicated landing page
-      onNavigateToFoerder()
-    } else if ((service.id === 2 || service.id === 3) && onNavigateToEnergieausweis) {
-      // Energieausweis (both types) has dedicated landing page
-      onNavigateToEnergieausweis()
-    } else if (service.id === 4 && onNavigateToHydraulisch) {
-      // Hydraulischer Abgleich has dedicated landing page
-      onNavigateToHydraulisch()
-    } else if (service.id === 11 && onNavigateToEnergie) {
-      // Energieberatung has dedicated landing page
-      onNavigateToEnergie()
-    } else if (onNavigateToWizard) {
-      // All other services go to wizard
+    // Always open the corresponding wizard from the configurator
+    if (onNavigateToWizard) {
       onNavigateToWizard(service.id)
     }
   }
