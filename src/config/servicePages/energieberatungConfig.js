@@ -37,8 +37,8 @@ export const energieberatungConfig = {
       onClick: () => window.open('tel:+49123456789', '_self')
     },
     image: {
-      src: "/assets/images/energieberatung-hero.jpg",
-      alt: "Energieberater bei Vor-Ort Beratung mit Wärmebildkamera",
+      src: "/assets/images/beratung.png",
+      alt: "Beratungsgespräch zur Energieberatung",
       overlay: "bg-gradient-to-br from-blue-600/20 to-green-600/10",
       content: {
         title: "Energieberatung & Sanierungsplanung",
@@ -207,7 +207,7 @@ export const energieberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/energieberatung-vorabberatung.jpg",
+            src: "/assets/images/telefonberatung.png",
             alt: "Kostenlose telefonische Vorabberatung zur Energieberatung",
             caption: "Kostenlose Vorabberatung"
           }
@@ -232,8 +232,8 @@ export const energieberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/energieberatung-vorort.jpg",
-            alt: "Energieberater bei der Vor-Ort-Begehung mit Thermografie-Kamera",
+            src: "/assets/images/hausbesuch.png",
+            alt: "Vor-Ort-Begehung: Hausbesuch durch Energieberater",
             caption: "Professionelle Vor-Ort-Analyse"
           }
         },
@@ -257,7 +257,7 @@ export const energieberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/energieberatung-auswertung.jpg",
+            src: "/assets/images/heizungscheck-auswertung.jpg",
             alt: "Professionelle Datenauswertung und Sanierungsplanung",
             caption: "Detaillierte Auswertung"
           }
@@ -282,8 +282,8 @@ export const energieberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/energieberatung-bericht.jpg",
-            alt: "Übergabe des detaillierten Energieberatungsberichts",
+            src: "/assets/images/foerdermittelberatung-hero.png",
+            alt: "Abschluss und Fördermittelberatung – Bericht & Nachbetreuung",
             caption: "Ihr Sanierungsfahrplan"
           }
         }
