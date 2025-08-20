@@ -121,8 +121,8 @@ const Hero = () => {
               </h2>
               <p className="mt-4 text-base text-gray-600 sm:mt-6 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-6 md:text-xl lg:mx-0 leading-relaxed font-normal">
                 <strong className="font-semibold">Zertifizierte Energieberatung</strong> für Ihr Zuhause in Berlin und Brandenburg. 
-                Wir erstellen Ihren <strong className="font-semibold">individuellen Sanierungsfahrplan (iSFP)</strong>, beraten zu 
-                <strong className="font-semibold">Wärmepumpen, Photovoltaik und BAFA-Förderungen</strong>. Bis zu 70% Energiekosten sparen!
+                Wir erstellen Ihren <strong className="font-semibold">individuellen Sanierungsfahrplan (iSFP)</strong> und beraten zu 
+                <strong className="font-semibold">Photovoltaik und BAFA-Förderungen</strong>.
               </p>
               
               {/* SEO-optimierte Feature-Liste */}
@@ -137,13 +137,19 @@ const Hero = () => {
                   <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="font-medium"><strong className="font-semibold text-gray-800">KfW 458</strong> und <strong className="font-semibold text-gray-800">BAFA-Förderung</strong> bis zu 15.000€</span>
+                  <span className="font-medium"><strong className="font-semibold text-gray-800">KfW 458</strong> und <strong className="font-semibold text-gray-800">BAFA-Förderung</strong></span>
                 </div>
                 <div className="flex items-center">
                   <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="font-medium"><strong className="font-semibold text-gray-800">Wärmepumpen-Beratung</strong> für Altbau & Neubau</span>
+                </div>
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-medium"><strong className="font-semibold text-gray-800">Heizlastberechnung</strong> und <strong className="font-semibold text-gray-800">hydraulischer Abgleich</strong></span>
                 </div>
                 <div className="flex items-center">
                   <svg className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">

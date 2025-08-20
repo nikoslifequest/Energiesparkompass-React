@@ -41,8 +41,8 @@ export const energieausweisConfig = {
       onClick: () => window.open('tel:+49123456789', '_self')
     },
     image: {
-      src: "/assets/images/energieausweis-hero.jpg",
-      alt: "Offizieller Energieausweis für Wohngebäude",
+      src: "/assets/images/energieausweis.png",
+      alt: "Energieausweis – Bedarfs- und Verbrauchsausweis",
       overlay: "bg-gradient-to-br from-red-600/20 to-orange-600/10",
       content: {
         title: "Energieausweis & Bewertung",

@@ -28,8 +28,8 @@ export const heizungscheckConfig = {
       onClick: () => window.open('tel:+49123456789', '_self')
     },
     image: {
-      src: "/assets/images/heizungscheck-hero.webp",
-      alt: "Heizkörperthermostat wird eingestellt - Heizungscheck und Optimierung",
+      src: "/assets/images/familie.png",
+      alt: "Wohlfühl-Wärme für die Familie – Heizungscheck",
       overlay: "bg-gradient-to-br from-primary-600/20 to-primary-700/10",
       content: {
         title: "Heizungsoptimierung & Effizienz",
@@ -67,7 +67,7 @@ export const heizungscheckConfig = {
       ],
       bottomContent: {
         title: "Warum ist ein Heizungscheck wichtig?",
-        description: "Ein regelmäßiger Heizungscheck deckt versteckte Ineffizienzen auf, reduziert Energiekosten um bis zu 15% und stellt die Einhaltung gesetzlicher Vorgaben sicher. Gleichzeitig verlängert er die Lebensdauer Ihrer Heizungsanlage und trägt aktiv zum Klimaschutz bei.",
+        description: "Ein regelmäßiger Heizungscheck macht versteckte Schwachstellen sichtbar und schafft die Grundlage für Einsparungen von bis zu 15 Prozent bei Ihren Energiekosten. Gleichzeitig erfüllen Sie gesetzliche Anforderungen, erhöhen die Betriebssicherheit und verlängern die Lebensdauer Ihrer Heizungsanlage. Eine Investition, die sich auszahlt – für Ihren Geldbeutel und für das Klima.",
         stats: [
           {
             value: "15%",
@@ -99,7 +99,7 @@ export const heizungscheckConfig = {
           icon: "fire",
           iconBg: "bg-primary-100",
           iconColor: "text-primary-600",
-          value: "150+",
+          value: "850+",
           valueColor: "primary-600",
           label: "Heizungschecks durchgeführt",
           sublabel: "Seit 2020 in Berlin & Brandenburg"
@@ -110,8 +110,7 @@ export const heizungscheckConfig = {
           iconColor: "text-green-600", 
           value: "bis zu 15%",
           valueColor: "green-600",
-          label: "Durchschnittliche Einsparung",
-          sublabel: "bis zu 300-600€ pro Jahr bei EFH"
+          label: "Durchschnittliche Einsparung"
         },
         {
           icon: "check",
@@ -160,7 +159,7 @@ export const heizungscheckConfig = {
             details: [
               { label: "Jährliche Einsparung", value: "bis zu 800-1.500€", color: "green-600", size: "lg" },
               { label: "CO₂-Reduktion", value: "bis zu 1,5-3,0t", color: "green-600" },
-              { label: "Check-Kosten", value: "250-350€", color: "gray-600" }
+              { label: "Check-Kosten", value: "350-500€", color: "gray-600" }
             ]
           }
         ],
@@ -240,7 +239,6 @@ export const heizungscheckConfig = {
               "Ausführlicher schriftlicher Heizungscheck-Bericht",
               "GEG-konforme Dokumentation für Behörden", 
               "Konkrete Handlungsempfehlungen mit Prioritäten",
-              "Kostenschätzungen für alle Maßnahmen",
               "Förderberatung und Unterstützung bei Anträgen"
             ]
           },

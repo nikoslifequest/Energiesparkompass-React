@@ -93,8 +93,8 @@ const Features = () => {
               <div className="text-sm text-gray-600 font-medium">Energiekosten-Ersparnis möglich</div>
             </div>
             <div className="text-center p-6 bg-primary-50 rounded-xl">
-              <div className="text-4xl font-heading font-bold text-primary-600 mb-2">15.000€</div>
-              <div className="text-sm text-gray-600 font-medium">Maximale Förderung</div>
+              <div className="text-4xl font-heading font-bold text-primary-600 mb-2">Förderfähig</div>
+              <div className="text-sm text-gray-600 font-medium">BAFA & KfW Programme</div>
             </div>
             <div className="text-center p-6 bg-primary-50 rounded-xl">
               <div className="text-4xl font-heading font-bold text-primary-600 mb-2">500+</div>
