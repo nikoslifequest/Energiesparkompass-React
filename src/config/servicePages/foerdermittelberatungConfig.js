@@ -204,8 +204,8 @@ export const foerdermittelberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/foerderberatung-erstberatung.jpg",
-            alt: "Kostenlose Erstberatung zu Fördermitteln für Energiesanierung",
+            src: "/assets/images/foerdermittelberatung2.png",
+            alt: "Erstberatung zur Fördermittelberatung",
             caption: "Kostenlose Erstberatung"
           }
         },
@@ -229,8 +229,8 @@ export const foerdermittelberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/foerderberatung-strategie.jpg",
-            alt: "Detaillierte Förderstrategie und Berechnung der Fördermittel",
+            src: "/assets/images/foerdermittelberatung3.png",
+            alt: "Detailanalyse & Förderstrategie der Fördermittel",
             caption: "Detaillierte Förderstrategie"
           }
         },
@@ -254,8 +254,8 @@ export const foerdermittelberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/foerderberatung-antrag.jpg",
-            alt: "Professionelle Antragsstellung bei KfW und BAFA",
+            src: "/assets/images/formulare.png",
+            alt: "Antragstellung & Begleitung – Formulare und Unterlagen",
             caption: "Professionelle Antragsstellung"
           }
         },
@@ -279,8 +279,8 @@ export const foerdermittelberatungConfig = {
             ]
           },
           image: {
-            src: "/assets/images/foerderberatung-auszahlung.jpg",
-            alt: "Erfolgreiche Fördermittel-Auszahlung nach Sanierungsmaßnahme",
+            src: "/assets/images/foerdermitteltelefon.png",
+            alt: "Bewilligung & Auszahlung – telefonische Begleitung",
             caption: "Erfolgreiche Auszahlung"
           }
         }
