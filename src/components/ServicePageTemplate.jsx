@@ -86,8 +86,8 @@ const ServicePageTemplate = ({
             <Grid cols={1} gap="lg" className="md:grid-cols-2 lg:grid-cols-3">
               {sections.features.items.map((feature, index) => (
                 <Card key={index} className="elegant-card p-8 text-center hover:shadow-lg transition-all duration-300 group">
-                  <div className={`${feature.iconBg || 'bg-primary-100'} rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon name={feature.icon} size="xl" className={feature.iconColor || 'text-primary-600'} />
+                  <div className={`bg-secondary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon name={feature.icon} size="xl" className={'text-secondary-600'} />
                   </div>
                   <Heading as="h3" size="lg" color="gray-900" className="mb-4">
                     {feature.title}
@@ -115,8 +115,8 @@ const ServicePageTemplate = ({
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                         {sections.features.bottomContent.stats.map((stat, index) => (
                           <div key={index} className="text-center">
-                            <div className={`${stat.bgColor || 'bg-primary-100'} rounded-lg p-4 mb-3`}>
-                              <Text size="2xl" weight="bold" color={stat.textColor || 'primary-600'}>{stat.value}</Text>
+                            <div className={`bg-secondary-100 rounded-lg p-4 mb-3`}>
+                              <Text size="2xl" weight="bold" color={'secondary-600'}>{stat.value}</Text>
                             </div>
                             <Text size="sm" color="gray-600">{stat.label}</Text>
                           </div>
@@ -148,10 +148,10 @@ const ServicePageTemplate = ({
             <Grid cols={1} gap="lg" className="md:grid-cols-2 lg:grid-cols-4 mb-16">
               {sections.stats.items.map((stat, index) => (
                 <Card key={index} className="elegant-card p-8 text-center hover:shadow-lg transition-all duration-300 group">
-                  <div className={`${stat.iconBg || 'bg-primary-100'} rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon name={stat.icon} size="xl" className={stat.iconColor || 'text-primary-600'} />
+                  <div className={`bg-secondary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon name={stat.icon} size="xl" className={'text-secondary-600'} />
                   </div>
-                  <Heading as="h3" size="3xl" color={stat.valueColor || 'primary-600'} className="mb-2 font-bold">
+                  <Heading as="h3" size="3xl" color={'secondary-600'} className="mb-2 font-bold">
                     {stat.value}
                   </Heading>
                   <Text color="gray-600" weight="medium" size="lg" className="mb-2">
@@ -242,15 +242,15 @@ const ServicePageTemplate = ({
                         <Card className="elegant-card p-8 hover:shadow-lg transition-all duration-300">
                           <Stack spacing="lg">
                             <div className="flex items-center space-x-4">
-                              <div className={`${phase.numberColor || 'bg-primary-600'} text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg`}>
+                              <div className={`bg-secondary-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg`}>
                                 {phase.number}
                               </div>
                               <div>
-                                <Badge variant="secondary" className={`mb-2 ${phase.badgeStyle || 'bg-primary-100 text-primary-800'}`}>
+                                <Badge variant="secondary" className={`mb-2 bg-secondary-100 text-secondary-800`}>
                                   {phase.badge}
                                 </Badge>
                                 <Heading as="h3" size="xl" color="gray-900">{phase.title}</Heading>
-                                <Text size="sm" color={phase.durationColor || 'primary-600'} weight="medium">
+                                <Text size="sm" color={'secondary-600'} weight="medium">
                                   {phase.duration}
                                 </Text>
                               </div>
@@ -266,7 +266,7 @@ const ServicePageTemplate = ({
                                 <Text weight="semibold" color="gray-900">{phase.checkList.title}:</Text>
                                 {phase.checkList.items.map((item, itemIndex) => (
                                   <div key={itemIndex} className="flex items-start space-x-2">
-                                    <Icon name="check" className="text-green-600 mt-1 flex-shrink-0" size="sm" />
+                                    <Icon name="check" className="text-secondary-600 mt-1 flex-shrink-0" size="sm" />
                                     <Text size="sm" color="gray-600">{item}</Text>
                                   </div>
                                 ))}
